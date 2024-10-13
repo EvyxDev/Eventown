@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/routes/app_routes.dart';
@@ -26,8 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void checkingBeforeNavigation() async {
-    String? token = sl<CacheHelper>().getData(key: "token");
-    bool firstTime = sl<CacheHelper>().getData(key: "firstTime") ?? true;
+    String? token = sl<CacheHelper>().getData(key: AppConstants.token);
+    bool firstTime =
+        sl<CacheHelper>().getData(key: AppConstants.isFirstTime) ?? true;
     log("TOKEN: $token");
     log("FIRST TIME: $firstTime");
     Future.delayed(
