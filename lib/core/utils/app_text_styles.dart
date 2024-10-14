@@ -10,6 +10,13 @@ abstract class CustomTextStyle {
     color: AppColors.orange,
     overflow: TextOverflow.ellipsis,
   );
+  static final urbanStorm900sized30White = TextStyle(
+    fontFamily: "Urban Storm",
+    fontWeight: FontWeight.w900,
+    fontSize: 30.sp,
+    color: AppColors.white,
+    overflow: TextOverflow.ellipsis,
+  );
   static final urbanStorm400sized14Black = TextStyle(
     fontFamily: "Urban Storm",
     fontWeight: FontWeight.w400,

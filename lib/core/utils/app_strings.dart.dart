@@ -7,6 +7,7 @@ abstract class AppStrings {
   static const String onBoardingSubTitle2 = "onBoardingSubTitle2";
   static const String onBoardingSubTitle3 = "onBoardingSubTitle3";
   static const String seeAllFeatures = "seeAllFeatures";
+  static const String continuee = "continue";
   static const String thisFieldIsRequired = "thisFieldIsRequired";
   static const String pleaseEnterValidPassword = "pleaseEnterValidPassword";
   static const String passwordsDoNotMatch = "passwordsDoNotMatch";
