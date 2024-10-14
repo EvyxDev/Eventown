@@ -297,4 +297,11 @@ abstract class CustomTextStyle {
     color: Colors.black,
     overflow: TextOverflow.ellipsis,
   );
+  static final urbanStorm700sized30White = TextStyle(
+    fontFamily: "Urban Storm",
+    fontWeight: FontWeight.w700,
+    fontSize: 30.sp,
+    color: AppColors.white,
+    overflow: TextOverflow.ellipsis,
+  );
 }

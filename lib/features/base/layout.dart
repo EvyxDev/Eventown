@@ -19,7 +19,7 @@ class BaseScreen extends StatelessWidget {
           extendBody: false,
           body: cubit.bottomScreens[cubit.currentIndex],
           bottomNavigationBar: CrystalNavigationBar(
-            backgroundColor: Color(0x00ffffff),
+            backgroundColor: AppColors.black,
             unselectedItemColor: AppColors.primary,
             selectedItemColor: AppColors.primary,
             onTap: (index) {
@@ -33,20 +33,19 @@ class BaseScreen extends StatelessWidget {
                 unselectedIcon: IconlyLight.home,
                 selectedColor: AppColors.primary,
               ),
-
               /// Favourite
               CrystalNavigationBarItem(
                 icon: IconlyBold.game,
                 unselectedIcon: IconlyLight.game,
                 selectedColor: AppColors.primary,
               ),
-
               /// Add
               CrystalNavigationBarItem(
                 icon: IconlyBold.notification,
                 unselectedIcon: IconlyLight.notification,
                 selectedColor: AppColors.primary,
               ),
+              /// Profile
               CrystalNavigationBarItem(
                 icon: IconlyBold.user_3,
                 unselectedIcon: IconlyLight.user,

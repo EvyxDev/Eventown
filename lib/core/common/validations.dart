@@ -9,14 +9,7 @@ class Validation {
     return null;
   }
 
-  static String? validateSSN(String value) {
-    if (value.trim().isEmpty) {
-      return AppStrings.thisFieldIsRequired;
-    } else if (value.length != 9) {
-      return AppStrings.pleaseEnterValidSSN;
-    }
-    return null;
-  }
+
 
   static String? validateEmail(String email) {
     var emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");

@@ -1,3 +1,4 @@
+import 'package:eventown/features/base/layout.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
 import 'package:eventown/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:eventown/features/sign_in/presentation/cubit/sign_in_cubit.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String forgotPassword = "/forgot-password";
   static const String signDriverDetails = "/SignDriverDetails";
   static const String otp = "/otp";
+  static const String base = "/base";
   static const String resetPassword = "/reset-password";
 }
 
@@ -30,6 +32,11 @@ class AppRoutes {
       case (Routes.onBoarding):
         return MaterialPageRoute(
           builder: (_) => const OnBoardingScreen(),
+        );
+      //!Base Screen
+      case (Routes.base):
+        return MaterialPageRoute(
+          builder: (_) => const BaseScreen(),
         );
       //!Sign in Screen
       case (Routes.signIn):

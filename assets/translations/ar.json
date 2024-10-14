@@ -1,3 +1,12 @@
 {
-    "appName": "Eventown"
+    "appName": "Eventown",
+    "onBoardingTitle1":"ابحث عن طريقك",
+    "onBoardingTitle2":"انظر إلى قائمة بجميع الفعاليات والمتحدثين.",
+    "onBoardingTitle3":"تعرف على المتحدثين وفعالياتهم.",
+    "onBoardingSubTitle1":"تتضمن التطبيق خريطة للموقع، حتى تتمكن من العثور بسهولة على جلساتك والمعارض.",
+    "onBoardingSubTitle2":"",
+    "onBoardingSubTitle3":"",
+    "seeAllFeatures":"شاهد جميع الميزات"
+
+
 }

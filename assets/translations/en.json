@@ -1,3 +1,10 @@
 {
-    "appName": "Eventown"
+    "appName": "Eventown",
+    "onBoardingTitle1":"Find your way around",
+    "onBoardingTitle2":"See a list of all the Events and speakers.",
+    "onBoardingTitle3":"Get to know the speakers and their events.",
+    "onBoardingSubTitle1":"The app includes a map of the venue, so you can easily find your way to your sessions and exhibits.",
+    "onBoardingSubTitle2":"",
+    "onBoardingSubTitle3":"",
+    "seeAllFeatures":"See all features"
 }
