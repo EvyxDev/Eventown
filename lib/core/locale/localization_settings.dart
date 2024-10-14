@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'app_loacl.dart';
 
-
-
 //  localizationsDelegatesList
 const localizationsDelegatesList = [
   GlobalMaterialLocalizations.delegate,

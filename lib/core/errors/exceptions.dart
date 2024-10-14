@@ -90,25 +90,25 @@ handleDioException(DioException e) {
       switch (e.response?.statusCode) {
         case 400: // Bad request
 
-          throw BadResponseException(ErrorModel(detail: e.response!.data));
+          throw BadResponseException(ErrorModel.fromJson(e.response?.data));
 
         case 401: //unauthorized
-          throw UnauthorizedException(ErrorModel(detail: e.response!.data));
+          throw UnauthorizedException(ErrorModel.fromJson(e.response?.data));
 
         case 403: //forbidden
-          throw ForbiddenException(ErrorModel(detail: e.response!.data));
+          throw ForbiddenException(ErrorModel.fromJson(e.response?.data));
 
         case 404: //not found
-          throw NotFoundException(ErrorModel(detail: e.response!.data));
+          throw NotFoundException(ErrorModel.fromJson(e.response?.data));
 
         case 409: //cofficient
 
-          throw CofficientException(ErrorModel(detail: e.response!.data));
+          throw CofficientException(ErrorModel.fromJson(e.response?.data));
 
         case 422: //  Unprocessable Entity
-          throw BadResponseException(ErrorModel(detail: e.response!.data));
+          throw BadResponseException(ErrorModel.fromJson(e.response?.data));
         case 504: // Bad request
-          throw BadResponseException(ErrorModel(detail: e.response!.data));
+          throw BadResponseException(ErrorModel.fromJson(e.response?.data));
       }
       break;
 

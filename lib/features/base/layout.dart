@@ -33,18 +33,21 @@ class BaseScreen extends StatelessWidget {
                 unselectedIcon: IconlyLight.home,
                 selectedColor: AppColors.primary,
               ),
+
               /// Favourite
               CrystalNavigationBarItem(
                 icon: IconlyBold.game,
                 unselectedIcon: IconlyLight.game,
                 selectedColor: AppColors.primary,
               ),
+
               /// Add
               CrystalNavigationBarItem(
                 icon: IconlyBold.notification,
                 unselectedIcon: IconlyLight.notification,
                 selectedColor: AppColors.primary,
               ),
+
               /// Profile
               CrystalNavigationBarItem(
                 icon: IconlyBold.user_3,

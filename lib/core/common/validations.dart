@@ -1,4 +1,3 @@
-
 import 'package:eventown/core/utils/app_strings.dart.dart';
 
 class Validation {
@@ -8,8 +7,6 @@ class Validation {
     }
     return null;
   }
-
-
 
   static String? validateEmail(String email) {
     var emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");

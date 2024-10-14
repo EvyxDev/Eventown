@@ -9,7 +9,7 @@ AppBar customAppBar(BuildContext context, String title,
     centerTitle: true,
     title: Text(
       title,
-      style: CustomTextStyle.urbanStorm500sized18White,
+      style: CustomTextStyle.roboto500sized18White,
     ),
     leading: IconButton(
       icon: const Icon(

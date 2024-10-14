@@ -1,13 +1,24 @@
 {
     "appName": "Eventown",
-    "onBoardingTitle1":"ابحث عن طريقك",
-    "onBoardingTitle2":"انظر إلى قائمة بجميع الفعاليات والمتحدثين.",
-    "onBoardingTitle3":"تعرف على المتحدثين وفعالياتهم.",
-    "onBoardingSubTitle1":"تتضمن التطبيق خريطة للموقع، حتى تتمكن من العثور بسهولة على جلساتك والمعارض.",
-    "onBoardingSubTitle2":"",
-    "onBoardingSubTitle3":"",
-    "seeAllFeatures":"شاهد جميع الميزات",
-    "continuee":"استمر"
-
-
+    "onBoardingTitle1": "ابحث عن طريقك",
+    "onBoardingTitle2": "انظر إلى قائمة بجميع الفعاليات والمتحدثين.",
+    "onBoardingTitle3": "تعرف على المتحدثين وفعالياتهم.",
+    "onBoardingSubTitle1": "تتضمن التطبيق خريطة للموقع، حتى تتمكن من العثور بسهولة على جلساتك والمعارض.",
+    "onBoardingSubTitle2": "",
+    "onBoardingSubTitle3": "",
+    "seeAllFeatures": "شاهد جميع الميزات",
+    "continuee": "استمر",
+    "thisFieldIsRequired": "هذا الحقل مطلوب",
+    "pleaseEnterValidPassword": "يرجى إدخال كلمة مرور صالحة",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+    "pleaseEnterValidEmailAddress": "يرجى إدخال بريد إلكتروني صالح",
+    "welcome": "مرحبًا",
+    "signIn": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotYourPassword": "هل نسيت كلمة المرور؟",
+    "changeItNow": "قم بتغييره الآن",
+    "login": "تسجيل الدخول",
+    "dontHaveAnAccount": "ليس لديك حساب؟",
+    "registerNow": "سجل الآن"
 }

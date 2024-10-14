@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
@@ -58,10 +57,10 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       autofocus: autofocus ?? false,
       keyboardType: keyboardType,
-      maxLines: maxLines,
+      maxLines: maxLines ?? 1,
       validator: validator,
       onChanged: onChanged,
-      style: CustomTextStyle.urbanStorm400sized14Black,
+      style: CustomTextStyle.roboto400sized14White,
       cursorColor: AppColors.primary,
       obscureText: obscureText ?? false,
       controller: controller,
@@ -70,7 +69,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         floatingLabelBehavior:
             floatingLabelBehavior ?? FloatingLabelBehavior.auto,
-        contentPadding: contentPadding ?? EdgeInsets.all(24.w),
+        contentPadding: contentPadding ?? EdgeInsets.all(18.w),
         border: getBorderStyle(context, borderRadius, borderColor),
         enabledBorder: getBorderStyle(context, borderRadius, borderColor),
         focusedBorder: getBorderStyle(context, borderRadius, borderColor),
@@ -80,10 +79,10 @@ class CustomTextFormField extends StatelessWidget {
         errorMaxLines: 5,
         labelText: labelText,
         hintText: hintText,
-        fillColor: fillColor ?? const Color(0xffFAFAFA),
+        fillColor: fillColor ?? const Color(0xff121212),
         filled: filled ?? true,
-        labelStyle: CustomTextStyle.urbanStorm400sized14Grey,
-        hintStyle: hintStyle ?? CustomTextStyle.urbanStorm400sized14Grey,
+        labelStyle: CustomTextStyle.roboto700sized14Grey,
+        hintStyle: hintStyle ?? CustomTextStyle.roboto700sized14Grey,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         suffixIconColor: suffixIconColor ?? AppColors.white,
@@ -95,9 +94,9 @@ class CustomTextFormField extends StatelessWidget {
 
 OutlineInputBorder getBorderStyle(context, borderRadius, borderColor) {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(borderRadius ?? 10),
+    borderRadius: BorderRadius.circular(borderRadius ?? 5),
     borderSide: BorderSide(
-      color: borderColor ?? AppColors.lightGrey,
+      color: borderColor ?? const Color(0xff121212),
       width: 2.w,
     ),
   );

@@ -13,4 +13,22 @@ abstract class AppStrings {
   static const String passwordsDoNotMatch = "passwordsDoNotMatch";
   static const String pleaseEnterValidEmailAddress =
       "pleaseEnterValidEmailAddress";
+  //'Welcome'
+  static const String welcome = "welcome";
+  //'Sign In'
+  static const String signIn = "signIn";
+  //"E-mail"
+  static const String email = "email";
+  //"Password"
+  static const String password = "password";
+  //"Forgot Your Password?"
+  static const String forgotYourPassword = "forgotYourPassword";
+  //"Change it Now"
+  static const String changeItNow = "changeItNow";
+  //'Login'
+  static const String login = "login";
+  //"Don't have an account?"
+  static const String dontHaveAnAccount = "dontHaveAnAccount";
+  //"Register now"
+  static const String registerNow = "registerNow";
 }

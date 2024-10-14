@@ -34,9 +34,9 @@ class CustomElevatedButton extends StatelessWidget {
         backgroundColor: color ?? AppColors.primary,
         elevation: elevation ?? 5,
         shadowColor: AppColors.lightGrey,
-        fixedSize: Size(width ?? MediaQuery.of(context).size.width, 56.h),
+        fixedSize: Size(width ?? MediaQuery.of(context).size.width, 45.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 10),
+          borderRadius: BorderRadius.circular(borderRadius ?? 5),
           side: BorderSide(
             color: borderColor ?? AppColors.primary,
           ),
@@ -50,7 +50,7 @@ class CustomElevatedButton extends StatelessWidget {
           SizedBox(width: 8.w),
           Text(
             text,
-            style: CustomTextStyle.urbanStorm500sized16Primary.copyWith(
+            style: CustomTextStyle.roboto500sized16White.copyWith(
               color: textColor ?? AppColors.white,
             ),
           ),

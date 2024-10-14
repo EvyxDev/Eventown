@@ -51,8 +51,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     AppStrings.onBoardingTitle1.tr(context),
-                                    style: CustomTextStyle
-                                        .urbanStorm400sized14Grey,
+                                    style: CustomTextStyle.roboto400sized14Grey,
                                     overflow: TextOverflow.fade,
                                   ),
                                 ),
@@ -67,7 +66,7 @@ class OnBoardingScreen extends StatelessWidget {
                           SizedBox(height: 16.h),
                           Text(
                             AppStrings.appName.tr(context),
-                            style: CustomTextStyle.urbanStorm700sized30White,
+                            style: CustomTextStyle.roboto700sized30White,
                           ),
                           SizedBox(height: 64.h),
                           Column(
@@ -75,12 +74,11 @@ class OnBoardingScreen extends StatelessWidget {
                             children: [
                               Text(
                                 AppStrings.onBoardingTitle1.tr(context),
-                                style: CustomTextStyle.urbanStorm400sized14Grey,
+                                style: CustomTextStyle.roboto400sized14Grey,
                               ),
                               Text(
                                 AppStrings.onBoardingSubTitle1.tr(context),
-                                style:
-                                    CustomTextStyle.urbanStorm500sized16White,
+                                style: CustomTextStyle.roboto500sized16White,
                                 overflow: TextOverflow.fade,
                               ),
                             ],
@@ -113,8 +111,8 @@ class OnBoardingScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     AppStrings.seeAllFeatures.tr(context),
-                                    style: CustomTextStyle
-                                        .urbanStorm400sized14White,
+                                    style:
+                                        CustomTextStyle.roboto400sized14White,
                                   ),
                                   SvgPicture.asset(Assets.assetsImagesPngLine)
                                 ],
@@ -150,8 +148,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 textAlign: TextAlign.start,
                                 OnBoardingModel.onBoardingList[index].title
                                     .tr(context),
-                                style:
-                                    CustomTextStyle.urbanStorm900sized30White,
+                                style: CustomTextStyle.roboto900sized30White,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -198,8 +195,8 @@ class OnBoardingScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     AppStrings.continuee.tr(context),
-                                    style: CustomTextStyle
-                                        .urbanStorm400sized14White,
+                                    style:
+                                        CustomTextStyle.roboto400sized14White,
                                   ),
                                   SvgPicture.asset(Assets.assetsImagesPngLine)
                                 ],
