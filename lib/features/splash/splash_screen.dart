@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
@@ -30,8 +29,12 @@ class _SplashScreenState extends State<SplashScreen> {
     String? token = sl<CacheHelper>().getData(key: AppConstants.token);
     bool firstTime =
         sl<CacheHelper>().getData(key: AppConstants.isFirstTime) ?? true;
-    log("TOKEN: $token");
-    log("FIRST TIME: $firstTime");
+
+    if (token != null) {
+      printGreen("TOKEN: $token");
+    } else {
+      printRed("TOKEN: $token");
+    }
     Future.delayed(
       const Duration(seconds: 3),
       () {

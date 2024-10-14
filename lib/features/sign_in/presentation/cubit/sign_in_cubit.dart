@@ -1,3 +1,4 @@
+import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
@@ -26,10 +27,12 @@ class SignInCubit extends Cubit<SignInState> {
         await repo.signIn(emailController.text, passwordController.text);
     response.fold(
       (l) {
+        printRed(l);
         emit(SignInFailed(l));
       },
       (r) {
         sl<CacheHelper>().saveData(key: AppConstants.token, value: r.token);
+        printGreen("Welcome ${r.data!.name ?? ""}");
         emit(SignInSuccess());
       },
     );

@@ -77,8 +77,8 @@ class SignInScreen extends StatelessWidget {
                         obscureText: SignInCubit.get(context).isPasswordObscure,
                         suffixIcon: GestureDetector(
                           onTap: state is SignInLoading
-                              ? SignInCubit.get(context).passwordObscure
-                              : null,
+                              ? null
+                              : SignInCubit.get(context).passwordObscure,
                           child: Icon(
                             SignInCubit.get(context).isPasswordObscure
                                 ? Icons.visibility
