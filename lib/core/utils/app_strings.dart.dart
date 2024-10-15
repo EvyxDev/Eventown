@@ -91,4 +91,15 @@ abstract class AppStrings {
   static const String enterValidOtp = "enterValidOtp";
   //Account Created
   static const String accountCreated = "accountCreated";
+
+  //Change Password
+  static const String changePassword = "changePassword";
+
+  //Type your registered Email to receive PIN code
+  static const String typeYourRegisteredEmailToReceivePINCode =
+      "typeYourRegisteredEmailToReceivePINCode";
+
+  //Password Changed Successfully
+  static const String passwordChangedSuccessfully =
+      "passwordChangedSuccessfully";
 }

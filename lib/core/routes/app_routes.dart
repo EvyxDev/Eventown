@@ -1,6 +1,10 @@
 import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/features/base/layout.dart';
+import 'package:eventown/features/forgot_password/data/repositories/forgot_password_repo.dart';
+import 'package:eventown/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
+import 'package:eventown/features/forgot_password/presentation/screens/forgot_password_otp_screen.dart';
 import 'package:eventown/features/forgot_password/presentation/screens/forgot_password_screen.dart';
+import 'package:eventown/features/forgot_password/presentation/screens/reset_password_screen.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
 import 'package:eventown/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
@@ -22,6 +26,7 @@ class Routes {
   static const String signUp = "/sign-up";
   static const String homeScreen = "/home-screen";
   static const String forgotPassword = "/forgot-password";
+  static const String forgotPasswordOtp = "/forgot-password-Otp";
   static const String signDriverDetails = "/SignDriverDetails";
   static const String otp = "/otp";
   static const String base = "/base";
@@ -72,16 +77,27 @@ class AppRoutes {
       //! Forgot Password Screen
       case (Routes.forgotPassword):
         return MaterialPageRoute(
-          builder: (_) => const ForgotPasswordScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => ForgotPasswordCubit(sl<ForgotPasswordRepo>()),
+            child: const ForgotPasswordScreen(),
+          ),
+        );
+      //! Forgot Password Otp Screen
+      case (Routes.forgotPasswordOtp):
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ForgotPasswordCubit(sl<ForgotPasswordRepo>()),
+            child: const ForgotPasswordOtpScreen(),
+          ),
         );
       // //! Reset Password Password Screen
-      // case (Routes.resetPassword):
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider(
-      //       create: (context) => ForgetPasswordCubit(),
-      //       child: const ResetPasswordScreen(),
-      //     ),
-      //   );
+      case (Routes.resetPassword):
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ForgotPasswordCubit(sl<ForgotPasswordRepo>()),
+            child: const ResetPasswordScreen(),
+          ),
+        );
       //! OTP Password Screen
       case (Routes.otp):
         return MaterialPageRoute(

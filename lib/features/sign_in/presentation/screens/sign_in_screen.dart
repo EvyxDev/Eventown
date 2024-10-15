@@ -150,7 +150,7 @@ class SignInScreen extends StatelessWidget {
                                 : () {
                                     Navigator.pushNamed(
                                       context,
-                                      Routes.otp,
+                                      Routes.signUp,
                                     );
                                   },
                             child: Text(
