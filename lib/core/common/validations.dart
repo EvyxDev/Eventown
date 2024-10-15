@@ -18,8 +18,18 @@ class Validation {
     return null;
   }
 
+  static String? validatePhneNumber(String phone) {
+    // var phoneRegExp = RegExp(r'^\+20\d{10}$');
+    if (phone.trim().isEmpty) {
+      return AppStrings.thisFieldIsRequired;
+    } else if (phone.trim().length != 10) {
+      return AppStrings.pleaseEnterValidPhoneNumber;
+    }
+    return null;
+  }
+
   static String? validatePassword(String password) {
-    var passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    var passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$');
     if (password.trim().isEmpty) {
       return AppStrings.thisFieldIsRequired;
     } else if (!passwordRegExp.hasMatch(password)) {

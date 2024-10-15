@@ -11,24 +11,73 @@ abstract class AppStrings {
   static const String thisFieldIsRequired = "thisFieldIsRequired";
   static const String pleaseEnterValidPassword = "pleaseEnterValidPassword";
   static const String passwordsDoNotMatch = "passwordsDoNotMatch";
-  static const String pleaseEnterValidEmailAddress =
-      "pleaseEnterValidEmailAddress";
-  //'Welcome'
+  static const String pleaseEnterValidEmailAddress = "pleaseEnterValidEmailAddress";
+  
+  // Welcome & Sign In
   static const String welcome = "welcome";
-  //'Sign In'
   static const String signIn = "signIn";
-  //"E-mail"
   static const String email = "email";
-  //"Password"
   static const String password = "password";
-  //"Forgot Your Password?"
   static const String forgotYourPassword = "forgotYourPassword";
-  //"Change it Now"
   static const String changeItNow = "changeItNow";
-  //'Login'
   static const String login = "login";
-  //"Don't have an account?"
   static const String dontHaveAnAccount = "dontHaveAnAccount";
-  //"Register now"
   static const String registerNow = "registerNow";
+  
+  // Governorates
+  static const String cairo = "cairo";
+  static const String giza = "giza";
+  static const String alexandria = "alexandria";
+  static const String aswan = "aswan";
+  static const String asyut = "asyut";
+  static const String beheira = "beheira";
+  static const String beniSuef = "beniSuef";
+  static const String dakahlia = "dakahlia";
+  static const String damietta = "damietta";
+  static const String faiyum = "faiyum";
+  static const String gharbia = "gharbia";
+  static const String ismailia = "ismailia";
+  static const String kafrElSheikh = "kafrElSheikh";
+  static const String luxor = "luxor";
+  static const String matruh = "matruh";
+  static const String minya = "minya";
+  static const String monufia = "monufia";
+  static const String newValley = "newValley";
+  static const String northSinai = "northSinai";
+  static const String portSaid = "portSaid";
+  static const String qalyubia = "qalyubia";
+  static const String qena = "qena";
+  static const String redSea = "redSea";
+  static const String sharqia = "sharqia";
+  static const String sohag = "sohag";
+  static const String southSinai = "southSinai";
+  static const String suez = "suez";
+  
+  // Sign Up
+  static const String signUp = "signUp";
+  static const String fullName = "fullName";
+  static const String phoneNumber = "phoneNumber";
+  static const String pleaseEnterValidPhoneNumber = "pleaseEnterValidPhoneNumber";
+  static const String city = "city";
+  static const String gender = "gender";
+  static const String male = "male";
+  static const String female = "female";
+  static const String confirmPassword = "confirmPassword";
+  
+  // Interests
+  static const String pickYourInterests = "pickYourInterests";
+  static const String youCantSelectMoreThan5Interests = "youCantSelectMoreThan5Interests";
+  
+  // Terms and Conditions
+  static const String iAgreeToThe = "iAgreeToThe";
+  static const String termsAndConditions = "termsAndConditions";
+  
+  // Validations
+  static const String pleaseSelectCity = "pleaseSelectCity";
+  static const String pleaseSelectGender = "pleaseSelectGender";
+  static const String pleaseSelect5Interests = "pleaseSelect5Interests";
+  static const String pleaseAgreeToTheTerms = "pleaseAgreeToTheTerms";
+  
+  // Additional
+  static const String dontHaveAnAccountQ = "dontHaveAnAccountQ";
 }

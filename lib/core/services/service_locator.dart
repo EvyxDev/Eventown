@@ -1,6 +1,7 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
+import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:get_it/get_it.dart';
 import '../connection/network_info.dart';
 import '../cubit/global_cubit.dart';
@@ -18,4 +19,5 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => DioConsumer(sl<Dio>(), sl<NetworkInfoImpl>()));
   //repos
   sl.registerLazySingleton(() => SignInRepo(sl<DioConsumer>()));
+  sl.registerLazySingleton(() => SignUpRepo(sl<DioConsumer>()));
 }

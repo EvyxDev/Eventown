@@ -16,7 +16,6 @@ void printGreen(String text) {
   developer.log('\x1B[32m$text\x1B[0m');
 }
 
-
 // Reset:   \x1B[0m
 // Black:   \x1B[30m
 // White:   \x1B[37m

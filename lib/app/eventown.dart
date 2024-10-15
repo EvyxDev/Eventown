@@ -6,7 +6,6 @@ import '../core/cubit/global_cubit.dart';
 import '../core/cubit/global_state.dart';
 import '../core/locale/localization_settings.dart';
 import '../core/routes/app_routes.dart';
-import '../core/services/service_locator.dart';
 import '../core/theme/app_theme.dart';
 
 class Eventown extends StatelessWidget {
@@ -33,7 +32,7 @@ class Eventown extends StatelessWidget {
               //!Localization Settings
               localizationsDelegates: localizationsDelegatesList,
               supportedLocales: supportedLocalesList,
-              locale: Locale(sl<GlobalCubit>().language),
+              locale: Locale(context.read<GlobalCubit>().language),
               //!App Scroll Behavior
               scrollBehavior: ScrollConfiguration.of(context).copyWith(
                 physics: const BouncingScrollPhysics(),

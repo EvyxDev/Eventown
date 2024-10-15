@@ -1,3 +1,4 @@
+import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   //! Language
   String language = sl<CacheHelper>().getCachedLanguage();
   changeLanguage() {
+    printRed("Change Lang");
     sl<CacheHelper>().getCachedLanguage() == "en"
         ? sl<CacheHelper>().cacheLanguage("ar")
         : sl<CacheHelper>().cacheLanguage("en");

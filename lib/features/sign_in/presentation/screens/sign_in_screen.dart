@@ -125,7 +125,7 @@ class SignInScreen extends StatelessWidget {
                       state is SignInLoading
                           ? const CustomLoadingIndicator()
                           : CustomElevatedButton(
-                              text: AppStrings.login,
+                              text: AppStrings.login.tr(context),
                               onPressed: () async {
                                 if (SignInCubit.get(context)
                                     .formKey

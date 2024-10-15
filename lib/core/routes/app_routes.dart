@@ -6,8 +6,10 @@ import 'package:eventown/features/on_boarding/presentation/screens/on_boarding_s
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
 import 'package:eventown/features/sign_in/presentation/cubit/sign_in_cubit.dart';
 import 'package:eventown/features/sign_in/presentation/screens/sign_in_screen.dart';
+import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:eventown/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:eventown/features/sign_up/presentation/screens/sign_up_screen.dart';
+import 'package:eventown/features/sign_up/presentation/screens/terms_and_conditions.dart';
 import 'package:eventown/features/splash/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class Routes {
   static const String otp = "/otp";
   static const String base = "/base";
   static const String resetPassword = "/reset-password";
+  static const String termsAndConditions = "/terms-and-conditions";
 }
 
 class AppRoutes {
@@ -55,9 +58,15 @@ class AppRoutes {
       case (Routes.signUp):
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => SignUpCubit(),
+            create: (context) =>
+                SignUpCubit(sl<SignUpRepo>())..getAllCategories(),
             child: const SignUpScreen(),
           ),
+        );
+      //! termsAndConditions Screen
+      case (Routes.termsAndConditions):
+        return MaterialPageRoute(
+          builder: (_) => const TermsAndConditionsScreen(),
         );
       //! Forgot Password Screen
       case (Routes.forgotPassword):
