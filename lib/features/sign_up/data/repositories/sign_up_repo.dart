@@ -53,4 +53,20 @@ class SignUpRepo {
       return Left(e.errorModel.detail);
     }
   }
+
+  Future<Either<String, String>> verifyOtp({required String otp}) async {
+    try {
+      await api.post(
+        EndPoints.verfiyEmailCode,
+        data: {
+          "emailVerifyCode": otp,
+        },
+      );
+      return const Right("Success");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    }
+  }
 }

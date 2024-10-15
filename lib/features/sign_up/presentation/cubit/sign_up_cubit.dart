@@ -1,4 +1,5 @@
 import 'package:eventown/core/common/common.dart';
+import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/sign_up/data/models/all_categories_model/datum.dart';
@@ -6,6 +7,7 @@ import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:eventown/features/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:otp_text_field/otp_text_field.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   final SignUpRepo repo;
@@ -150,4 +152,27 @@ class SignUpCubit extends Cubit<SignUpState> {
     'southSinai',
     'suez'
   ];
+
+  //! OTP text editing controller
+  OtpFieldController otpController = OtpFieldController();
+  String otp = '';
+  updateOtp(String otp) {
+    this.otp = otp;
+    printYellow(otp);
+    emit(SignUpInitial());
+  }
+
+  submitOtp() async {
+    emit(OtpLoading());
+    final response = await repo.verifyOtp(otp: otp);
+    response.fold(
+      (error) {
+        printRed(error);
+        emit(OtpFailed(error));
+      },
+      (r) {
+        emit(OtpSuccess());
+      },
+    );
+  }
 }

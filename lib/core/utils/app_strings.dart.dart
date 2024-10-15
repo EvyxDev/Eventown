@@ -23,7 +23,9 @@ abstract class AppStrings {
   static const String changeItNow = "changeItNow";
   static const String login = "login";
   static const String dontHaveAnAccount = "dontHaveAnAccount";
+  static const String alreadyHaveAnAccount = "alreadyHaveAnAccount";
   static const String registerNow = "registerNow";
+  static const String interThePINCodeHere = "interThePINCodeHere";
 
   // Governorates
   static const String cairo = "cairo";
@@ -84,4 +86,9 @@ abstract class AppStrings {
 
   // Additional
   static const String dontHaveAnAccountQ = "dontHaveAnAccountQ";
+
+// enterValidOtp
+  static const String enterValidOtp = "enterValidOtp";
+  //Account Created
+  static const String accountCreated = "accountCreated";
 }

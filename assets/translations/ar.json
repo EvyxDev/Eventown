@@ -16,6 +16,7 @@
     "signIn": "تسجيل الدخول",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
+    "alreadyHaveAnAccount":"هل لديك حساب؟",
     "forgotYourPassword": "هل نسيت كلمة المرور؟",
     "changeItNow": "قم بتغييرها الآن",
     "login": "تسجيل الدخول",
@@ -66,5 +67,8 @@
     "pleaseSelectGender": "يرجى اختيار الجنس",
     "pleaseSelect5Interests": "يرجى اختيار 5 اهتمامات",
     "pleaseAgreeToTheTerms": "يرجى الموافقة على الشروط",
-    "dontHaveAnAccountQ": "ليس لديك حساب؟"
+    "dontHaveAnAccountQ": "ليس لديك حساب؟",
+    "interThePINCodeHere": "أدخل رمز التحقق هنا",
+    "enterValidOtp": "الرجاء إدخال رمز التحقق الصحيح",
+    "accountCreated": "تم إنشاء الحساب بنجاح"
 }

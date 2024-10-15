@@ -377,7 +377,7 @@ class SignUpScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            AppStrings.dontHaveAnAccountQ.tr(context),
+                            AppStrings.alreadyHaveAnAccount.tr(context),
                             style: CustomTextStyle.roboto400sized14Grey,
                           ),
                           SizedBox(width: 8.w),
