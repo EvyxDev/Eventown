@@ -73,5 +73,7 @@
     "accountCreated": "تم إنشاء الحساب بنجاح.",
     "changePassword": "تغيير كلمة المرور",
     "typeYourRegisteredEmailToReceivePINCode": "اكتب بريدك الإلكتروني المسجل لتلقي رمز PIN.",
-    "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح."
+    "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح.",
+    "didntReceiveCode": "لم تتلقى الرمز؟",
+    "resendCode": "إعادة إرسال الرمز"
 }

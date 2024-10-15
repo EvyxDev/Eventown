@@ -69,4 +69,20 @@ class SignUpRepo {
       return Left(e.errorModel.detail);
     }
   }
+
+  Future<Either<String, String>> resendCode({required String email}) async {
+    try {
+      await api.post(
+        EndPoints.resendCode,
+        data: {
+          "email": email,
+        },
+      );
+      return const Right("Success");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    }
+  }
 }

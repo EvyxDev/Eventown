@@ -39,9 +39,9 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 3),
       () {
         if (token != null) {
-          //home screen
+          //base screen
           Navigator.of(context).pushNamedAndRemoveUntil(
-            Routes.homeScreen,
+            Routes.base,
             (route) => false,
           );
         } else {

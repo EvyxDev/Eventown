@@ -102,4 +102,9 @@ abstract class AppStrings {
   //Password Changed Successfully
   static const String passwordChangedSuccessfully =
       "passwordChangedSuccessfully";
+
+  //didntReceiveCode
+  static const String didntReceiveCode = "didntReceiveCode";
+  //resendCode
+  static const String resendCode = "resendCode";
 }

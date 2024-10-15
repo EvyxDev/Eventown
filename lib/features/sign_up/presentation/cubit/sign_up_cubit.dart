@@ -1,6 +1,8 @@
 import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/common/logs.dart';
+import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/sign_up/data/models/all_categories_model/datum.dart';
 import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
@@ -117,6 +119,8 @@ class SignUpCubit extends Cubit<SignUpState> {
         emit(SignUpFailed(error));
       },
       (r) {
+        sl<CacheHelper>()
+            .saveData(key: 'SignUpEmail', value: emailController.text.trim());
         emit(SignUpSuccess());
       },
     );
@@ -175,4 +179,20 @@ class SignUpCubit extends Cubit<SignUpState> {
       },
     );
   }
+
+  reSendCode() async {
+    emit(ResendCodeLoading());
+    final response = await repo.resendCode(
+        email: sl<CacheHelper>().getData(key: 'SignUpEmail'));
+    response.fold(
+      (error) {
+        printRed(error);
+        emit(ResendCodeFailed(error));
+      },
+      (r) {
+        emit(ResendCodeSuccess());
+      },
+    );
+  }
 }
+// 2144.83

@@ -25,7 +25,7 @@ class SignInScreen extends StatelessWidget {
           if (state is SignInSuccess) {
             Navigator.pushNamedAndRemoveUntil(
               context,
-              Routes.homeScreen,
+              Routes.base,
               (route) => false,
             );
           } else if (state is SignInFailed) {
@@ -60,7 +60,7 @@ class SignInScreen extends StatelessWidget {
                       SizedBox(height: 32.h),
                       CustomTextFormField(
                         controller: SignInCubit.get(context).emailController,
-                        hintText: AppStrings.email.tr(context),
+                        labelText: AppStrings.email.tr(context),
                         obscureText: false,
                         enabled: state is! SignInLoading,
                         validator: (value) {
@@ -72,7 +72,7 @@ class SignInScreen extends StatelessWidget {
                       SizedBox(height: 24.h),
                       CustomTextFormField(
                         controller: SignInCubit.get(context).passwordController,
-                        hintText: AppStrings.password.tr(context),
+                        labelText: AppStrings.password.tr(context),
                         enabled: state is! SignInLoading,
                         obscureText: SignInCubit.get(context).isPasswordObscure,
                         suffixIcon: GestureDetector(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/routes/app_routes.dart';
@@ -14,8 +16,46 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
+
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  late Timer _timer;
+  int _start = 60;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    _start = 60;
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +110,34 @@ class OtpScreen extends StatelessWidget {
                           },
                   ),
                 ),
+                SizedBox(height: 32.h),
+                state is ResendCodeLoading
+                    ? const CustomLoadingIndicator()
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            AppStrings.didntReceiveCode.tr(context),
+                            style: CustomTextStyle.roboto400sized14White,
+                          ),
+                          _start == 0
+                              ? InkWell(
+                                  onTap: () {
+                                    SignUpCubit.get(context).reSendCode();
+                                    startTimer();
+                                  },
+                                  child: Text(
+                                    AppStrings.resendCode.tr(context),
+                                    style:
+                                        CustomTextStyle.roboto400sized14White,
+                                  ),
+                                )
+                              : Text(
+                                  '$_start s',
+                                  style: CustomTextStyle.roboto400sized14White,
+                                ),
+                        ],
+                      ),
                 const Spacer(),
                 state is OtpLoading
                     ? const CustomLoadingIndicator()

@@ -20,7 +20,6 @@ final class SignUpFailed extends SignUpState {
   SignUpFailed(this.message);
 }
 
-
 final class OtpLoading extends SignUpState {}
 
 final class OtpSuccess extends SignUpState {}
@@ -28,4 +27,13 @@ final class OtpSuccess extends SignUpState {}
 final class OtpFailed extends SignUpState {
   final String message;
   OtpFailed(this.message);
+}
+
+final class ResendCodeLoading extends SignUpState {}
+
+final class ResendCodeSuccess extends SignUpState {}
+
+final class ResendCodeFailed extends SignUpState {
+  final String message;
+  ResendCodeFailed(this.message);
 }

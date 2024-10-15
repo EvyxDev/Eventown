@@ -73,5 +73,7 @@
     "accountCreated": "Account created successfully.",
     "changePassword": "Change Password",
     "typeYourRegisteredEmailToReceivePINCode": "Type your registered email to receive PIN code.",
-    "passwordChangedSuccessfully": "Password changed successfully."
+    "passwordChangedSuccessfully": "Password changed successfully.",
+    "didntReceiveCode": "Didn't receive the code?",
+    "resendCode": "Resend Code"
 }

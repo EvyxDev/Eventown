@@ -20,4 +20,5 @@ class EndPoints {
   static const String verfiyResetPassword = '/api/v1/auth/verifyResetCode';
   static const String resetPassword = '/api/v1/auth/resetPassword';
   static const String verfiyEmailCode = '/api/v1/auth/verifyEmailCode';
+  static const String resendCode = '/api/v1/auth/resendCode';
 }
