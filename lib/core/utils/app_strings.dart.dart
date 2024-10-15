@@ -11,8 +11,9 @@ abstract class AppStrings {
   static const String thisFieldIsRequired = "thisFieldIsRequired";
   static const String pleaseEnterValidPassword = "pleaseEnterValidPassword";
   static const String passwordsDoNotMatch = "passwordsDoNotMatch";
-  static const String pleaseEnterValidEmailAddress = "pleaseEnterValidEmailAddress";
-  
+  static const String pleaseEnterValidEmailAddress =
+      "pleaseEnterValidEmailAddress";
+
   // Welcome & Sign In
   static const String welcome = "welcome";
   static const String signIn = "signIn";
@@ -23,7 +24,7 @@ abstract class AppStrings {
   static const String login = "login";
   static const String dontHaveAnAccount = "dontHaveAnAccount";
   static const String registerNow = "registerNow";
-  
+
   // Governorates
   static const String cairo = "cairo";
   static const String giza = "giza";
@@ -52,32 +53,35 @@ abstract class AppStrings {
   static const String sohag = "sohag";
   static const String southSinai = "southSinai";
   static const String suez = "suez";
-  
+
   // Sign Up
   static const String signUp = "signUp";
   static const String fullName = "fullName";
   static const String phoneNumber = "phoneNumber";
-  static const String pleaseEnterValidPhoneNumber = "pleaseEnterValidPhoneNumber";
+  static const String pleaseEnterValidPhoneNumber =
+      "pleaseEnterValidPhoneNumber";
   static const String city = "city";
   static const String gender = "gender";
   static const String male = "male";
   static const String female = "female";
   static const String confirmPassword = "confirmPassword";
-  
+  static const String pleaseConfirmYourAccount = "pleaseConfirmYourAccount";
+
   // Interests
   static const String pickYourInterests = "pickYourInterests";
-  static const String youCantSelectMoreThan5Interests = "youCantSelectMoreThan5Interests";
-  
+  static const String youCantSelectMoreThan5Interests =
+      "youCantSelectMoreThan5Interests";
+
   // Terms and Conditions
   static const String iAgreeToThe = "iAgreeToThe";
   static const String termsAndConditions = "termsAndConditions";
-  
+
   // Validations
   static const String pleaseSelectCity = "pleaseSelectCity";
   static const String pleaseSelectGender = "pleaseSelectGender";
   static const String pleaseSelect5Interests = "pleaseSelect5Interests";
   static const String pleaseAgreeToTheTerms = "pleaseAgreeToTheTerms";
-  
+
   // Additional
   static const String dontHaveAnAccountQ = "dontHaveAnAccountQ";
 }

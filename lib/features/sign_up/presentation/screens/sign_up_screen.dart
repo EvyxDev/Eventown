@@ -22,7 +22,23 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<SignUpCubit, SignUpState>(
+      body: BlocConsumer<SignUpCubit, SignUpState>(
+        listener: (context, state) {
+          if (state is SignUpSuccess) {
+            Navigator.pushReplacementNamed(context, Routes.otp);
+            showTwist(
+              context: context,
+              messege: AppStrings.pleaseConfirmYourAccount.tr(context),
+              state: ToastStates.success,
+            );
+          } else if (state is SignUpFailed) {
+            showTwist(
+              context: context,
+              messege: state.message,
+              state: ToastStates.error,
+            );
+          }
+        },
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -45,6 +61,7 @@ class SignUpScreen extends StatelessWidget {
                     SizedBox(height: 32.h),
                     CustomTextFormField(
                       controller: SignUpCubit.get(context).nameController,
+                      enabled: state is SignUpLoading ? false : true,
                       labelText: AppStrings.fullName.tr(context),
                       validator: (value) {
                         return Validation.validateEmpty(value!) != null
@@ -68,6 +85,7 @@ class SignUpScreen extends StatelessWidget {
                       textDirection: TextDirection.ltr,
                       child: CustomTextFormField(
                         controller: SignUpCubit.get(context).phoneController,
+                        enabled: state is SignUpLoading ? false : true,
                         labelText: AppStrings.phoneNumber.tr(context),
                         keyboardType: TextInputType.phone,
                         validator: (value) {
@@ -106,21 +124,24 @@ class SignUpScreen extends StatelessWidget {
                       labelStyle: CustomTextStyle.roboto700sized14Grey,
                       value: null,
                       onChanged: (value) {
-                        SignUpCubit.get(context).updateCity(value.toString());
+                        state is SignUpLoading
+                            ? null
+                            : SignUpCubit.get(context)
+                                .updateCity(value.toString());
                       },
                     ),
                     SizedBox(height: 24.h),
                     CustomDropDownButton(
                       items: [
                         DropdownMenuItem<String>(
-                          value: "Male",
+                          value: "male",
                           child: Text(
                             AppStrings.male.tr(context),
                             style: CustomTextStyle.roboto700sized14Grey,
                           ),
                         ),
                         DropdownMenuItem<String>(
-                          value: "Female",
+                          value: "female",
                           child: Text(
                             AppStrings.female.tr(context),
                             style: CustomTextStyle.roboto700sized14Grey,
@@ -131,7 +152,10 @@ class SignUpScreen extends StatelessWidget {
                       labelStyle: CustomTextStyle.roboto700sized14Grey,
                       value: null,
                       onChanged: (value) {
-                        SignUpCubit.get(context).updateGender(value.toString());
+                        state is SignUpLoading
+                            ? null
+                            : SignUpCubit.get(context)
+                                .updateGender(value.toString());
                       },
                     ),
                     SizedBox(height: 24.h),
@@ -140,6 +164,7 @@ class SignUpScreen extends StatelessWidget {
                       labelText: AppStrings.password.tr(context),
                       obscureText: SignUpCubit.get(context).isPasswordObscure,
                       keyboardType: TextInputType.visiblePassword,
+                      enabled: state is SignUpLoading ? false : true,
                       suffixIcon: GestureDetector(
                         onTap: SignUpCubit.get(context).passwordObscure,
                         child: Icon(
@@ -163,6 +188,7 @@ class SignUpScreen extends StatelessWidget {
                       obscureText:
                           SignUpCubit.get(context).isConfPasswordObscure,
                       keyboardType: TextInputType.visiblePassword,
+                      enabled: state is SignUpLoading ? false : true,
                       suffixIcon: GestureDetector(
                         onTap: SignUpCubit.get(context).confPasswordObscure,
                         child: Icon(
@@ -212,6 +238,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    // Interests
                     state is GetAllCategoriesLoading
                         ? const CustomLoadingIndicator()
                         : Container(
@@ -240,12 +267,16 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+                    // Terms and Conditions
                     Row(
                       children: [
                         Checkbox(
                           value: SignUpCubit.get(context).agreedToTerms,
                           onChanged: (value) {
-                            SignUpCubit.get(context).updateAgreedToTerms();
+                            state is SignUpLoading
+                                ? null
+                                : SignUpCubit.get(context)
+                                    .updateAgreedToTerms();
                           },
                           checkColor: AppColors.white,
                           activeColor: AppColors.primary,
@@ -259,10 +290,12 @@ class SignUpScreen extends StatelessWidget {
                             SizedBox(width: 6.w),
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  Routes.termsAndConditions,
-                                );
+                                state is SignUpLoading
+                                    ? null
+                                    : Navigator.pushNamed(
+                                        context,
+                                        Routes.termsAndConditions,
+                                      );
                               },
                               child: Text(
                                 AppStrings.termsAndConditions.tr(context),
@@ -273,71 +306,87 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    //!
                     SizedBox(height: 24.h),
-                    CustomElevatedButton(
-                      text: AppStrings.signUp.tr(context),
-                      elevation: 0,
-                      onPressed: () {
-                        if (SignUpCubit.get(context)
-                            .formKey
-                            .currentState!
-                            .validate()) {
-                          if (SignUpCubit.get(context).cityController == null) {
-                            showTwist(
-                              context: context,
-                              messege: AppStrings.pleaseSelectCity.tr(context),
-                              state: ToastStates.error,
-                            );
-                          } else {
-                            if (SignUpCubit.get(context).genderController ==
-                                null) {
-                              showTwist(
-                                context: context,
-                                messege:
-                                    AppStrings.pleaseSelectGender.tr(context),
-                                state: ToastStates.error,
-                              );
-                            } else {
-                              if (SignUpCubit.get(context).interests.length !=
-                                  5) {
-                                showTwist(
-                                  context: context,
-                                  messege: AppStrings.pleaseSelect5Interests
-                                      .tr(context),
-                                  state: ToastStates.error,
-                                );
-                              } else {
-                                if (!SignUpCubit.get(context).agreedToTerms) {
+                    // Sign Up Button
+                    state is SignUpLoading
+                        ? const CustomLoadingIndicator()
+                        : CustomElevatedButton(
+                            text: AppStrings.signUp.tr(context),
+                            elevation: 0,
+                            onPressed: () {
+                              if (SignUpCubit.get(context)
+                                  .formKey
+                                  .currentState!
+                                  .validate()) {
+                                if (SignUpCubit.get(context).cityController ==
+                                    null) {
                                   showTwist(
                                     context: context,
-                                    messege: AppStrings.pleaseAgreeToTheTerms
-                                        .tr(context),
+                                    messege:
+                                        AppStrings.pleaseSelectCity.tr(context),
                                     state: ToastStates.error,
                                   );
                                 } else {
-                                  SignUpCubit.get(context).signUp();
+                                  if (SignUpCubit.get(context)
+                                          .genderController ==
+                                      null) {
+                                    showTwist(
+                                      context: context,
+                                      messege: AppStrings.pleaseSelectGender
+                                          .tr(context),
+                                      state: ToastStates.error,
+                                    );
+                                  } else {
+                                    if (SignUpCubit.get(context)
+                                            .interests
+                                            .length !=
+                                        5) {
+                                      showTwist(
+                                        context: context,
+                                        messege: AppStrings
+                                            .pleaseSelect5Interests
+                                            .tr(context),
+                                        state: ToastStates.error,
+                                      );
+                                    } else {
+                                      if (!SignUpCubit.get(context)
+                                          .agreedToTerms) {
+                                        showTwist(
+                                          context: context,
+                                          messege: AppStrings
+                                              .pleaseAgreeToTheTerms
+                                              .tr(context),
+                                          state: ToastStates.error,
+                                        );
+                                      } else {
+                                        SignUpCubit.get(context).signUp();
+                                      }
+                                    }
+                                  }
                                 }
                               }
-                            }
-                          }
-                        }
-                      },
-                    ),
+                            },
+                          ),
                     SizedBox(height: 16.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppStrings.dontHaveAnAccountQ.tr(context),
-                          style: CustomTextStyle.roboto400sized14Grey,
-                        ),
-                        SizedBox(width: 8.w),
-                        Text(
-                          AppStrings.signIn.tr(context),
-                          style: CustomTextStyle.roboto400sized14Primary,
-                        ),
-                      ],
+                    // Don't have an account?
+                    GestureDetector(
+                      onTap: () => state is SignUpLoading
+                          ? null
+                          : Navigator.pop(context),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppStrings.dontHaveAnAccountQ.tr(context),
+                            style: CustomTextStyle.roboto400sized14Grey,
+                          ),
+                          SizedBox(width: 8.w),
+                          Text(
+                            AppStrings.signIn.tr(context),
+                            style: CustomTextStyle.roboto400sized14Primary,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 64.h),
                   ],

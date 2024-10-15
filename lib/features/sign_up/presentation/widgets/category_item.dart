@@ -22,7 +22,10 @@ class CategoryItem extends StatelessWidget {
                   ? AppColors.primary
                   : AppColors.black),
           onSelected: (bool value) {
-            SignUpCubit.get(context).updateInterest(context, title.id ?? "");
+            state is SignUpLoading
+                ? null
+                : SignUpCubit.get(context)
+                    .updateInterest(context, title.id ?? "");
           },
         );
       },

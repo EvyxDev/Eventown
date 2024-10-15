@@ -8,6 +8,7 @@ import 'package:eventown/features/sign_in/presentation/cubit/sign_in_cubit.dart'
 import 'package:eventown/features/sign_in/presentation/screens/sign_in_screen.dart';
 import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:eventown/features/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:eventown/features/sign_up/presentation/screens/otp_screen.dart';
 import 'package:eventown/features/sign_up/presentation/screens/sign_up_screen.dart';
 import 'package:eventown/features/sign_up/presentation/screens/terms_and_conditions.dart';
 import 'package:eventown/features/splash/splash_screen.dart';
@@ -81,11 +82,14 @@ class AppRoutes {
       //       child: const ResetPasswordScreen(),
       //     ),
       //   );
-      // //! OTP Password Screen
-      // case (Routes.otp):
-      //   return MaterialPageRoute(
-      //     builder: (_) => const OTPScreen(),
-      //   );
+      //! OTP Password Screen
+      case (Routes.otp):
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => SignUpCubit(sl<SignUpRepo>()),
+            child: const OtpScreen(),
+          ),
+        );
       //!Home Screen
       case (Routes.homeScreen):
         return MaterialPageRoute(

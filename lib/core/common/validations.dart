@@ -29,7 +29,7 @@ class Validation {
   }
 
   static String? validatePassword(String password) {
-    var passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$');
+    var passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
     if (password.trim().isEmpty) {
       return AppStrings.thisFieldIsRequired;
     } else if (!passwordRegExp.hasMatch(password)) {

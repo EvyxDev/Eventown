@@ -3,6 +3,7 @@ import 'package:eventown/core/databases/api/api_consumer.dart';
 import 'package:eventown/core/databases/api/end_points.dart';
 import 'package:eventown/core/errors/exceptions.dart';
 import 'package:eventown/features/sign_up/data/models/all_categories_model/all_categories_model.dart';
+import 'package:eventown/features/sign_up/data/models/sign_up_model/sign_up_model.dart';
 
 class SignUpRepo {
   final ApiConsumer api;
@@ -14,6 +15,38 @@ class SignUpRepo {
         EndPoints.getCategories,
       );
       return Right(AllCategoriesModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    }
+  }
+
+  Future<Either<String, SignUpModel>> signUp({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+    required String location,
+    required String gender,
+    required String phone,
+    required List<String> interests,
+  }) async {
+    try {
+      final response = await api.post(
+        EndPoints.signUp,
+        data: {
+          "name": name,
+          "email": email,
+          "password": password,
+          "confirmPassword": confirmPassword,
+          "location": location,
+          "gender": gender,
+          "phone": phone,
+          "interests": interests,
+        },
+      );
+      return Right(SignUpModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.detail);
     } on NoInternetException catch (e) {

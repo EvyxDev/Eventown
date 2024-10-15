@@ -10,3 +10,12 @@ final class GetAllCategoriesFailed extends SignUpState {
   final String message;
   GetAllCategoriesFailed(this.message);
 }
+
+final class SignUpLoading extends SignUpState {}
+
+final class SignUpSuccess extends SignUpState {}
+
+final class SignUpFailed extends SignUpState {
+  final String message;
+  SignUpFailed(this.message);
+}
