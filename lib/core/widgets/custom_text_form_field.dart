@@ -28,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onChanged,
     this.filled,
     this.fillColor,
+    this.style,
   });
   final String? hintText;
   final String? labelText;
@@ -46,6 +47,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? autofocus;
   final EdgeInsetsGeometry? contentPadding;
   final TextStyle? hintStyle;
+  final TextStyle? style;
   final bool? enabled;
   final double? borderRadius;
   final FloatingLabelBehavior? floatingLabelBehavior;
@@ -60,7 +62,7 @@ class CustomTextFormField extends StatelessWidget {
       maxLines: maxLines ?? 1,
       validator: validator,
       onChanged: onChanged,
-      style: CustomTextStyle.roboto400sized14White,
+      style: style ?? CustomTextStyle.roboto400sized14White,
       cursorColor: AppColors.primary,
       obscureText: obscureText ?? false,
       controller: controller,

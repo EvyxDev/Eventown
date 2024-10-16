@@ -110,6 +110,24 @@ abstract class AppStrings {
   // no categories found try again later
   static const String noCategoriesFoundTryAgainLater =
       "noCategoriesFoundTryAgainLater";
-      //tryAgain
+  //tryAgain
   static const String tryAgain = "tryAgain";
+  //"Search"
+  static const String search = "search";
+  //"create_event"
+  static const String createEvent = "createEvent";
+  // Top Events
+  static const String topEvents = "topEvents";
+  //On This Week Events
+  static const String onThisWeekEvents = "onThisWeekEvents";
+  //For You Events
+  static const String forYouEvents = "forYouEvents";
+  //In Your Area Events
+  static const String inYourAreaEvents = "inYourAreaEvents";
+  //All Events
+  static const String allEvents = "allEvents";
+  //No Events Found
+  static const String noEventsFound = "noEventsFound";
+  //View All
+  static const String viewAll = "viewAll";
 }

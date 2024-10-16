@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:eventown/core/databases/api/api_consumer.dart';
 import 'package:eventown/core/databases/api/end_points.dart';
 import 'package:eventown/core/errors/exceptions.dart';
-import 'package:eventown/features/sign_up/data/models/all_categories_model/all_categories_model.dart';
+import 'package:eventown/features/home/data/models/all_categories_model/all_categories_model.dart';
 import 'package:eventown/features/sign_up/data/models/sign_up_model/sign_up_model.dart';
 
 class SignUpRepo {

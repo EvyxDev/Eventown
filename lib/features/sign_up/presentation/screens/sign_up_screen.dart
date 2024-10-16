@@ -342,65 +342,57 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       // Sign Up Button
-                      state is SignUpLoading
-                          ? const CustomLoadingIndicator()
-                          : CustomElevatedButton(
-                              text: AppStrings.signUp.tr(context),
-                              elevation: 0,
-                              onPressed: () {
-                                if (SignUpCubit.get(context)
-                                    .formKey
-                                    .currentState!
-                                    .validate()) {
-                                  if (SignUpCubit.get(context).cityController ==
-                                      null) {
+                      CustomElevatedButton(
+                        text: AppStrings.signUp.tr(context),
+                        elevation: 0,
+                        onPressed: () {
+                          if (SignUpCubit.get(context)
+                              .formKey
+                              .currentState!
+                              .validate()) {
+                            if (SignUpCubit.get(context).cityController ==
+                                null) {
+                              showTwist(
+                                context: context,
+                                messege:
+                                    AppStrings.pleaseSelectCity.tr(context),
+                                state: ToastStates.error,
+                              );
+                            } else {
+                              if (SignUpCubit.get(context).genderController ==
+                                  null) {
+                                showTwist(
+                                  context: context,
+                                  messege:
+                                      AppStrings.pleaseSelectGender.tr(context),
+                                  state: ToastStates.error,
+                                );
+                              } else {
+                                if (SignUpCubit.get(context).interests.length !=
+                                    5) {
+                                  showTwist(
+                                    context: context,
+                                    messege: AppStrings.pleaseSelect5Interests
+                                        .tr(context),
+                                    state: ToastStates.error,
+                                  );
+                                } else {
+                                  if (!SignUpCubit.get(context).agreedToTerms) {
                                     showTwist(
                                       context: context,
-                                      messege: AppStrings.pleaseSelectCity
+                                      messege: AppStrings.pleaseAgreeToTheTerms
                                           .tr(context),
                                       state: ToastStates.error,
                                     );
                                   } else {
-                                    if (SignUpCubit.get(context)
-                                            .genderController ==
-                                        null) {
-                                      showTwist(
-                                        context: context,
-                                        messege: AppStrings.pleaseSelectGender
-                                            .tr(context),
-                                        state: ToastStates.error,
-                                      );
-                                    } else {
-                                      if (SignUpCubit.get(context)
-                                              .interests
-                                              .length !=
-                                          5) {
-                                        showTwist(
-                                          context: context,
-                                          messege: AppStrings
-                                              .pleaseSelect5Interests
-                                              .tr(context),
-                                          state: ToastStates.error,
-                                        );
-                                      } else {
-                                        if (!SignUpCubit.get(context)
-                                            .agreedToTerms) {
-                                          showTwist(
-                                            context: context,
-                                            messege: AppStrings
-                                                .pleaseAgreeToTheTerms
-                                                .tr(context),
-                                            state: ToastStates.error,
-                                          );
-                                        } else {
-                                          SignUpCubit.get(context).signUp();
-                                        }
-                                      }
-                                    }
+                                    SignUpCubit.get(context).signUp();
                                   }
                                 }
-                              },
-                            ),
+                              }
+                            }
+                          }
+                        },
+                      ),
                       SizedBox(height: 16.h),
                       // Don't have an account?
                       GestureDetector(

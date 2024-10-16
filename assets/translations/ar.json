@@ -76,6 +76,15 @@
     "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح.",
     "didntReceiveCode": "لم تتلقى الرمز؟",
     "resendCode": "إعادة إرسال الرمز",
-    "noCategoriesFoundTryAgainLater"    : "لم يتم العثور على فئات، حاول مرة أخرى في وقت لاحق.",
-    "tryAgain": "حاول مرة أخرى"
+    "noCategoriesFoundTryAgainLater": "لم يتم العثور على فئات، حاول مرة أخرى في وقت لاحق.",
+    "tryAgain": "حاول مرة أخرى",
+    "search": "بحث",
+    "createEvent": "إنشاء حدث",
+    "topEvents": "أهم الأحداث",
+    "onThisWeekEvents": "أحداث هذا الأسبوع",
+    "forYouEvents": "الأحداث المخصصة لك",
+    "inYourAreaEvents": "الأحداث في منطقتك",
+    "allEvents": "جميع الأحداث",
+    "noEventsFound": "لم يتم العثور على أحداث",
+    "viewAll": "عرض الكل"
 }

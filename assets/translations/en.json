@@ -77,5 +77,14 @@
     "didntReceiveCode": "Didn't receive the code?",
     "resendCode": "Resend Code",
     "tryAgain": "Try Again",
-    "noCategoriesFoundTryAgainLater": "No categories found, try again later."
+    "noCategoriesFoundTryAgainLater": "No categories found, try again later.",
+    "search": "Search",
+    "createEvent": "Create Event",
+    "topEvents": "Top Events",
+    "onThisWeekEvents": "On This Week's Events",
+    "forYouEvents": "Events For You",
+    "inYourAreaEvents": "Events In Your Area",
+    "allEvents": "All Events",
+    "noEventsFound": "No Events Found",
+    "viewAll": "View All"
 }

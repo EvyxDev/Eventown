@@ -1,5 +1,5 @@
 import 'package:eventown/core/utils/app_colors.dart';
-import 'package:eventown/features/sign_up/data/models/all_categories_model/datum.dart';
+import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
 import 'package:eventown/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:eventown/features/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';

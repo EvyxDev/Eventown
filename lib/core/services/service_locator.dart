@@ -1,6 +1,7 @@
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:eventown/features/forgot_password/data/repositories/forgot_password_repo.dart';
+import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
 import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:get_it/get_it.dart';
@@ -22,4 +23,5 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => SignInRepo(sl<DioConsumer>()));
   sl.registerLazySingleton(() => SignUpRepo(sl<DioConsumer>()));
   sl.registerLazySingleton(() => ForgotPasswordRepo(sl<DioConsumer>()));
+  sl.registerLazySingleton(() => HomeRepo(sl<DioConsumer>()));
 }
