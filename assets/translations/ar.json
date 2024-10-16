@@ -75,5 +75,7 @@
     "typeYourRegisteredEmailToReceivePINCode": "اكتب بريدك الإلكتروني المسجل لتلقي رمز PIN.",
     "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح.",
     "didntReceiveCode": "لم تتلقى الرمز؟",
-    "resendCode": "إعادة إرسال الرمز"
+    "resendCode": "إعادة إرسال الرمز",
+    "noCategoriesFoundTryAgainLater"    : "لم يتم العثور على فئات، حاول مرة أخرى في وقت لاحق.",
+    "tryAgain": "حاول مرة أخرى"
 }

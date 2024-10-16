@@ -107,4 +107,9 @@ abstract class AppStrings {
   static const String didntReceiveCode = "didntReceiveCode";
   //resendCode
   static const String resendCode = "resendCode";
+  // no categories found try again later
+  static const String noCategoriesFoundTryAgainLater =
+      "noCategoriesFoundTryAgainLater";
+      //tryAgain
+  static const String tryAgain = "tryAgain";
 }

@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String baseUrl = 'https://event-town-api.onrender.com';
+  static const String baseUrl = 'https://api.evntown.site';
   static const String signUp = '/api/v1/auth/signup';
   static const String signIn = '/api/v1/auth/login';
   static const String forgetPassword = '/api/v1/auth/forgotPassword';

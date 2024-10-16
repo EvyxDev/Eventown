@@ -75,5 +75,7 @@
     "typeYourRegisteredEmailToReceivePINCode": "Type your registered email to receive PIN code.",
     "passwordChangedSuccessfully": "Password changed successfully.",
     "didntReceiveCode": "Didn't receive the code?",
-    "resendCode": "Resend Code"
+    "resendCode": "Resend Code",
+    "tryAgain": "Try Again",
+    "noCategoriesFoundTryAgainLater": "No categories found, try again later."
 }
