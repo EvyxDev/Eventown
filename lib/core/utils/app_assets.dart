@@ -2,13 +2,9 @@
 class Assets {
   Assets._();
   
-  /// Assets for assetsImagesPngLine
-  /// assets/images/png/line.svg
-  static const String assetsImagesPngLine = "assets/images/png/line.svg";
-
-  /// Assets for assetsImagesPngLinee
-  /// assets/images/png/linee.svg
-  static const String assetsImagesPngLinee = "assets/images/png/linee.svg";
+  /// Assets for assetsImagesPngAppIcon
+  /// assets/images/png/app_icon.png
+  static const String assetsImagesPngAppIcon = "assets/images/png/app_icon.png";
 
   /// Assets for assetsImagesPngOnBoardingOne
   /// assets/images/png/on_boarding_one.png
@@ -33,6 +29,14 @@ class Assets {
   /// Assets for assetsImagesSvgIconPlaceholder
   /// assets/images/svg/icon_placeholder.svg
   static const String assetsImagesSvgIconPlaceholder = "assets/images/svg/icon_placeholder.svg";
+
+  /// Assets for assetsImagesSvgLine
+  /// assets/images/svg/line.svg
+  static const String assetsImagesSvgLine = "assets/images/svg/line.svg";
+
+  /// Assets for assetsImagesSvgLinee
+  /// assets/images/svg/linee.svg
+  static const String assetsImagesSvgLinee = "assets/images/svg/linee.svg";
 
   /// Assets for assetsImagesSvgLogo
   /// assets/images/svg/Logo.svg

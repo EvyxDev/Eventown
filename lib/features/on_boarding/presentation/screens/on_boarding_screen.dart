@@ -114,7 +114,7 @@ class OnBoardingScreen extends StatelessWidget {
                                     style:
                                         CustomTextStyle.roboto400sized14White,
                                   ),
-                                  SvgPicture.asset(Assets.assetsImagesPngLine)
+                                  SvgPicture.asset(Assets.assetsImagesSvgLine)
                                 ],
                               ),
                             ),
@@ -141,7 +141,7 @@ class OnBoardingScreen extends StatelessWidget {
                               Positioned(
                                 right: -24,
                                 child: SvgPicture.asset(
-                                  Assets.assetsImagesPngLinee,
+                                  Assets.assetsImagesSvgLinee,
                                 ),
                               ),
                               Text(
@@ -198,7 +198,7 @@ class OnBoardingScreen extends StatelessWidget {
                                     style:
                                         CustomTextStyle.roboto400sized14White,
                                   ),
-                                  SvgPicture.asset(Assets.assetsImagesPngLine)
+                                  SvgPicture.asset(Assets.assetsImagesSvgLine)
                                 ],
                               ),
                             ),
