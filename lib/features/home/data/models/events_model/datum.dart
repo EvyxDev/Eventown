@@ -1,3 +1,4 @@
+import 'package:eventown/features/home/data/models/wish_list_model/comment.dart';
 import 'event_category.dart';
 
 class EventModel {
@@ -25,7 +26,7 @@ class EventModel {
   DateTime? createdAt;
   DateTime? updatedAt;
   DateTime? expirePlanDate;
-  List<dynamic>? comments;
+  List<Comment>? comments;
 
   EventModel({
     this.id,
@@ -94,7 +95,9 @@ class EventModel {
         expirePlanDate: json['expirePlanDate'] == null
             ? null
             : DateTime.parse(json['expirePlanDate'] as String),
-        comments: json['comments'] as List<dynamic>?,
+        comments: (json['comments'] as List<dynamic>?)
+            ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {

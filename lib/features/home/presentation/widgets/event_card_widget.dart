@@ -4,7 +4,10 @@ import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_cached_network_image.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
+import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
+import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
@@ -19,27 +22,9 @@ class EventCard extends StatelessWidget {
       width: 280.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
-        // image: DecorationImage(
-        //   image: event.eventImage != null
-        //       ? displayProviderCachedNetworkImage(imageUrl: event.eventImage!)
-        //       : const AssetImage(Assets.assetsImagesPngEventPlaceHolder),
-        //   fit: BoxFit.fill,
-        // ),
       ),
       child: Column(
         children: [
-          // FittedBox(
-          //   fit: BoxFit.fill,
-          //   child: event.eventImage != null
-          //       ? displayCachedNetworkImage(
-          //           imageUrl: event.eventImage!, fit: BoxFit.fill)
-          //       : Image.asset(
-          //           Assets.assetsImagesPngEventPlaceHolder,
-          //           // height: 50,
-          //           width: 280,
-          //         ),
-          // ),
-          // const Spacer(),
           Expanded(
             child: Stack(
               children: [
@@ -82,20 +67,11 @@ class EventCard extends StatelessWidget {
                           style: CustomTextStyle.roboto400sized14White,
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 4.w,
-                          vertical: 4.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: const Icon(
-                          IconlyLight.heart,
-                          size: 18,
-                          color: AppColors.primary,
-                        ),
+                      WishlistBtn(
+                        event: event,
+                        isInWishListFromAPI: context
+                            .read<HomeCubit>()
+                            .isEventInWishlist(event.id!),
                       ),
                     ],
                   ),
@@ -235,6 +211,72 @@ class EventCard extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class WishlistBtn extends StatefulWidget {
+  const WishlistBtn(
+      {super.key, required this.event, required this.isInWishListFromAPI});
+  final EventModel event;
+  final bool isInWishListFromAPI;
+  @override
+  State<WishlistBtn> createState() => _WishlistBtnState();
+}
+
+class _WishlistBtnState extends State<WishlistBtn> {
+  bool isInWishList = false;
+  @override
+  void initState() {
+    isInWishList = widget.isInWishListFromAPI;
+    super.initState();
+  }
+
+  toggle() {
+    if (isInWishList) {
+      isInWishList = false;
+    } else {
+      isInWishList = true;
+    }
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return InkWell(
+          borderRadius: BorderRadius.circular(5),
+          onTap: () {
+            if (isInWishList) {
+              context
+                  .read<HomeCubit>()
+                  .removeEventFromWishlist(eventId: "${widget.event.id}");
+            } else {
+              context
+                  .read<HomeCubit>()
+                  .addEventToWishlist(eventId: "${widget.event.id}");
+            }
+            toggle();
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 4.w,
+              vertical: 4.h,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.7),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Icon(
+              isInWishList ? Icons.favorite : IconlyLight.heart,
+              size: 18,
+              color: isInWishList ? AppColors.red : AppColors.primary,
+            ),
+          ),
+        );
+      },
     );
   }
 }

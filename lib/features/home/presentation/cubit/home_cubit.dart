@@ -10,6 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   void getHomeData() async {
     emit(HomeLoading());
+    await getWishlistEvents();
     await getHomeCategories();
     await getTopEvents();
     await getOnThisWeekEvents();
@@ -88,5 +89,48 @@ class HomeCubit extends Cubit<HomeState> {
         allEvents = r.data ?? [];
       },
     );
+  }
+
+  //! Add Event To Wishlist
+  addEventToWishlist({required String eventId}) async {
+    final response = await homeRepo.addEventToWishlist(eventId);
+    response.fold(
+      (l) {
+        emit(AddEventToWhishlistFailed(l));
+      },
+      (r) {
+        emit(AddEventToWhishlistSuccess(r));
+      },
+    );
+  }
+
+  //! Remove Event From Wishlist
+  removeEventFromWishlist({required String eventId}) async {
+    final response = await homeRepo.removeEventFromWishlist(eventId);
+    response.fold(
+      (l) {
+        emit(AddEventToWhishlistFailed(l));
+      },
+      (r) {
+        emit(AddEventToWhishlistSuccess(r));
+      },
+    );
+  }
+
+  //! Get Wishlist Events
+  List<String> wishlistEventsIds = [];
+  getWishlistEvents() async {
+    final response = await homeRepo.fetchWishlistEvents();
+    response.fold(
+      (l) {},
+      (r) {
+        wishlistEventsIds = r.data?.map((e) => e.id ?? '').toList() ?? [];
+      },
+    );
+  }
+
+  //! Check Event is in Wishlist
+  bool isEventInWishlist(String eventId) {
+    return wishlistEventsIds.contains(eventId);
   }
 }
