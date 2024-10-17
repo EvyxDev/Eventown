@@ -30,9 +30,12 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 16.h),
-                    CategoriesInHomeSection(
-                      homeCategories: context.read<HomeCubit>().homeCategories,
-                    ),
+                    context.read<HomeCubit>().homeCategories.isNotEmpty
+                        ? CategoriesInHomeSection(
+                            homeCategories:
+                                context.read<HomeCubit>().homeCategories,
+                          )
+                        : const SizedBox.shrink(),
                     SizedBox(height: 16.h),
                     CategoriesSection(title: AppStrings.topEvents.tr(context)),
                     SizedBox(height: 16.h),

@@ -1,22 +1,25 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for assetsImagesPngAppIcon
   /// assets/images/png/app_icon.png
   static const String assetsImagesPngAppIcon = "assets/images/png/app_icon.png";
 
   /// Assets for assetsImagesPngOnBoardingOne
   /// assets/images/png/on_boarding_one.png
-  static const String assetsImagesPngOnBoardingOne = "assets/images/png/on_boarding_one.png";
+  static const String assetsImagesPngOnBoardingOne =
+      "assets/images/png/on_boarding_one.png";
 
   /// Assets for assetsImagesPngOnBoardingThree
   /// assets/images/png/on_boarding_three.png
-  static const String assetsImagesPngOnBoardingThree = "assets/images/png/on_boarding_three.png";
+  static const String assetsImagesPngOnBoardingThree =
+      "assets/images/png/on_boarding_three.png";
 
   /// Assets for assetsImagesPngOnBoardingTwo
   /// assets/images/png/on_boarding_two.png
-  static const String assetsImagesPngOnBoardingTwo = "assets/images/png/on_boarding_two.png";
+  static const String assetsImagesPngOnBoardingTwo =
+      "assets/images/png/on_boarding_two.png";
 
   /// Assets for assetsImagesPngProfile
   /// assets/images/png/profile.png
@@ -28,7 +31,8 @@ class Assets {
 
   /// Assets for assetsImagesSvgIconPlaceholder
   /// assets/images/svg/icon_placeholder.svg
-  static const String assetsImagesSvgIconPlaceholder = "assets/images/svg/icon_placeholder.svg";
+  static const String assetsImagesSvgIconPlaceholder =
+      "assets/images/svg/icon_placeholder.svg";
 
   /// Assets for assetsImagesSvgLine
   /// assets/images/svg/line.svg
@@ -42,4 +46,3 @@ class Assets {
   /// assets/images/svg/Logo.svg
   static const String assetsImagesSvgLogo = "assets/images/svg/Logo.svg";
 }
-
