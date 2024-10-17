@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 displayCachedNetworkImage({
   required String imageUrl,
   BoxFit? fit,
+  double? height,
 }) {
   return CachedNetworkImage(
     imageUrl: imageUrl,
     fit: fit ?? BoxFit.fill,
     placeholder: (context, url) => const CustomLoadingIndicator(),
+    height: height,
   );
 }
 

@@ -50,6 +50,16 @@ String? displayDate(DateTime? dateTime) {
   return DateFormat('dd/MM/yyyy').format(dateTime);
 }
 
+String formatDate(String dateString) {
+  DateTime dateTime = DateTime.parse(dateString);
+  return DateFormat('dd MMM').format(dateTime);
+}
+
+String convertTime(String timeString) {
+  DateTime dateTime = DateTime.parse(timeString);
+  return DateFormat('hh:mm a').format(dateTime);
+}
+
 showExpandedBottomSheet(
   context, {
   // required List<Widget> children,

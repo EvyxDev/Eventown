@@ -5,7 +5,7 @@ import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:eventown/features/home/presentation/widgets/categories_in_home_section.dart';
-import 'package:eventown/features/home/presentation/widgets/event_card_widget.dart';
+import 'package:eventown/features/home/presentation/widgets/events_section.dart';
 import 'package:eventown/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,23 +30,136 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 16.h),
+                    //! Home Categories
                     context.read<HomeCubit>().homeCategories.isNotEmpty
-                        ? CategoriesInHomeSection(
-                            homeCategories:
-                                context.read<HomeCubit>().homeCategories,
+                        ? Column(
+                            children: [
+                              CategoriesInHomeSection(
+                                homeCategories:
+                                    context.read<HomeCubit>().homeCategories,
+                              ),
+                              SizedBox(height: 16.h),
+                            ],
                           )
                         : const SizedBox.shrink(),
-                    SizedBox(height: 16.h),
-                    CategoriesSection(title: AppStrings.topEvents.tr(context)),
-                    SizedBox(height: 16.h),
-                    CategoriesSection(
-                        title: AppStrings.onThisWeekEvents.tr(context)),
-                    SizedBox(height: 16.h),
-                    CategoriesSection(
-                        title: AppStrings.forYouEvents.tr(context)),
-                    SizedBox(height: 16.h),
-                    CategoriesSection(
-                        title: AppStrings.inYourAreaEvents.tr(context)),
+
+                    context.read<HomeCubit>().topEvents.isEmpty &&
+                            context.read<HomeCubit>().forYouEvents.isEmpty &&
+                            context
+                                .read<HomeCubit>()
+                                .inYourAreaEvents
+                                .isEmpty &&
+                            context
+                                .read<HomeCubit>()
+                                .onThisWeekEvents
+                                .isEmpty &&
+                            state is! HomeLoading
+                        ? RefreshIndicator(
+                            onRefresh: () async {
+                              context.read<HomeCubit>().getHomeData();
+                            },
+                            child: SizedBox(
+                              height: 200.h,
+                              child: ListView(
+                                children: [
+                                  SizedBox(height: 16.h),
+                                  SizedBox(
+                                    child: Center(
+                                      child: Text(
+                                        AppStrings.noEventsFound.tr(context),
+                                        style: CustomTextStyle
+                                            .roboto700sized20White,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              //! Top Events
+                              context.read<HomeCubit>().topEvents.isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        EventsSection(
+                                          title:
+                                              AppStrings.topEvents.tr(context),
+                                          events: context
+                                              .read<HomeCubit>()
+                                              .topEvents,
+                                        ),
+                                        SizedBox(height: 16.h),
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
+                              //! On This Week Events
+                              context
+                                      .read<HomeCubit>()
+                                      .onThisWeekEvents
+                                      .isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        EventsSection(
+                                          title: AppStrings.onThisWeekEvents
+                                              .tr(context),
+                                          events: context
+                                              .read<HomeCubit>()
+                                              .onThisWeekEvents,
+                                        ),
+                                        SizedBox(height: 16.h),
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
+                              //! All Events
+                              context.read<HomeCubit>().allEvents.isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        EventsSection(
+                                          title:
+                                              AppStrings.allEvents.tr(context),
+                                          events: context
+                                              .read<HomeCubit>()
+                                              .allEvents,
+                                        ),
+                                        SizedBox(height: 16.h),
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
+                              //! For You Events
+                              context.read<HomeCubit>().forYouEvents.isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        EventsSection(
+                                          title: AppStrings.forYouEvents
+                                              .tr(context),
+                                          events: context
+                                              .read<HomeCubit>()
+                                              .forYouEvents,
+                                        ),
+                                        SizedBox(height: 16.h),
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
+                              //! In Your Area Events
+                              context
+                                      .read<HomeCubit>()
+                                      .inYourAreaEvents
+                                      .isNotEmpty
+                                  ? Column(
+                                      children: [
+                                        EventsSection(
+                                          title: AppStrings.inYourAreaEvents
+                                              .tr(context),
+                                          events: context
+                                              .read<HomeCubit>()
+                                              .inYourAreaEvents,
+                                        ),
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
+                            ],
+                          ),
                   ],
                 ),
               ),
@@ -54,46 +167,6 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class CategoriesSection extends StatelessWidget {
-  const CategoriesSection({super.key, required this.title});
-  final String title;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: CustomTextStyle.roboto700sized20White,
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                AppStrings.viewAll.tr(context),
-              ),
-            )
-          ],
-        ),
-        SizedBox(height: 16.h),
-        SizedBox(
-          height: 200.h,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const EventCard();
-            },
-            separatorBuilder: (context, index) => SizedBox(width: 16.w),
-            itemCount: 5,
-          ),
-        )
-      ],
     );
   }
 }
