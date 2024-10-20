@@ -130,4 +130,35 @@ abstract class AppStrings {
   static const String noEventsFound = "noEventsFound";
   //View All
   static const String viewAll = "viewAll";
+  //!
+  // "Welcome to Spin & Win !"
+  static const String welcomeToSpinAndWin = "welcomeToSpinAndWin";
+  //About Spin & Win
+  static const String aboutSpinAndWin = "aboutSpinAndWin";
+  //"Earn Every day a chance to win a free event ticket collect points now after spinng the wheel"
+  static const String
+      earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel =
+      "earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel";
+  //How to Play Spin & Win
+  static const String howToPlaySpinAndWin = "howToPlaySpinAndWin";
+  // Spin the wheel and replace it with a free event ticket when you reach 1000 points the button redeem will be unlocked so you can get the ticket!
+  static const String spinAndWinInstructions = "spinAndWinInstructions";
+  // Ticket History
+  static const String ticketHistory = "ticketHistory";
+  // When You Reach 1000 Points Redeem Button Will Be Activated!
+  static const String redeemButtonActivation = "redeemButtonActivation";
+  // Redeem Ticket
+  static const String redeemTicket = "redeemTicket";
+  // How To Redeem Your Ticket
+  static const String howToRedeemYourTicket = "howToRedeemYourTicket";
+  // You Will Fill Form To Redeem Your Ticket You Can Select Up To 3 Events Select Most Priority Fav Events You Will Get The Ticket By Priority If First Priority is Sold Out You Will Gain Second Priority ..etc
+  static const String redeemTicketInstructions = "redeemTicketInstructions";
+  // Join Our Great Events in EventTown Enjoy Your Favourite Event For Free!
+  static const String joinOurGreatEvents = "joinOurGreatEvents";
+  // Previous Winners 🔥:
+  static const String previousWinners = "previousWinners";
+  // spin
+  static const String spin = "spin";
+  //points
+  static const String points = "points";
 }

@@ -136,3 +136,320 @@ AppBar getHomeAppBar(BuildContext context) {
     ),
   );
 }
+
+// String? selectedDropdownValue = 'Party';
+// DateTime? selectedDate = DateTime.now();
+
+// int selectedItemIndex = -1;
+// final List<Map<String, String>> categories = [
+//   {'image': 'assets/images/music.png', 'label': 'MUSIC'},
+//   {'image': 'assets/images/tech.png', 'label': 'EDUCATION'},
+//   {'image': 'assets/images/business.png', 'label': 'TRAVEL'},
+// ];
+// List<String> cities = ['Cairo', 'Alex', 'Giza', 'Aswan', 'Luxor', 'Ismailia'];
+// List<String> filterCategories = [
+//   'MUSIC',
+//   'EDUCATION',
+//   'TRAVEL',
+//   'TECH',
+//   'SPORT'
+// ];
+// // create
+// DateTimeRange dateRange =
+//     DateTimeRange(start: DateTime.now(), end: DateTime.now());
+// String? selectedCity;
+// String? selectedFilterCategory;
+// final ScrollController scrollController = ScrollController();
+// final TextEditingController searchController = TextEditingController();
+
+// final List<Map<String, dynamic>> sortingOptions = [
+//   {'title': 'Price (Low to High)', 'value': 0.2, 'isSelected': false},
+// ];
+// DateTime _startDate = DateTime.now();
+// DateTime _endDate = DateTime.now().add(const Duration(days: 7));
+
+// Widget _buildDateRangeField(context) {
+//   String formattedStartDate = DateFormat('MMM dd').format(_startDate);
+//   String formattedEndDate = DateFormat('MMM dd').format(_endDate);
+//   String dateRangeText = _startDate == _endDate
+//       ? formattedStartDate
+//       : '$formattedStartDate - $formattedEndDate';
+
+//   return Padding(
+//     padding: const EdgeInsets.all(8.0),
+//     child: GestureDetector(
+//       onTap: () async {
+//         try {
+//           final DateTime now = DateTime.now();
+//           final DateTime firstDayOfMonth = DateTime.now();
+//           final DateTime lastDayOfMonth = DateTime(now.year, now.month + 1, 0);
+
+//           final DateTimeRange? pickedRange = await showDateRangePicker(
+//             context: context,
+//             initialDateRange: dateRange,
+//             firstDate: firstDayOfMonth,
+//             lastDate: lastDayOfMonth,
+//             builder: (context, child) {
+//               return Theme(
+//                 data: ThemeData.dark().copyWith(
+//                   colorScheme: ColorScheme.dark(
+//                     primary: AppColors.primary,
+//                     onPrimary: Colors.white,
+//                     // secondary: kSecondaryColor,
+//                     surface: Colors.black,
+//                   ),
+//                   dialogBackgroundColor: Colors.grey[900],
+//                 ),
+//                 child: child!,
+//               );
+//             },
+//           );
+//           if (pickedRange != null) {
+//             // setState(() {
+//             _startDate = pickedRange.start;
+//             _endDate = pickedRange.end;
+//             // });
+//           }
+//         } catch (error) {
+//           showDialog(
+//             context: context,
+//             builder: (BuildContext context) {
+//               return AlertDialog(
+//                 title: Text('Error'),
+//                 content: Text('An error occurred. Please try again.'),
+//                 actions: [
+//                   TextButton(
+//                     child: Text('OK'),
+//                     onPressed: () {
+//                       Navigator.of(context).pop();
+//                     },
+//                   ),
+//                 ],
+//               );
+//             },
+//           );
+//         }
+//       },
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           Text(
+//             dateRangeText.isEmpty ? 'Select Date' : dateRangeText,
+//             style: TextStyle(
+//               color: Colors.white,
+//               fontSize: 16,
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//           Icon(
+//             Icons.calendar_today,
+//             color: AppColors.primary,
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
+
+// Future<void> _showBottomSheet(BuildContext context) async {
+//   // final localizations = S.of(context);
+
+//   await showModalBottomSheet(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Container(
+//         height: 700,
+//         decoration: BoxDecoration(
+//             color: AppColors.black,
+//             borderRadius: BorderRadius.only(
+//               topLeft: Radius.circular(20),
+//               topRight: Radius.circular(20),
+//             )),
+//         child: Column(
+//           children: <Widget>[
+//             SizedBox(
+//               height: 20,
+//             ),
+//             Container(
+//               width: 30,
+//               height: 5,
+//               decoration: BoxDecoration(
+//                   color: AppColors.primary,
+//                   borderRadius: BorderRadius.circular(5)),
+//             ),
+//             SizedBox(
+//               height: 20,
+//             ),
+//             Center(
+//               child: Text(
+//                 "filter",
+//                 style: TextStyle(
+//                   fontWeight: FontWeight.bold,
+//                   fontSize: 20,
+//                 ),
+//               ),
+//             ),
+//             SizedBox(
+//               height: 20,
+//             ),
+//             Column(
+//                 mainAxisAlignment: MainAxisAlignment.start,
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Padding(
+//                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
+//                     child: Text(
+//                       "event_category",
+//                       style: TextStyle(
+//                         fontWeight: FontWeight.bold,
+//                         fontSize: 15,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(height: 15),
+//                   Center(
+//                     child: Container(
+//                       width: 360,
+//                       height: 50,
+//                       decoration: BoxDecoration(
+//                         color: Colors.black,
+//                         borderRadius: BorderRadius.circular(8),
+//                       ),
+//                       child: Center(
+//                         child: Padding(
+//                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
+//                           child: DropdownButtonFormField<String>(
+//                             decoration: InputDecoration(
+//                               hintText: "event_category",
+//                               hintStyle: TextStyle(
+//                                   color: Colors.grey,
+//                                   fontSize: 16,
+//                                   fontWeight: FontWeight.bold),
+//                               border: UnderlineInputBorder(
+//                                   borderSide: BorderSide.none),
+//                             ),
+//                             value: selectedFilterCategory,
+//                             style: TextStyle(
+//                               color: AppColors.primary,
+//                             ),
+//                             items: filterCategories
+//                                 .map((cat) => DropdownMenuItem(
+//                                       value: cat,
+//                                       child: Padding(
+//                                         padding: const EdgeInsets.all(2.0),
+//                                         child: Text(cat),
+//                                       ),
+//                                     ))
+//                                 .toList(),
+//                             onChanged: (newValue) {
+//                               // setState(() {
+//                               selectedCity = newValue;
+//                               // });
+//                             },
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 15,
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
+//                     child: Text(
+//                       "date_range",
+//                       style: TextStyle(
+//                         fontWeight: FontWeight.bold,
+//                         fontSize: 15,
+//                         color: Colors.white,
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(height: 15),
+//                   Center(
+//                     child: Container(
+//                       width: 360,
+//                       height: 50,
+//                       decoration: BoxDecoration(
+//                         color: Colors.black,
+//                         borderRadius: BorderRadius.circular(8),
+//                       ),
+//                       child: Center(
+//                         child: _buildDateRangeField(context),
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 10,
+//                   ),
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: ListView.builder(
+//                       shrinkWrap: true,
+//                       itemCount: sortingOptions.length,
+//                       itemBuilder: (context, index) {
+//                         return CheckboxListTile(
+//                           title: Text(sortingOptions[index]['title']),
+//                           value: sortingOptions[index]['isSelected'],
+//                           onChanged: (value) {
+//                             // setState(() {
+//                             sortingOptions.forEach(
+//                                 (option) => option['isSelected'] = false);
+//                             sortingOptions[index]['isSelected'] = true;
+//                             // });
+//                           },
+//                         );
+//                       },
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 30,
+//                   ),
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       GestureDetector(
+//                           child: Container(
+//                         height: 35,
+//                         width: 120,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(15),
+//                           border: Border.all(color: AppColors.primary),
+//                         ),
+//                         child: Center(
+//                           child: Text(
+//                             "cancel",
+//                           ),
+//                         ),
+//                       )),
+//                       SizedBox(
+//                         width: 15,
+//                       ),
+//                       GestureDetector(
+//                           child: Container(
+//                         height: 35,
+//                         width: 120,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(15),
+//                           color: AppColors.primary,
+//                         ),
+//                         child: Center(
+//                           child: Text(
+//                             "apply",
+//                           ),
+//                         ),
+//                       )),
+//                     ],
+//                   )
+//                 ])
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }
+
+// void _onFilterIconPressed(BuildContext context) {
+//   _showBottomSheet(context);
+// }

@@ -73,6 +73,13 @@ abstract class CustomTextStyle {
     color: AppColors.primary,
     overflow: TextOverflow.ellipsis,
   );
+  static final roboto700sized20Primary = TextStyle(
+    fontFamily: "Roboto",
+    fontWeight: FontWeight.w700,
+    fontSize: 20.sp,
+    color: AppColors.primary,
+    overflow: TextOverflow.ellipsis,
+  );
   static final roboto400sized14Custom = TextStyle(
     fontFamily: "Roboto",
     fontWeight: FontWeight.w400,

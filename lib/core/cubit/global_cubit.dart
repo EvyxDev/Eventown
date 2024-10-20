@@ -1,5 +1,7 @@
 import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
+import 'package:eventown/features/profile/presentation/screens/profile_screen.dart';
+import 'package:eventown/features/wheel/presentation/screens/wheel_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../databases/cache/cache_helper.dart';
@@ -11,14 +13,10 @@ class GlobalCubit extends Cubit<GlobalState> {
   static GlobalCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<Widget> bottomScreens = [
-    // HomeScreen(),
-    // WheelScreen(),
-    // NotificationScreen(),
-    // ProfileScreen(),
     const HomeScreen(),
+    const WheelScreen(),
     const Scaffold(),
-    const Scaffold(),
-    const Scaffold()
+    const ProfileScreen()
   ];
   void changeBottom(int index) {
     currentIndex = index;

@@ -86,5 +86,19 @@
     "inYourAreaEvents": "Events In Your Area",
     "allEvents": "All Events",
     "noEventsFound": "No Events Found",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "welcomeToSpinAndWin": "Welcome to Spin & Win!",
+    "aboutSpinAndWin": "About Spin & Win",
+    "earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel": "Earn every day a chance to win a free event ticket. Collect points now after spinning the wheel.",
+    "howToPlaySpinAndWin": "How to Play Spin & Win",
+    "spinAndWinInstructions": "Spin the wheel and replace it with a free event ticket when you reach 1000 points. The redeem button will be unlocked so you can get the ticket!",
+    "ticketHistory": "Ticket History",
+    "redeemButtonActivation": "When you reach 1000 points, the redeem button will be activated!",
+    "redeemTicket": "Redeem Ticket",
+    "howToRedeemYourTicket": "How to Redeem Your Ticket",
+    "redeemTicketInstructions": "You will fill a form to redeem your ticket. You can select up to 3 events. Select the most priority favorite events. You will get the ticket by priority. If the first priority is sold out, you will gain the second priority, etc.",
+    "joinOurGreatEvents": "Join our great events in EventTown. Enjoy your favorite event for free!",
+    "previousWinners": "Previous Winners 🔥",
+    "spin":"SPIN",
+    "points":"Points"
 }
