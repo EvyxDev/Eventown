@@ -34,7 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
   //! Top Events
   List<EventModel> topEvents = [];
   getTopEvents() async {
-    final response = await homeRepo.fetchHomeTopEvents();
+    final response = await homeRepo.fetchHomeTopEvents(limit: 4);
     response.fold(
       (l) {},
       (r) {
@@ -46,7 +46,7 @@ class HomeCubit extends Cubit<HomeState> {
   //! On This Week Events
   List<EventModel> onThisWeekEvents = [];
   getOnThisWeekEvents() async {
-    final response = await homeRepo.fetchHomeOnThisWeekEvents();
+    final response = await homeRepo.fetchHomeOnThisWeekEvents(limit: 4);
     response.fold(
       (l) {},
       (r) {
@@ -58,7 +58,7 @@ class HomeCubit extends Cubit<HomeState> {
   //! For You Events
   List<EventModel> forYouEvents = [];
   getForYouEvents() async {
-    final response = await homeRepo.fetchHomeForYouEvents();
+    final response = await homeRepo.fetchHomeForYouEvents(limit: 4);
     response.fold(
       (l) {},
       (r) {
@@ -70,7 +70,7 @@ class HomeCubit extends Cubit<HomeState> {
   //! In Your Area Events
   List<EventModel> inYourAreaEvents = [];
   getInYourAreaEvents() async {
-    final response = await homeRepo.fetchHomeInYourAreaEvents();
+    final response = await homeRepo.fetchHomeInYourAreaEvents(limit: 4);
     response.fold(
       (l) {},
       (r) {

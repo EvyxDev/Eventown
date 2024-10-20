@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
             builder: (context, state) {
               return ModalProgressHUD(
                 inAsyncCall: state is HomeLoading,
+                color: Colors.transparent,
                 progressIndicator: const CustomLoadingIndicator(),
                 child: SingleChildScrollView(
                   child: Padding(
