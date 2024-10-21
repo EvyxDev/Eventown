@@ -4,6 +4,7 @@ import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
+import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:eventown/features/home/presentation/widgets/event_card_widget.dart';
@@ -12,15 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ViewAllScreen extends StatelessWidget {
-  ViewAllScreen({
-    super.key,
-    required this.eventsType,
-    required this.title,
-  });
-  final EventsType eventsType;
-  final String title;
+class GetEventsByCategory extends StatelessWidget {
+  GetEventsByCategory({super.key, required this.category});
   final ScrollController _scrollController = ScrollController();
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +25,8 @@ class ViewAllScreen extends StatelessWidget {
       () {
         if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent) {
-          context
-              .read<HomeCubit>()
-              .getViewAllEvents(loadMore: true, type: eventsType);
+          context.read<HomeCubit>().getEventsByCategory(
+              loadMore: true, categoryId: category.id ?? "");
         }
       },
     );
@@ -51,7 +46,7 @@ class ViewAllScreen extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          title,
+          category.title ?? '',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -85,7 +80,7 @@ class ViewAllScreen extends StatelessWidget {
       ),
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
-          if (state is GetViewAllError) {
+          if (state is GetEventsByCategoryError) {
             showTwist(
                 context: context,
                 messege: 'Error: ${state.message}',
@@ -93,16 +88,16 @@ class ViewAllScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state is GetViewAllLoading) {
+          if (state is GetEventsByCategoryLoading) {
             return const Center(child: CustomLoadingIndicator());
-          } else if (state is GetViewAllError) {
+          } else if (state is GetEventsByCategoryError) {
             return Center(
               child: Text(
                 AppStrings.noEventsFound.tr(context),
               ),
             );
           } else {
-            return context.read<HomeCubit>().viewAllEvents.isEmpty
+            return context.read<HomeCubit>().eventsByCategory.isEmpty
                 ? Center(
                     child: Text(
                       AppStrings.noEventsFound.tr(context),
@@ -111,16 +106,17 @@ class ViewAllScreen extends StatelessWidget {
                 : Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 8.w,
-                      vertical: 24.h,
+                      vertical: 16.h,
                     ),
                     child: ListView.separated(
                       controller: _scrollController,
-                      itemCount: context.read<HomeCubit>().hasMoreEvents
-                          ? context.read<HomeCubit>().viewAllEvents.length + 1
-                          : context.read<HomeCubit>().viewAllEvents.length,
+                      itemCount: context.read<HomeCubit>().categoryHasMoreEvents
+                          ? context.read<HomeCubit>().eventsByCategory.length +
+                              1
+                          : context.read<HomeCubit>().eventsByCategory.length,
                       itemBuilder: (context, index) {
                         if (index ==
-                            context.read<HomeCubit>().viewAllEvents.length) {
+                            context.read<HomeCubit>().eventsByCategory.length) {
                           // Show a loading indicator at the end of the list
                           return Center(
                               child: Padding(
@@ -133,7 +129,7 @@ class ViewAllScreen extends StatelessWidget {
                           child: EventCard(
                               event: context
                                   .read<HomeCubit>()
-                                  .viewAllEvents[index]),
+                                  .eventsByCategory[index]),
                         );
                       },
                       separatorBuilder: (context, index) {

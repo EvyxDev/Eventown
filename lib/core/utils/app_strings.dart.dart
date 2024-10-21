@@ -161,4 +161,16 @@ abstract class AppStrings {
   static const String spin = "spin";
   //points
   static const String points = "points";
+  //going
+  static const String going = "going";
+  //egp
+  static const String egp = "egp";
+  //Could not add to WishList
+  static const String couldNotAddToWishList = "couldNotAddToWishList";
+  //Added to WishList
+  static const String addedToWishList = "addedToWishList";
+  // Could not remove from WishList
+  static const String couldNotRemoveFromWishList = "couldNotRemoveFromWishList";
+  //Removed from WishList
+  static const String removedFromWishList = "removedFromWishList";
 }

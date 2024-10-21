@@ -25,4 +25,8 @@ class EndPoints {
   static removeFromWhishList(String id) {
     return '/api/v1/wishlists/$id';
   }
+
+  static getEventsByCategory(String id) {
+    return "/api/v1/categories/$id/events";
+  }
 }

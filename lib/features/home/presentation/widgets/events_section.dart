@@ -27,9 +27,11 @@ class EventsSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: CustomTextStyle.roboto700sized20White,
+            Expanded(
+              child: Text(
+                title,
+                style: CustomTextStyle.roboto700sized20White,
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -37,6 +39,7 @@ class EventsSection extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ViewAllScreen(
                     eventsType: eventsType,
+                    title: title,
                   );
                 }));
               },
@@ -51,6 +54,7 @@ class EventsSection extends StatelessWidget {
           height: 225.h,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
             itemBuilder: (context, index) {
               return EventCard(
                 event: events[index],

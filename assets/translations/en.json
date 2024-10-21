@@ -100,5 +100,11 @@
     "joinOurGreatEvents": "Join our great events in Evntown. Enjoy your favorite event for free!",
     "previousWinners": "Previous Winners 🔥",
     "spin":"SPIN",
-    "points":"Points"
+    "points":"Points",
+    "going":"Going",
+    "egp": "EGP",
+    "couldNotAddToWishList":"Could not add to wishlist",
+    "addedToWishList":"Added to wishlist successfully",
+    "couldNotRemoveFromWishList":"Could not remove from wishlist",
+    "removedFromWishList":"Removed from wishlist successfully"
 }

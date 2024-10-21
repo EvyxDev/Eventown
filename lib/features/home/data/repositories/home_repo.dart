@@ -227,4 +227,33 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+  //! Get Events By Category
+  Future<Either<String, EventsModel>> fetchEventsByCategory({
+    required String categoryId,
+    int? page,
+    int? limit,
+  }) async {
+    try {
+      Map<String, dynamic> queryParameters = {};
+      if (page != null) {
+        queryParameters.addAll({'page': page});
+      }
+      if (limit != null) {
+        queryParameters.addAll({'limit': limit});
+      }
+      final response = await api.get(
+        EndPoints.getEventsByCategory(categoryId),
+        queryParameters: queryParameters,
+      );
+      final eventsModel = EventsModel.fromJson(response);
+      return Right(eventsModel);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }
