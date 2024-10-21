@@ -101,6 +101,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(AddEventToWhishlistFailed(l));
       },
       (r) {
+        wishlistEventsIds.add(eventId);
         emit(AddEventToWhishlistSuccess(r));
       },
     );
@@ -114,6 +115,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(AddEventToWhishlistFailed(l));
       },
       (r) {
+        wishlistEventsIds.remove(eventId);
         emit(AddEventToWhishlistSuccess(r));
       },
     );
@@ -142,7 +144,6 @@ class HomeCubit extends Cubit<HomeState> {
   bool isLoadingMore = false;
   List<EventModel> viewAllEvents = [];
 
-// Cubit Method to Fetch Events
   Future<void> getViewAllEvents({
     bool loadMore = false,
     required EventsType type,
@@ -195,11 +196,9 @@ class HomeCubit extends Cubit<HomeState> {
       },
       (success) {
         List<EventModel> newEvents = success.data ?? [];
-
         viewAllEvents.addAll(newEvents); // Append new events
-        hasMoreEvents =
-            newEvents.length == limit; // Check if more data can be loaded
-
+        // Check if more data can be loaded
+        hasMoreEvents = newEvents.length == limit;
         // Emit success with updated events and hasMore flag
         emit(GetViewAllSuccess(events: viewAllEvents, hasMore: hasMoreEvents));
       },

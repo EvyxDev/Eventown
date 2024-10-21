@@ -90,7 +90,10 @@ class _WheelScreenState extends State<WheelScreen> {
   }
 
   Future<void> _redeemTicket() async {
-    await sl<CacheHelper>().saveData(key: 'rewards', value: 0);
+    final currentRewards =
+        await sl<CacheHelper>().getData(key: 'rewards') ?? 1000;
+    await sl<CacheHelper>()
+        .saveData(key: 'rewards', value: currentRewards - 1000);
   }
 
   Future<void> _loadScore() async {
