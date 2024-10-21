@@ -95,6 +95,7 @@ class HomeScreen extends StatelessWidget {
                                             EventsSection(
                                               title: AppStrings.topEvents
                                                   .tr(context),
+                                              eventsType: EventsType.topEvents,
                                               events: context
                                                   .read<HomeCubit>()
                                                   .topEvents,
@@ -113,6 +114,7 @@ class HomeScreen extends StatelessWidget {
                                             EventsSection(
                                               title: AppStrings.onThisWeekEvents
                                                   .tr(context),
+                                              eventsType: EventsType.onThisWeek,
                                               events: context
                                                   .read<HomeCubit>()
                                                   .onThisWeekEvents,
@@ -121,21 +123,22 @@ class HomeScreen extends StatelessWidget {
                                           ],
                                         )
                                       : const SizedBox.shrink(),
-                                  //! All Events
-                                  context.read<HomeCubit>().allEvents.isNotEmpty
-                                      ? Column(
-                                          children: [
-                                            EventsSection(
-                                              title: AppStrings.allEvents
-                                                  .tr(context),
-                                              events: context
-                                                  .read<HomeCubit>()
-                                                  .allEvents,
-                                            ),
-                                            SizedBox(height: 16.h),
-                                          ],
-                                        )
-                                      : const SizedBox.shrink(),
+                                  // //! All Events
+                                  // context.read<HomeCubit>().allEvents.isNotEmpty
+                                  //     ? Column(
+                                  //         children: [
+                                  //           EventsSection(
+                                  //             title: AppStrings.allEvents
+                                  //                 .tr(context),
+                                  //             eventsType: EventsType.allEvents,
+                                  //             events: context
+                                  //                 .read<HomeCubit>()
+                                  //                 .allEvents,
+                                  //           ),
+                                  //           SizedBox(height: 16.h),
+                                  //         ],
+                                  //       )
+                                  //     : const SizedBox.shrink(),
                                   //! For You Events
                                   context
                                           .read<HomeCubit>()
@@ -146,6 +149,7 @@ class HomeScreen extends StatelessWidget {
                                             EventsSection(
                                               title: AppStrings.forYouEvents
                                                   .tr(context),
+                                              eventsType: EventsType.forYou,
                                               events: context
                                                   .read<HomeCubit>()
                                                   .forYouEvents,
@@ -164,6 +168,7 @@ class HomeScreen extends StatelessWidget {
                                             EventsSection(
                                               title: AppStrings.inYourAreaEvents
                                                   .tr(context),
+                                              eventsType: EventsType.inYourArea,
                                               events: context
                                                   .read<HomeCubit>()
                                                   .inYourAreaEvents,

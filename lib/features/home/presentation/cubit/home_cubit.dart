@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
+import 'package:eventown/features/home/data/models/events_model/events_model.dart';
 import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -133,4 +135,81 @@ class HomeCubit extends Cubit<HomeState> {
   bool isEventInWishlist(String eventId) {
     return wishlistEventsIds.contains(eventId);
   }
+
+  int currentPage = 1;
+  int limit = 4;
+  bool hasMoreEvents = true;
+  bool isLoadingMore = false;
+  List<EventModel> viewAllEvents = [];
+
+// Cubit Method to Fetch Events
+  Future<void> getViewAllEvents({
+    bool loadMore = false,
+    required EventsType type,
+  }) async {
+    if (loadMore && !hasMoreEvents) {
+      return; // Exit if no more events are available
+    }
+
+    if (loadMore) {
+      isLoadingMore = true;
+      emit(GetViewAllLoadingMore());
+      currentPage++; // Increase page number for loading more
+    } else {
+      emit(GetViewAllLoading());
+      currentPage = 1; // Reset page for fresh data load
+      viewAllEvents = []; // Clear the list when starting fresh
+    }
+
+    Either<String, EventsModel> response;
+    switch (type) {
+      case EventsType.topEvents:
+        response = await homeRepo.fetchHomeTopEvents(
+          limit: limit,
+          page: currentPage,
+        );
+        break;
+      case EventsType.onThisWeek:
+        response = await homeRepo.fetchHomeOnThisWeekEvents(
+          limit: limit,
+          page: currentPage,
+        );
+        break;
+      case EventsType.forYou:
+        response = await homeRepo.fetchHomeForYouEvents(
+          limit: limit,
+          page: currentPage,
+        );
+        break;
+      case EventsType.inYourArea:
+        response = await homeRepo.fetchHomeInYourAreaEvents(
+          limit: limit,
+          page: currentPage,
+        );
+        break;
+    }
+
+    response.fold(
+      (fail) {
+        emit(GetViewAllError('Error: $fail'));
+      },
+      (success) {
+        List<EventModel> newEvents = success.data ?? [];
+
+        viewAllEvents.addAll(newEvents); // Append new events
+        hasMoreEvents =
+            newEvents.length == limit; // Check if more data can be loaded
+
+        // Emit success with updated events and hasMore flag
+        emit(GetViewAllSuccess(events: viewAllEvents, hasMore: hasMoreEvents));
+      },
+    );
+  }
+}
+
+enum EventsType {
+  topEvents,
+  onThisWeek,
+  forYou,
+  inYourArea,
 }
