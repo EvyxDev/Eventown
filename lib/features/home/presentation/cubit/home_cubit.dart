@@ -335,6 +335,14 @@ class HomeCubit extends Cubit<HomeState> {
       },
     );
   }
+
+  //! Clear Search
+  clearSearch() {
+    startDate = null;
+    endDate = null;
+    selectedCategoryId = null;
+    isSortByPriceLowToHigh = false;
+  }
 }
 
 enum EventsType {

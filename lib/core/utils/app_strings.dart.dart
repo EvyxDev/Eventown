@@ -181,4 +181,6 @@ abstract class AppStrings {
   static const String searchAndApplyFilters = "searchAndApplyFilters";
   //'selectDateRange'
   static const String selectDateRange = "selectDateRange";
+  //"filter"
+  static const String filter = "filter";
 }

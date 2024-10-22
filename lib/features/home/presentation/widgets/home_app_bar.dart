@@ -15,15 +15,10 @@ import 'package:iconly/iconly.dart';
 AppBar getHomeAppBar(BuildContext context) {
   return AppBar(
     leadingWidth: 170.w,
+    backgroundColor: Colors.black,
     actions: [
       TextButton(
-        onPressed: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //   builder: (context) {
-          //     return WelcomeOrganizerScreen();
-          //   },
-          // ));
-        },
+        onPressed: () {},
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.primary,
@@ -75,6 +70,10 @@ AppBar getHomeAppBar(BuildContext context) {
             AppColors.primary,
             Colors.deepOrange.shade800,
           ],
+        ),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10.r),
+          bottomRight: Radius.circular(10.r),
         ),
       ),
     ),

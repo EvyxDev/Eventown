@@ -1,4 +1,5 @@
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
@@ -12,6 +13,7 @@ import 'package:eventown/features/home/presentation/widgets/event_card_widget.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
 class SearchAndFilterScreen extends StatelessWidget {
@@ -34,28 +36,23 @@ class SearchAndFilterScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Form(
-              key: context.read<HomeCubit>().searchFormKey,
-              child: CustomTextFormField(
-                fillColor: AppColors.white,
-                controller: context.read<HomeCubit>().searchController,
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 8.w,
-                  vertical: 6.h,
-                ),
-                borderColor: AppColors.white,
-                borderRadius: 8.r,
-                style: CustomTextStyle.roboto700sized12Grey,
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: AppColors.grey,
-                ),
-                hintText: AppStrings.search.tr(context),
-                hintStyle: CustomTextStyle.roboto700sized12Grey,
-              ),
-            ),
-            automaticallyImplyLeading: false,
+            backgroundColor: AppColors.black,
             centerTitle: false,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SvgPicture.asset(
+                  Assets.assetsImagesSvgIconPlaceholder,
+                  width: 36.w,
+                  height: 36.h,
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  AppStrings.appName.tr(context),
+                  style: CustomTextStyle.roboto700sized20White,
+                ),
+              ],
+            ),
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -66,6 +63,78 @@ class SearchAndFilterScreen extends StatelessWidget {
                     Colors.deepOrange.shade800,
                   ],
                 ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10.r),
+                  bottomRight: Radius.circular(10.r),
+                ),
+              ),
+            ),
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(60.h),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 8.h,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(width: 8.w),
+                    Expanded(
+                      child: Form(
+                        key: context.read<HomeCubit>().searchFormKey,
+                        child: CustomTextFormField(
+                          fillColor: AppColors.white,
+                          controller:
+                              context.read<HomeCubit>().searchController,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
+                          autofocus: false,
+                          borderColor: AppColors.white,
+                          borderRadius: 8.r,
+                          style: CustomTextStyle.roboto700sized12Grey,
+                          prefixIcon: GestureDetector(
+                            onTap: () {
+                              context.read<HomeCubit>().searchEventsByQuery();
+                            },
+                            child: const Icon(
+                              Icons.search,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                          hintText: AppStrings.search.tr(context),
+                          hintStyle: CustomTextStyle.roboto700sized12Grey,
+                          onFieldSubmitted: (v) {
+                            context.read<HomeCubit>().searchEventsByQuery();
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8.w),
+                    InkWell(
+                      onTap: () {
+                        showFilterBottomSheet(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 13.h),
+                          child: SvgPicture.asset(
+                            Assets.assetsImagesSvgFilter,
+                            width: 24.w,
+                            height: 24.h,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8.w),
+                  ],
+                ),
               ),
             ),
           ),
@@ -74,45 +143,6 @@ class SearchAndFilterScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 16.h),
-                CustomDropDownButton(
-                  label: AppStrings.categories.tr(context),
-                  items: context.read<HomeCubit>().homeCategories.map((e) {
-                    return DropdownMenuItem(
-                      value: e.id,
-                      child: Text(e.title ?? ""),
-                    );
-                  }).toList(),
-                  onChanged: (v) {
-                    context
-                        .read<HomeCubit>()
-                        .updateSelectedCategoryId(v.toString());
-                  },
-                  value: null,
-                ),
-                _buildDateRangeField(context),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppStrings.sortByPriceLowToHigh.tr(context),
-                      style: CustomTextStyle.roboto500sized16White,
-                    ),
-                    Checkbox(
-                        value: context.read<HomeCubit>().isSortByPriceLowToHigh,
-                        onChanged: (v) {
-                          context.read<HomeCubit>().sortByPriceLowToHigh();
-                        })
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                CustomElevatedButton(
-                  text: AppStrings.searchAndApplyFilters.tr(context),
-                  onPressed: () {
-                    context.read<HomeCubit>().searchEventsByQuery();
-                  },
-                  elevation: 0,
-                ),
                 SizedBox(height: 16.h),
                 Builder(
                   builder: (context) {
@@ -188,6 +218,92 @@ class SearchAndFilterScreen extends StatelessWidget {
               ],
             ),
           ),
+        );
+      },
+    );
+  }
+
+  showFilterBottomSheet(context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            return Container(
+              color: AppColors.black,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            AppStrings.filter.tr(context),
+                            style: CustomTextStyle.roboto700sized20White,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.close,
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CustomDropDownButton(
+                      label: AppStrings.categories.tr(context),
+                      items: context.read<HomeCubit>().homeCategories.map((e) {
+                        return DropdownMenuItem(
+                          value: e.id,
+                          child: Text(e.title ?? ""),
+                        );
+                      }).toList(),
+                      onChanged: (v) {
+                        context
+                            .read<HomeCubit>()
+                            .updateSelectedCategoryId(v.toString());
+                      },
+                      value: null,
+                    ),
+                    _buildDateRangeField(context),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppStrings.sortByPriceLowToHigh.tr(context),
+                          style: CustomTextStyle.roboto500sized16White,
+                        ),
+                        Checkbox(
+                            value: context
+                                .read<HomeCubit>()
+                                .isSortByPriceLowToHigh,
+                            onChanged: (v) {
+                              context.read<HomeCubit>().sortByPriceLowToHigh();
+                            })
+                      ],
+                    ),
+                    CustomElevatedButton(
+                      text: AppStrings.searchAndApplyFilters.tr(context),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        context.read<HomeCubit>().searchEventsByQuery();
+                        context.read<HomeCubit>().clearSearch();
+                      },
+                      elevation: 0,
+                    ),
+                    SizedBox(height: 16.h),
+                  ],
+                ),
+              ),
+            );
+          },
         );
       },
     );

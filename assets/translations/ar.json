@@ -110,5 +110,6 @@
     "removedFromWishList":"تم الحذف من المفضلة بنجاح",
     "sortByPriceLowToHigh": "ترتيب حسب السعر (من الأقل إلى الأعلى)",
     "searchAndApplyFilters": "بحث وتطبيق الفلاتر",
-    "selectDateRange": "اختيار نطاق التاريخ"
+    "selectDateRange": "اختيار نطاق التاريخ",
+    "filter": "فلتر"
 }

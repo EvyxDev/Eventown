@@ -110,5 +110,6 @@
     "removedFromWishList":"Removed from wishlist successfully",
     "sortByPriceLowToHigh": "Sort By Price (Low to High)",
     "searchAndApplyFilters": "Search and Apply Filters",
-    "selectDateRange": "Select Date Range"
+    "selectDateRange": "Select Date Range",
+    "filter": "Filter"
 }
