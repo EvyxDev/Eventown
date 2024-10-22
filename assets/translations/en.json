@@ -111,5 +111,10 @@
     "sortByPriceLowToHigh": "Sort By Price (Low to High)",
     "searchAndApplyFilters": "Search and Apply Filters",
     "selectDateRange": "Select Date Range",
-    "filter": "Filter"
+    "filter": "Filter",
+    "getTicket": "Get Ticket",
+    "comments": "Comments",
+    "comment": "Comment",
+    "addComment": "Add Comment",
+    "noComments": "No Comments"
 }

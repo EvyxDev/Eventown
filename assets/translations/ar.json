@@ -111,5 +111,10 @@
     "sortByPriceLowToHigh": "ترتيب حسب السعر (من الأقل إلى الأعلى)",
     "searchAndApplyFilters": "بحث وتطبيق الفلاتر",
     "selectDateRange": "اختيار نطاق التاريخ",
-    "filter": "فلتر"
+    "filter": "فلتر",
+    "getTicket": "احصل على التذكرة",
+    "comments": "التعليقات",
+    "comment": "تعليق",
+    "addComment": "أضف تعليق",
+    "noComments": "لا توجد تعليقات"
 }

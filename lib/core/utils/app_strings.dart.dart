@@ -183,4 +183,14 @@ abstract class AppStrings {
   static const String selectDateRange = "selectDateRange";
   //"filter"
   static const String filter = "filter";
+  // "Get Ticket"
+  static const String getTicket = "getTicket";
+  //comments
+  static const String comments = "comments";
+  //comment
+  static const String comment = "comment";
+  //addComment
+  static const String addComment = "addComment";
+  //noComments
+  static const String noComments = "noComments";
 }
