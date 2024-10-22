@@ -4,6 +4,7 @@ import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/events_model.dart';
 import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -254,6 +255,83 @@ class HomeCubit extends Cubit<HomeState> {
         // Emit success with updated events and hasMore flag
         emit(GetEventsByCategorySuccess(
             events: eventsByCategory, hasMore: categoryHasMoreEvents));
+      },
+    );
+  }
+
+  //! Search and Filter Events
+  int searchCurrentPage = 1;
+  int searchLimit = 4;
+  bool searchHasMoreEvents = true;
+  bool searchIsLoadingMore = false;
+  List<EventModel> searchEvents = [];
+  TextEditingController searchController = TextEditingController();
+  GlobalKey<FormState> searchFormKey = GlobalKey<FormState>();
+
+  //! Update Start and End Date
+  DateTime? startDate;
+  DateTime? endDate;
+  updateStartAndEndData(DateTime start, DateTime end) {
+    startDate = start;
+    endDate = end;
+    emit(HomeInitial());
+  }
+
+  //! Update Selected Category
+  String? selectedCategoryId;
+  updateSelectedCategoryId(String? categoryId) {
+    selectedCategoryId = categoryId;
+    emit(HomeInitial());
+  }
+
+  //! Sort By Price (Low to High)
+  bool isSortByPriceLowToHigh = false;
+  sortByPriceLowToHigh() {
+    isSortByPriceLowToHigh = !isSortByPriceLowToHigh;
+    emit(HomeInitial());
+  }
+
+  Future<void> searchEventsByQuery({
+    bool loadMore = false,
+  }) async {
+    if (loadMore && !searchHasMoreEvents) {
+      return; // Exit if no more events are available
+    }
+
+    if (loadMore) {
+      searchIsLoadingMore = true;
+      emit(SearchEventsLoadingMore());
+      searchCurrentPage++; // Increase page number for loading more
+    } else {
+      emit(SearchEventsLoading());
+      searchCurrentPage = 1; // Reset page for fresh data load
+      searchEvents = []; // Clear the list when starting fresh
+    }
+
+    Either<String, EventsModel> response;
+
+    response = await homeRepo.searchEvents(
+      limit: searchLimit,
+      page: searchCurrentPage,
+      query: searchController.text,
+      startDate: startDate?.toString(),
+      endDate: endDate?.toString(),
+      eventCategory: selectedCategoryId,
+      isSortByPrice: isSortByPriceLowToHigh,
+    );
+
+    response.fold(
+      (fail) {
+        emit(SearchEventsError('Error: $fail'));
+      },
+      (success) {
+        List<EventModel> newEvents = success.data ?? [];
+        searchEvents.addAll(newEvents); // Append new events
+        // Check if more data can be loaded
+        searchHasMoreEvents = newEvents.length == searchLimit;
+        // Emit success with updated events and hasMore flag
+        emit(SearchEventsSuccess(
+            events: searchEvents, hasMore: searchHasMoreEvents));
       },
     );
   }

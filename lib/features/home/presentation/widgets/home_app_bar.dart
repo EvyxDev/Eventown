@@ -4,7 +4,10 @@ import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_text_form_field.dart';
+import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
+import 'package:eventown/features/search_and_filter/presentation/screens/search_and_filter_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconly/iconly.dart';
@@ -77,47 +80,58 @@ AppBar getHomeAppBar(BuildContext context) {
     ),
     bottom: PreferredSize(
       preferredSize: Size.fromHeight(60.h),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 8.h,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(width: 8.w),
-            Expanded(
-              child: CustomTextFormField(
-                fillColor: AppColors.white,
-                contentPadding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 8.h,
-                ),
-                borderColor: AppColors.white,
-                borderRadius: 8.r,
-                style: CustomTextStyle.roboto700sized12Grey,
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: AppColors.grey,
-                ),
-                hintText: AppStrings.search.tr(context),
-                hintStyle: CustomTextStyle.roboto700sized12Grey,
-                onFieldSubmitted: (value) {
-                  // context
-                  //     .read<HomeBloc>()
-                  //     .add(SearchEvents(keyword: value));
-                },
-              ),
+      child: GestureDetector(
+        onTap: () {
+          context.read<HomeCubit>().searchEventsByQuery();
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return SearchAndFilterScreen();
+              },
             ),
-            SizedBox(width: 8.w),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8.r),
+          ).whenComplete(() {
+            context.read<HomeCubit>().searchController.clear();
+            context.read<HomeCubit>().searchEvents = [];
+          });
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 8.h,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(width: 8.w),
+              Expanded(
+                child: CustomTextFormField(
+                  fillColor: AppColors.white,
+                  enabled: false,
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 8.h,
+                  ),
+                  borderColor: AppColors.white,
+                  borderRadius: 8.r,
+                  style: CustomTextStyle.roboto700sized12Grey,
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: AppColors.grey,
+                  ),
+                  hintText: AppStrings.search.tr(context),
+                  hintStyle: CustomTextStyle.roboto700sized12Grey,
+                  onFieldSubmitted: (value) {
+                    // context
+                    //     .read<HomeBloc>()
+                    //     .add(SearchEvents(keyword: value));
+                  },
+                ),
               ),
-              child: InkWell(
-                onTap: () {
-                  // _onFilterIconPressed(context);
-                },
+              SizedBox(width: 8.w),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 12.w, vertical: 11.h),
@@ -128,9 +142,9 @@ AppBar getHomeAppBar(BuildContext context) {
                   ),
                 ),
               ),
-            ),
-            SizedBox(width: 8.w),
-          ],
+              SizedBox(width: 8.w),
+            ],
+          ),
         ),
       ),
     ),

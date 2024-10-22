@@ -103,8 +103,12 @@
     "points":"Points",
     "going":"Going",
     "egp": "EGP",
+    "categories": "Categories",
     "couldNotAddToWishList":"Could not add to wishlist",
     "addedToWishList":"Added to wishlist successfully",
     "couldNotRemoveFromWishList":"Could not remove from wishlist",
-    "removedFromWishList":"Removed from wishlist successfully"
+    "removedFromWishList":"Removed from wishlist successfully",
+    "sortByPriceLowToHigh": "Sort By Price (Low to High)",
+    "searchAndApplyFilters": "Search and Apply Filters",
+    "selectDateRange": "Select Date Range"
 }

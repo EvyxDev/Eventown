@@ -62,3 +62,18 @@ final class GetEventsByCategoryError extends HomeState {
   GetEventsByCategoryError(this.message);
   final String message;
 }
+
+final class SearchEventsLoadingMore extends HomeState {}
+
+final class SearchEventsLoading extends HomeState {}
+
+final class SearchEventsSuccess extends HomeState {
+  final List<EventModel> events;
+  final bool hasMore;
+  SearchEventsSuccess({required this.events, required this.hasMore});
+}
+
+final class SearchEventsError extends HomeState {
+  SearchEventsError(this.message);
+  final String message;
+}

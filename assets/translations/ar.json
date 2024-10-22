@@ -106,5 +106,9 @@
     "couldNotAddToWishList":"تعذر الاضافه الي المفضلة",
     "addedToWishList":"تمت الإضافه الي المضلة بنجاح",
     "couldNotRemoveFromWishList":"تعذر الحذف من المفضلة",
-    "removedFromWishList":"تم الحذف من المفضلة بنجاح"
+    "categories":"الفئات",
+    "removedFromWishList":"تم الحذف من المفضلة بنجاح",
+    "sortByPriceLowToHigh": "ترتيب حسب السعر (من الأقل إلى الأعلى)",
+    "searchAndApplyFilters": "بحث وتطبيق الفلاتر",
+    "selectDateRange": "اختيار نطاق التاريخ"
 }

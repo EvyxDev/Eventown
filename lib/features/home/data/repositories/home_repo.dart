@@ -256,4 +256,49 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+  //! Search Events
+  Future<Either<String, EventsModel>> searchEvents({
+    required String query,
+    int? page,
+    int? limit,
+    String? eventCategory,
+    String? startDate,
+    String? endDate,
+    bool? isSortByPrice,
+  }) async {
+    try {
+      Map<String, dynamic> queryParameters = {'keyword': query};
+      if (page != null) {
+        queryParameters.addAll({'page': page});
+      }
+      if (limit != null) {
+        queryParameters.addAll({'limit': limit});
+      }
+      if (eventCategory != null) {
+        queryParameters.addAll({'eventCategory': eventCategory});
+      }
+      if (startDate != null) {
+        queryParameters.addAll({'eventDate[gte]': startDate});
+      }
+      if (endDate != null) {
+        queryParameters.addAll({'eventDate[lt]': endDate});
+      }
+      if (isSortByPrice != null && isSortByPrice == true) {
+        queryParameters.addAll({'sort': 'eventPrice'});
+      }
+      final response = await api.get(
+        EndPoints.getEvents,
+        queryParameters: queryParameters,
+      );
+      final eventsModel = EventsModel.fromJson(response);
+      return Right(eventsModel);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

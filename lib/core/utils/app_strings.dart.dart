@@ -110,6 +110,8 @@ abstract class AppStrings {
   // no categories found try again later
   static const String noCategoriesFoundTryAgainLater =
       "noCategoriesFoundTryAgainLater";
+  // Categories
+  static const String categories = "categories";
   //tryAgain
   static const String tryAgain = "tryAgain";
   //"Search"
@@ -173,4 +175,10 @@ abstract class AppStrings {
   static const String couldNotRemoveFromWishList = "couldNotRemoveFromWishList";
   //Removed from WishList
   static const String removedFromWishList = "removedFromWishList";
+  //"Sort By Price (Low to High)"
+  static const String sortByPriceLowToHigh = "sortByPriceLowToHigh";
+  //"Search And Apply Filters"
+  static const String searchAndApplyFilters = "searchAndApplyFilters";
+  //'selectDateRange'
+  static const String selectDateRange = "selectDateRange";
 }
