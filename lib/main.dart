@@ -1,6 +1,7 @@
 import 'package:eventown/app/eventown.dart';
 import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
+import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => GlobalCubit(),
+          create: (context) => GlobalCubit(sl<SignInRepo>())..getUserProfile(),
         ),
         BlocProvider(
           create: (context) => HomeCubit(sl<HomeRepo>())..getHomeData(),

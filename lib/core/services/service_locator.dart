@@ -14,7 +14,7 @@ final sl = GetIt.instance;
 void initServiceLocator() {
 //!external
   sl.registerLazySingleton(() => CacheHelper());
-  sl.registerLazySingleton(() => GlobalCubit());
+  sl.registerLazySingleton(() => GlobalCubit(sl<SignInRepo>()));
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => DataConnectionChecker());
   sl.registerLazySingleton(() => NetworkInfoImpl(sl<DataConnectionChecker>()));

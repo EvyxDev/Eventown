@@ -1,6 +1,5 @@
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 
-
 class WishListModel {
   String? status;
   int? result;

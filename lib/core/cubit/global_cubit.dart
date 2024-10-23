@@ -1,6 +1,9 @@
 import 'package:eventown/core/common/logs.dart';
+import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
+import 'package:eventown/features/settings/data/models/user/user.dart';
 import 'package:eventown/features/settings/presentation/screens/settings_screen.dart';
+import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
 import 'package:eventown/features/wheel/presentation/screens/wheel_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +12,8 @@ import '../services/service_locator.dart';
 import 'global_state.dart';
 
 class GlobalCubit extends Cubit<GlobalState> {
-  GlobalCubit() : super(GlobalInitial());
+  final SignInRepo signInRepo;
+  GlobalCubit(this.signInRepo) : super(GlobalInitial());
   static GlobalCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<Widget> bottomScreens = [
@@ -40,5 +44,23 @@ class GlobalCubit extends Cubit<GlobalState> {
         : sl<CacheHelper>().cacheLanguage("en");
     language = sl<CacheHelper>().getCachedLanguage();
     emit(GlobalInitial());
+  }
+
+  //! Get User Profile
+  UserModel? user;
+  getUserProfile() async {
+    if (sl<CacheHelper>().getData(key: AppConstants.token) != null) {
+      final response = await signInRepo.getUserProfile();
+      response.fold(
+        (fail) {
+          printRed(fail);
+          getUserProfile();
+        },
+        (model) {
+          user = model;
+          emit(GlobalInitial());
+        },
+      );
+    }
   }
 }

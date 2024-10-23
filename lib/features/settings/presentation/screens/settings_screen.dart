@@ -1,10 +1,13 @@
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/cubit/global_state.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/routes/app_routes.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
+import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
+import 'package:eventown/features/home/presentation/screens/view_all_screen.dart';
 import 'package:eventown/features/settings/presentation/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +25,12 @@ class SettingsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 28.h),
+                padding: EdgeInsets.only(
+                  top: 48.h,
+                  left: 16.w,
+                  right: 16.w,
+                  bottom: 16.h,
+                ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -40,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 38.r,
+                      radius: 32.r,
                       backgroundImage: const AssetImage(
                         Assets.assetsImagesPngProfile,
                       ),
@@ -51,11 +59,11 @@ class SettingsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'John Doe',
+                            context.read<GlobalCubit>().user?.data?.name ?? '',
                             style: CustomTextStyle.roboto700sized20White,
                           ),
                           Text(
-                            'happytech.mohammedsaeed@gmail.com',
+                            context.read<GlobalCubit>().user?.data?.email ?? "",
                             style: CustomTextStyle.roboto400sized14White,
                           ),
                         ],
@@ -93,12 +101,43 @@ class SettingsScreen extends StatelessWidget {
                       SettingsItem(
                         title: AppStrings.interstedEvents.tr(context),
                         icon: Icons.turned_in_outlined,
-                        onTap: () {},
+                        onTap: () {
+                          context
+                              .read<HomeCubit>()
+                              .getViewAllEvents(type: EventsType.forYou);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ViewAllScreen(
+                                  eventsType: EventsType.forYou,
+                                  title: AppStrings.interstedEvents.tr(context),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                       SettingsItem(
                         title: AppStrings.cityAndArea.tr(context),
                         icon: Icons.location_on,
-                        onTap: () {},
+                        onTap: () {
+                          context
+                              .read<HomeCubit>()
+                              .getViewAllEvents(type: EventsType.inYourArea);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ViewAllScreen(
+                                  eventsType: EventsType.inYourArea,
+                                  title:
+                                      AppStrings.inYourAreaEvents.tr(context),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                       SettingsItem(
                         title: AppStrings.createEvents.tr(context),
@@ -140,7 +179,12 @@ class SettingsScreen extends StatelessWidget {
                       SettingsItem(
                         title: AppStrings.termsAndConditions.tr(context),
                         icon: Icons.note_rounded,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            Routes.termsAndConditions,
+                          );
+                        },
                       ),
                       SettingsItem(
                         title: AppStrings.privacyPolicy.tr(context),

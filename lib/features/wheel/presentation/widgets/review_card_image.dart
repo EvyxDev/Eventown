@@ -1,4 +1,3 @@
-
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';

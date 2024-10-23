@@ -5,10 +5,7 @@ import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget progressIndicatorWithPoints(
-  double value,
-  context
-) {
+Widget progressIndicatorWithPoints(double value, context) {
   return Stack(
     alignment: Alignment.center,
     children: [
