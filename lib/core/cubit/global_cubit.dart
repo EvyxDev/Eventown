@@ -1,6 +1,6 @@
 import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
-import 'package:eventown/features/profile/presentation/screens/profile_screen.dart';
+import 'package:eventown/features/settings/presentation/screens/settings_screen.dart';
 import 'package:eventown/features/wheel/presentation/screens/wheel_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class GlobalCubit extends Cubit<GlobalState> {
     const HomeScreen(),
     const WheelScreen(),
     const Scaffold(),
-    const ProfileScreen()
+    const SettingsScreen()
   ];
   void changeBottom(int index) {
     currentIndex = index;
