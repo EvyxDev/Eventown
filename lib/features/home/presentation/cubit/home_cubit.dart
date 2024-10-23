@@ -271,7 +271,7 @@ class HomeCubit extends Cubit<HomeState> {
   //! Update Start and End Date
   DateTime? startDate;
   DateTime? endDate;
-  updateStartAndEndData(DateTime start, DateTime end) {
+  updateStartAndEndData(DateTime? start, DateTime? end) {
     startDate = start;
     endDate = end;
     emit(HomeInitial());
@@ -336,13 +336,21 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  //! Clear Search
-  clearSearch() {
-    startDate = null;
-    endDate = null;
-    selectedCategoryId = null;
-    isSortByPriceLowToHigh = false;
+  //!is filters applied
+  bool isFiltersApplied() {
+    return startDate == null &&
+        endDate == null &&
+        selectedCategoryId == null &&
+        isSortByPriceLowToHigh == false;
   }
+
+  // //! Clear Search
+  // clearSearch() {
+  //   startDate = null;
+  //   endDate = null;
+  //   selectedCategoryId = null;
+  //   isSortByPriceLowToHigh = false;
+  // }
 }
 
 enum EventsType {
