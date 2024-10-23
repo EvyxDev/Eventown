@@ -116,5 +116,18 @@
     "comments": "Comments",
     "comment": "Comment",
     "addComment": "Add Comment",
-    "noComments": "No Comments"
+    "noComments": "No Comments",
+    "settings": "Settings",
+    "myCalendar": "My Calendar",
+    "interstedEvents": "Interested Events",
+    "cityAndArea": "City and Area",
+    "createEvents": "Create Events",
+    "iAmOrganizer": "I Am Organizer",
+    "language": "Language",
+    "shareApp": "Share App",
+    "sendFeedback": "Send Feedback",
+    "needAHelp": "Need Help",
+    "deleteMyAccount": "Delete My Account",
+    "privacyPolicy": "Privacy Policy",
+    "logout": "Logout"
 }

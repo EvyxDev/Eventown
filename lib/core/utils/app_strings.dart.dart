@@ -193,4 +193,30 @@ abstract class AppStrings {
   static const String addComment = "addComment";
   //noComments
   static const String noComments = "noComments";
+  // 'Settings'
+  static const String settings = "settings";
+  //'My Calendar'
+  static const String myCalendar = "myCalendar";
+  //'Intersted Events'
+  static const String interstedEvents = "interstedEvents";
+  //'City and Area'
+  static const String cityAndArea = "cityAndArea";
+  //'Create Events'
+  static const String createEvents = "createEvents";
+  //'I Am Organizer'
+  static const String iAmOrganizer = "iAmOrganizer";
+  //Language
+  static const String language = "language";
+  //'Share App'
+  static const String shareApp = "shareApp";
+  //'Send Feedback'
+  static const String sendFeedback = "sendFeedback";
+  //'Need A Help'
+  static const String needAHelp = "needAHelp";
+  //'Delete My Account'
+  static const String deleteMyAccount = "deleteMyAccount";
+  // 'Privacy Policy'
+  static const String privacyPolicy = "privacyPolicy";
+  //'Logout'
+  static const String logout = "logout";
 }

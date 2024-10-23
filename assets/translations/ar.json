@@ -116,5 +116,18 @@
     "comments": "التعليقات",
     "comment": "تعليق",
     "addComment": "أضف تعليق",
-    "noComments": "لا توجد تعليقات"
+    "noComments": "لا توجد تعليقات",
+    "settings": "الإعدادات",
+    "myCalendar": "تقويمي",
+    "interstedEvents": "الأحداث المهتم بها",
+    "cityAndArea": "المدينة والمنطقة",
+    "createEvents": "إنشاء أحداث",
+    "iAmOrganizer": "أنا منظم",
+    "language": "اللغة",
+    "shareApp": "مشاركة التطبيق",
+    "sendFeedback": "إرسال ملاحظات",
+    "needAHelp": "تحتاج مساعدة",
+    "deleteMyAccount": "حذف حسابي",
+    "privacyPolicy": "سياسة الخصوصية",
+    "logout": "تسجيل الخروج"
 }
