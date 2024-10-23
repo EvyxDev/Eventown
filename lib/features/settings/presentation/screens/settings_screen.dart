@@ -8,6 +8,7 @@ import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/screens/view_all_screen.dart';
+import 'package:eventown/features/settings/presentation/screens/calender_screen.dart';
 import 'package:eventown/features/settings/presentation/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,7 +97,17 @@ class SettingsScreen extends StatelessWidget {
                       SettingsItem(
                         title: AppStrings.myCalendar.tr(context),
                         icon: Icons.calendar_month_outlined,
-                        onTap: () {},
+                        onTap: () {
+                          context.read<HomeCubit>().getUserCalender();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const CalenderScreen();
+                              },
+                            ),
+                          );
+                        },
                       ),
                       SettingsItem(
                         title: AppStrings.interstedEvents.tr(context),

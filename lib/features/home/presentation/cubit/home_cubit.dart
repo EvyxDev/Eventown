@@ -155,17 +155,17 @@ class HomeCubit extends Cubit<HomeState> {
     required EventsType type,
   }) async {
     if (loadMore && !hasMoreEvents) {
-      return; // Exit if no more events are available
+      return; //? Exit if no more events are available
     }
 
     if (loadMore) {
       isLoadingMore = true;
       emit(GetViewAllLoadingMore());
-      currentPage++; // Increase page number for loading more
+      currentPage++; //? Increase page number for loading more
     } else {
       emit(GetViewAllLoading());
-      currentPage = 1; // Reset page for fresh data load
-      viewAllEvents = []; // Clear the list when starting fresh
+      currentPage = 1; //? Reset page for fresh data load
+      viewAllEvents = []; //? Clear the list when starting fresh
     }
 
     Either<String, EventsModel> response;
@@ -291,21 +291,22 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeInitial());
   }
 
+  //! search Events By Query And Filter
   Future<void> searchEventsByQuery({
     bool loadMore = false,
   }) async {
     if (loadMore && !searchHasMoreEvents) {
-      return; // Exit if no more events are available
+      return; //? Exit if no more events are available
     }
 
     if (loadMore) {
       searchIsLoadingMore = true;
       emit(SearchEventsLoadingMore());
-      searchCurrentPage++; // Increase page number for loading more
+      searchCurrentPage++; //? Increase page number for loading more
     } else {
       emit(SearchEventsLoading());
-      searchCurrentPage = 1; // Reset page for fresh data load
-      searchEvents = []; // Clear the list when starting fresh
+      searchCurrentPage = 1; //? Reset page for fresh data load
+      searchEvents = []; //? Clear the list when starting fresh
     }
 
     Either<String, EventsModel> response;
@@ -326,10 +327,10 @@ class HomeCubit extends Cubit<HomeState> {
       },
       (success) {
         List<EventModel> newEvents = success.data ?? [];
-        searchEvents.addAll(newEvents); // Append new events
-        // Check if more data can be loaded
+        searchEvents.addAll(newEvents); //? Append new events
+        //? Check if more data can be loaded
         searchHasMoreEvents = newEvents.length == searchLimit;
-        // Emit success with updated events and hasMore flag
+        //? Emit success with updated events and hasMore flag
         emit(SearchEventsSuccess(
             events: searchEvents, hasMore: searchHasMoreEvents));
       },
@@ -344,13 +345,44 @@ class HomeCubit extends Cubit<HomeState> {
         isSortByPriceLowToHigh == false;
   }
 
-  // //! Clear Search
-  // clearSearch() {
-  //   startDate = null;
-  //   endDate = null;
-  //   selectedCategoryId = null;
-  //   isSortByPriceLowToHigh = false;
-  // }
+  //! Get User Calender
+  List<EventModel> userCalender = [];
+  List<String> userCalenmderIds = [];
+  getUserCalender() async {
+    emit(GetCalenderEventsLoading());
+    final response = await homeRepo.fetchCalendarEvents();
+    response.fold(
+      (l) {
+        emit(GetCalenderEventsError(l));
+      },
+      (r) {
+        userCalender = r.data ?? [];
+        userCalenmderIds = r.data?.map((e) => e.id ?? '').toList() ?? [];
+        emit(GetCalenderEventsSuccess());
+      },
+    );
+  }
+
+  //! Add Event to Calender
+  addEventToCalender({required String eventId}) async {
+    userCalenmderIds.add(eventId);
+    emit(HomeInitial());
+    final response = await homeRepo.addEventToCalendar(eventId);
+    response.fold(
+      (l) {
+        userCalenmderIds.remove(eventId);
+        emit(AddEventToCalenderFailed(l));
+      },
+      (r) {
+        emit(AddEventToCalenderSuccess(r));
+      },
+    );
+  }
+
+  //! Is Event In Calender
+  isEventInCalender(String eventId) {
+    return userCalenmderIds.contains(eventId);
+  }
 }
 
 enum EventsType {

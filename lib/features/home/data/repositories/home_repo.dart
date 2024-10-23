@@ -5,6 +5,7 @@ import 'package:eventown/core/errors/exceptions.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/all_categories_model.dart';
 import 'package:eventown/features/home/data/models/events_model/events_model.dart';
 import 'package:eventown/features/home/data/models/wish_list_model/wish_list_model.dart';
+import 'package:eventown/features/settings/data/models/calender_model/calender_model.dart';
 
 class HomeRepo {
   final ApiConsumer api;
@@ -293,6 +294,53 @@ class HomeRepo {
       );
       final eventsModel = EventsModel.fromJson(response);
       return Right(eventsModel);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  //! Get Calendar Events
+  Future<Either<String, CalenderModel>> fetchCalendarEvents({
+    int? page,
+    int? limit,
+  }) async {
+    try {
+      Map<String, dynamic> queryParameters = {};
+      if (page != null) {
+        queryParameters.addAll({'page': page});
+      }
+      if (limit != null) {
+        queryParameters.addAll({'limit': limit});
+      }
+      final response = await api.get(
+        EndPoints.getCalendarEvents,
+        queryParameters: queryParameters,
+      );
+      final calendarModel = CalenderModel.fromJson(response);
+      return Right(calendarModel);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  //! Add Events to Calendar
+  Future<Either<String, String>> addEventToCalendar(String eventId) async {
+    try {
+      final response = await api.post(
+        EndPoints.addToCalendar,
+        data: {
+          'eventId': eventId,
+        },
+      );
+      return Right(response['message']);
     } on ServerException catch (e) {
       return Left(e.errorModel.detail);
     } on NoInternetException catch (e) {
