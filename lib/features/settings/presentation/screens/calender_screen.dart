@@ -73,93 +73,97 @@ class CalenderScreen extends StatelessWidget {
               Expanded(
                 child: state is GetCalenderEventsLoading
                     ? const CustomLoadingIndicator()
-                    : ListView.builder(
-                        itemCount: cubit.userCalender.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.symmetric(
-                              horizontal: 16.w,
-                              vertical: 8.h,
-                            ),
-                            padding: EdgeInsets.all(16.w),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(10.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 1,
-                                  blurRadius: 7,
-                                  offset: const Offset(0, 3),
+                    : cubit.userCalender.isEmpty
+                        ? Text(AppStrings.noEventsFound.tr(context))
+                        : ListView.builder(
+                            itemCount: cubit.userCalender.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 16.w,
+                                  vertical: 8.h,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  cubit.userCalender[index].eventName ?? "",
-                                  style: CustomTextStyle.roboto500sized20White,
-                                ),
-                                SizedBox(height: 8.h),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.calendar_today,
-                                      color: AppColors.white,
-                                      size: 16.r,
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      displayDate(cubit
-                                              .userCalender[index].eventDate) ??
-                                          "",
-                                      style:
-                                          CustomTextStyle.roboto400sized14White,
+                                padding: EdgeInsets.all(16.w),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primary,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8.h),
-                                Row(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Icon(
-                                      Icons.access_time,
-                                      color: AppColors.white,
-                                      size: 16.r,
-                                    ),
-                                    SizedBox(width: 8.w),
                                     Text(
-                                      convertTime(
-                                        cubit.userCalender[index].eventDate
-                                            .toString(),
-                                      ),
+                                      cubit.userCalender[index].eventName ?? "",
                                       style:
-                                          CustomTextStyle.roboto400sized14White,
+                                          CustomTextStyle.roboto500sized20White,
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.calendar_today,
+                                          color: AppColors.white,
+                                          size: 16.r,
+                                        ),
+                                        SizedBox(width: 8.w),
+                                        Text(
+                                          displayDate(cubit.userCalender[index]
+                                                  .eventDate) ??
+                                              "",
+                                          style: CustomTextStyle
+                                              .roboto400sized14White,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.access_time,
+                                          color: AppColors.white,
+                                          size: 16.r,
+                                        ),
+                                        SizedBox(width: 8.w),
+                                        Text(
+                                          convertTime(
+                                            cubit.userCalender[index].eventDate
+                                                .toString(),
+                                          ),
+                                          style: CustomTextStyle
+                                              .roboto400sized14White,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 8.h),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_on,
+                                          color: AppColors.white,
+                                          size: 16.r,
+                                        ),
+                                        SizedBox(width: 8.w),
+                                        Text(
+                                          cubit.userCalender[index]
+                                                  .eventLocation ??
+                                              "",
+                                          style: CustomTextStyle
+                                              .roboto400sized14White,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 8.h),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      color: AppColors.white,
-                                      size: 16.r,
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      cubit.userCalender[index].eventLocation ??
-                                          "",
-                                      style:
-                                          CustomTextStyle.roboto400sized14White,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
+                              );
+                            },
+                          ),
               ),
             ],
           );

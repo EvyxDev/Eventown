@@ -119,170 +119,204 @@ class _WheelScreenState extends State<WheelScreen> {
     final remainingTime = getRemainingTime();
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.h),
-              Align(
-                child: Text(
-                  AppStrings.welcomeToSpinAndWin.tr(context),
-                  style: CustomTextStyle.roboto400sized20Primary,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                top: 48.h,
+                left: 16.w,
+                right: 16.w,
+                bottom: 16.h,
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.primary,
+                    Colors.deepOrange.shade800,
+                  ],
+                ),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10.r),
+                  bottomRight: Radius.circular(10.r),
                 ),
               ),
-              SizedBox(height: 24.h),
-              Text(
-                "${AppStrings.aboutSpinAndWin.tr(context)} :",
-                style: CustomTextStyle.roboto500sized14Primary,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Align(
+                    child: Text(
+                      AppStrings.welcomeToSpinAndWin.tr(context),
+                      style: CustomTextStyle.roboto700sized20White,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 4.h),
-              Text(
-                AppStrings
-                    .earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel
-                    .tr(context),
-                style: CustomTextStyle.roboto400sized14Grey,
-                overflow: TextOverflow.fade,
-              ),
-              SizedBox(height: 16.h),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 24.h),
                   Text(
-                    "${AppStrings.howToPlaySpinAndWin.tr(context)} : ",
+                    "${AppStrings.aboutSpinAndWin.tr(context)} :",
                     style: CustomTextStyle.roboto500sized14Primary,
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    AppStrings.spinAndWinInstructions.tr(context),
+                    AppStrings
+                        .earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel
+                        .tr(context),
                     style: CustomTextStyle.roboto400sized14Grey,
                     overflow: TextOverflow.fade,
                   ),
-                ],
-              ),
-              SizedBox(height: 24.h),
-              Center(
-                  child: progressIndicatorWithPoints(rewards / total, context)),
-              SizedBox(height: 24.h),
-              buildFortuneWheel(),
-              SizedBox(height: 24.h),
-              Row(
-                children: [
-                  Expanded(
-                      child:
-                          spinButton(remainingTime, selected, items, context)),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (_) => Ticket_History_Screen(),
-                        //     ));
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 8.h),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.primary),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Center(
-                          child: Text(
-                            AppStrings.ticketHistory.tr(context),
-                            style: CustomTextStyle.roboto400sized14White,
+                  SizedBox(height: 16.h),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${AppStrings.howToPlaySpinAndWin.tr(context)} : ",
+                        style: CustomTextStyle.roboto500sized14Primary,
+                      ),
+                      SizedBox(height: 4.h),
+                      Text(
+                        AppStrings.spinAndWinInstructions.tr(context),
+                        style: CustomTextStyle.roboto400sized14Grey,
+                        overflow: TextOverflow.fade,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24.h),
+                  Center(
+                      child: progressIndicatorWithPoints(
+                          rewards / total, context)),
+                  SizedBox(height: 24.h),
+                  buildFortuneWheel(),
+                  SizedBox(height: 24.h),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: spinButton(
+                              remainingTime, selected, items, context)),
+                      SizedBox(width: 8.w),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (_) => Ticket_History_Screen(),
+                            //     ));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 8.h),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.primary),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Center(
+                              child: Text(
+                                AppStrings.ticketHistory.tr(context),
+                                style: CustomTextStyle.roboto400sized14White,
+                              ),
+                            ),
                           ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24.h),
+                  const Divider(color: AppColors.primary, thickness: 1),
+                  SizedBox(height: 24.h),
+                  Text(
+                    AppStrings.redeemButtonActivation.tr(context),
+                    style: CustomTextStyle.roboto700sized20Primary,
+                    overflow: TextOverflow.fade,
+                  ),
+                  SizedBox(height: 24.h),
+                  GestureDetector(
+                    onTap: () {
+                      if (rewards >= 1000) {
+                        setState(() {
+                          _redeemTicket();
+                          _loadScore();
+                          _saveLastSpinTime();
+                          lastSpinTime = DateTime.now();
+                        });
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 16.w, vertical: 16.h),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: rewards >= 1000
+                                ? AppColors.primary
+                                : Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                        color:
+                            rewards >= 1000 ? AppColors.primary : Colors.grey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppStrings.redeemTicket.tr(context),
+                          style: CustomTextStyle.roboto400sized14White,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(height: 24.h),
-              const Divider(color: AppColors.primary, thickness: 1),
-              SizedBox(height: 24.h),
-              Text(
-                AppStrings.redeemButtonActivation.tr(context),
-                style: CustomTextStyle.roboto700sized20Primary,
-                overflow: TextOverflow.fade,
-              ),
-              SizedBox(height: 24.h),
-              GestureDetector(
-                onTap: () {
-                  if (rewards >= 1000) {
-                    setState(() {
-                      _redeemTicket();
-                      _loadScore();
-                      _saveLastSpinTime();
-                      lastSpinTime = DateTime.now();
-                    });
-                  }
-                },
-                child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color:
-                            rewards >= 1000 ? AppColors.primary : Colors.grey),
-                    borderRadius: BorderRadius.circular(5),
-                    color: rewards >= 1000 ? AppColors.primary : Colors.grey,
+                  SizedBox(height: 24.h),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${AppStrings.howToRedeemYourTicket.tr(context)} :",
+                        style: CustomTextStyle.roboto500sized14Primary,
+                      ),
+                      SizedBox(height: 4.h),
+                      Text(
+                        AppStrings.redeemTicketInstructions.tr(context),
+                        style: CustomTextStyle.roboto400sized14Grey,
+                        overflow: TextOverflow.fade,
+                      ),
+                    ],
                   ),
-                  child: Center(
-                    child: Text(
-                      AppStrings.redeemTicket.tr(context),
-                      style: CustomTextStyle.roboto400sized14White,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                  SizedBox(height: 14.h),
+                  const Divider(color: AppColors.primary, thickness: 1),
+                  SizedBox(height: 24.h),
                   Text(
-                    "${AppStrings.howToRedeemYourTicket.tr(context)} :",
-                    style: CustomTextStyle.roboto500sized14Primary,
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    AppStrings.redeemTicketInstructions.tr(context),
-                    style: CustomTextStyle.roboto400sized14Grey,
+                    AppStrings.joinOurGreatEvents.tr(context),
+                    style: CustomTextStyle.roboto700sized20Primary,
                     overflow: TextOverflow.fade,
                   ),
+                  SizedBox(height: 24.h),
+                  Text("${AppStrings.previousWinners.tr(context)}: ",
+                      style: CustomTextStyle.roboto400sized20Primary),
+                  SizedBox(height: 4.h),
+                  Column(
+                    children: List.generate(
+                      4,
+                      (index) {
+                        return const ReviewCardGame(
+                          title: "How to use Walsops application for free",
+                          content:
+                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                          userName: "Ahmed Hamdy",
+                          timeAgo: "2 days ago",
+                          eventName: 'Al Ahly Match',
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
-              SizedBox(height: 14.h),
-              const Divider(color: AppColors.primary, thickness: 1),
-              SizedBox(height: 24.h),
-              Text(
-                AppStrings.joinOurGreatEvents.tr(context),
-                style: CustomTextStyle.roboto700sized20Primary,
-                overflow: TextOverflow.fade,
-              ),
-              SizedBox(height: 24.h),
-              Text("${AppStrings.previousWinners.tr(context)}: ",
-                  style: CustomTextStyle.roboto400sized20Primary),
-              SizedBox(height: 4.h),
-              Column(
-                children: List.generate(
-                  4,
-                  (index) {
-                    return const ReviewCardGame(
-                      title: "How to use Walsops application for free",
-                      content:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                      userName: "Ahmed Hamdy",
-                      timeAgo: "2 days ago",
-                      eventName: 'Al Ahly Match',
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
