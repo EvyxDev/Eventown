@@ -259,6 +259,22 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
+  //! Get Event By Id
+  EventModel? eventById;
+  getEventById(String eventId) async {
+    emit(GetEventByIdLoading());
+    final response = await homeRepo.fetchEventDetails(eventId);
+    response.fold(
+      (l) {
+        emit(GetEventByIdError(l));
+      },
+      (r) {
+        eventById = r;
+        emit(GetEventByIdSuccess());
+      },
+    );
+  }
+
   //! Search and Filter Events
   int searchCurrentPage = 1;
   int searchLimit = 4;

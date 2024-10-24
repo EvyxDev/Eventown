@@ -29,4 +29,8 @@ class EndPoints {
   static getEventsByCategory(String id) {
     return "/api/v1/categories/$id/events";
   }
+
+  static getEventById(String id) {
+    return "/api/v1/events/$id";
+  }
 }

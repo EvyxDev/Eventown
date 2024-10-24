@@ -133,8 +133,7 @@ class CalenderScreen extends StatelessWidget {
                                         SizedBox(width: 8.w),
                                         Text(
                                           convertTime(
-                                            cubit.userCalender[index].eventDate
-                                                .toString(),
+                                            cubit.userCalender[index].eventDate,
                                           ),
                                           style: CustomTextStyle
                                               .roboto400sized14White,

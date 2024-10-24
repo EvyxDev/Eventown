@@ -55,9 +55,11 @@ String formatDate(String dateString) {
   return DateFormat('dd MMM').format(dateTime);
 }
 
-String convertTime(String timeString) {
-  DateTime dateTime = DateTime.parse(timeString);
-  return DateFormat('hh:mm a').format(dateTime);
+String convertTime(DateTime? date) {
+  if (date == null) {
+    return '--:--';
+  }
+  return DateFormat('hh:mm a').format(date);
 }
 
 showExpandedBottomSheet(

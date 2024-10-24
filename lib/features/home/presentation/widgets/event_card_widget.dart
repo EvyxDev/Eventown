@@ -25,7 +25,7 @@ class EventCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return EventScreenDetails(eventModel: event);
+              return EventScreenDetails(eventId: event.id ?? "");
             },
           ),
         );
@@ -159,7 +159,7 @@ class EventCard extends StatelessWidget {
                                     Expanded(
                                       child: Text(
                                         convertTime(
-                                            event.eventStartTime.toString()),
+                                            event.eventStartTime),
                                         style: CustomTextStyle
                                             .roboto400sized14White,
                                       ),

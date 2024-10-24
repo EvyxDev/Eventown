@@ -22,6 +22,7 @@ final class AddEventToWhishlistFailed extends HomeState {
   AddEventToWhishlistFailed(this.message);
   final String message;
 }
+
 final class AddEventToCalenderSuccess extends HomeState {
   AddEventToCalenderSuccess(this.message);
   final String message;
@@ -95,5 +96,16 @@ final class GetCalenderEventsSuccess extends HomeState {
 
 final class GetCalenderEventsError extends HomeState {
   GetCalenderEventsError(this.message);
+  final String message;
+}
+
+final class GetEventByIdLoading extends HomeState {}
+
+final class GetEventByIdSuccess extends HomeState {
+  GetEventByIdSuccess();
+}
+
+final class GetEventByIdError extends HomeState {
+  GetEventByIdError(this.message);
   final String message;
 }

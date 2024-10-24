@@ -3,6 +3,7 @@ import 'package:eventown/core/databases/api/api_consumer.dart';
 import 'package:eventown/core/databases/api/end_points.dart';
 import 'package:eventown/core/errors/exceptions.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/all_categories_model.dart';
+import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/events_model.dart';
 import 'package:eventown/features/home/data/models/wish_list_model/wish_list_model.dart';
 import 'package:eventown/features/settings/data/models/calender_model/calender_model.dart';
@@ -249,6 +250,23 @@ class HomeRepo {
       );
       final eventsModel = EventsModel.fromJson(response);
       return Right(eventsModel);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  //! Get Event Details
+  Future<Either<String, EventModel>> fetchEventDetails(String eventId) async {
+    try {
+      final response = await api.get(
+        EndPoints.getEventById(eventId),
+      );
+      final eventModel = EventModel.fromJson(response['data']);
+      return Right(eventModel);
     } on ServerException catch (e) {
       return Left(e.errorModel.detail);
     } on NoInternetException catch (e) {
