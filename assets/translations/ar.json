@@ -129,5 +129,14 @@
     "needAHelp": "تحتاج مساعدة",
     "deleteMyAccount": "حذف حسابي",
     "privacyPolicy": "سياسة الخصوصية",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "addToCalendar": "أضف إلى التقويم",
+    "addedToCalendar": "تمت الإضافة إلى التقويم",
+    "couldNotAddToCalendar": "تعذر الإضافة إلى التقويم",
+    "removeFromCalendar": "إزالة من التقويم",
+    "removedFromCalendar": "تمت الإزالة من التقويم",
+    "couldNotRemoveFromCalendar": "تعذر الإزالة من التقويم",
+    "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
+    "couldNotUpdateProfile": "تعذر تحديث الملف الشخصي",
+    "saveChanges": "حفظ التغييرات"
 }

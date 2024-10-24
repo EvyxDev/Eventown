@@ -22,6 +22,38 @@ class GlobalCubit extends Cubit<GlobalState> {
     const Scaffold(),
     const SettingsScreen()
   ];
+
+  //! Get Governorates
+  List<String> egyptGovernorates = [
+    'cairo',
+    'giza',
+    'alexandria',
+    'aswan',
+    'asyut',
+    'beheira',
+    'beniSuef',
+    'dakahlia',
+    'damietta',
+    'faiyum',
+    'gharbia',
+    'ismailia',
+    'kafrElSheikh',
+    'luxor',
+    'matruh',
+    'minya',
+    'monufia',
+    'newValley',
+    'northSinai',
+    'portSaid',
+    'qalyubia',
+    'qena',
+    'redSea',
+    'sharqia',
+    'sohag',
+    'southSinai',
+    'suez'
+  ];
+
   void changeBottom(int index) {
     currentIndex = index;
     emit(GlobalInitial());

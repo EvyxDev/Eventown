@@ -219,4 +219,22 @@ abstract class AppStrings {
   static const String privacyPolicy = "privacyPolicy";
   //'Logout'
   static const String logout = "logout";
+  //Add To Calendar
+  static const String addToCalendar = "addToCalendar";
+  //Added To Calendar
+  static const String addedToCalendar = "addedToCalendar";
+  //Could not add to Calendar
+  static const String couldNotAddToCalendar = "couldNotAddToCalendar";
+  //Remove From Calendar
+  static const String removeFromCalendar = "removeFromCalendar";
+  //Removed From Calendar
+  static const String removedFromCalendar = "removedFromCalendar";
+  //Could not remove from Calendar
+  static const String couldNotRemoveFromCalendar = "couldNotRemoveFromCalendar";
+  // PRofile updated successfully
+  static const String profileUpdatedSuccessfully = "profileUpdatedSuccessfully";
+  // Could not update profile
+  static const String couldNotUpdateProfile = "couldNotUpdateProfile";
+  // save changes
+  static const String saveChanges = "saveChanges";
 }

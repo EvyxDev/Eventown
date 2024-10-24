@@ -1,10 +1,14 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:mime/mime.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../utils/app_colors.dart';
+import 'package:http_parser/http_parser.dart'; // For MediaType
 
 void navigate({
   required BuildContext context,
@@ -152,6 +156,18 @@ enum ToastStates {
   error,
   success,
   warning,
+}
+
+Future<MultipartFile> uploadImageToAPI(XFile image) async {
+  // Get the mime type of the file
+  String? mimeType = lookupMimeType(image.path);
+
+  return MultipartFile.fromFile(
+    image.path,
+    filename: image.path.split('/').last,
+    contentType: MediaType.parse(
+        mimeType ?? 'image/jpeg'), // defaulting to image/jpeg if not found
+  );
 }
 
 Color getState(BuildContext context, ToastStates state) {

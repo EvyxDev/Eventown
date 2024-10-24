@@ -7,11 +7,14 @@ import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_cached_network_image.dart';
 import 'package:eventown/core/widgets/custom_elevated_button.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
+import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
+import 'package:eventown/features/home/presentation/widgets/wishlist_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EventScreenDetails extends StatefulWidget {
   const EventScreenDetails({super.key, required this.eventId});
@@ -33,9 +36,11 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
       child: Scaffold(
         body: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
+            var event = context.read<HomeCubit>().eventById;
+            var cubit = context.read<HomeCubit>();
             return state is GetEventByIdLoading
                 ? const Center(child: CustomLoadingIndicator())
-                : context.read<HomeCubit>().eventById == null
+                : event == null
                     ? const Center(
                         child: Text("Somthing went wrong"),
                       )
@@ -47,11 +52,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                               clipBehavior: Clip.none,
                               children: [
                                 // Event Image
-                                context
-                                            .read<HomeCubit>()
-                                            .eventById!
-                                            .eventImage ==
-                                        null
+                                event.eventImage == null
                                     ? Image.asset(
                                         Assets.assetsImagesPngEventPlaceHolder,
                                         height: 250.h,
@@ -59,11 +60,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                         width: double.infinity,
                                       )
                                     : displayCachedNetworkImage(
-                                        imageUrl: context
-                                                .read<HomeCubit>()
-                                                .eventById!
-                                                .eventImage ??
-                                            '-',
+                                        imageUrl: event.eventImage ?? '-',
                                         height: 250.h,
                                         fit: BoxFit.fill,
                                       ),
@@ -86,7 +83,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                         ]),
                                     child: Text(
-                                      "${context.read<HomeCubit>().eventById!.eventPrice} ${AppStrings.egp.tr(context)}",
+                                      "${event.eventPrice} ${AppStrings.egp.tr(context)}",
                                       style: CustomTextStyle
                                           .roboto400sized14White
                                           .copyWith(
@@ -94,6 +91,14 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                       ),
                                       overflow: TextOverflow.fade,
                                     ),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 25,
+                                  right: 16.w,
+                                  child: WishlistBtn(
+                                    event: event,
+                                    size: 24,
                                   ),
                                 ),
                               ],
@@ -106,11 +111,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                   SizedBox(height: 32.h),
                                   // Event Title
                                   Text(
-                                    context
-                                            .read<HomeCubit>()
-                                            .eventById!
-                                            .eventName ??
-                                        '-',
+                                    event.eventName ?? '-',
                                     style:
                                         CustomTextStyle.roboto700sized20White,
                                     overflow: TextOverflow.fade,
@@ -118,11 +119,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                   SizedBox(height: 16.h),
                                   // Event Description
                                   Text(
-                                    context
-                                            .read<HomeCubit>()
-                                            .eventById!
-                                            .eventDescription ??
-                                        '-',
+                                    event.eventDescription ?? '-',
                                     style: CustomTextStyle.roboto400sized14Grey,
                                     overflow: TextOverflow.fade,
                                   ),
@@ -136,16 +133,29 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           const Icon(
+                                            Icons.people_alt,
+                                            color: AppColors.primary,
+                                          ),
+                                          SizedBox(width: 4.w),
+                                          Text(
+                                            (event.numberOfGoingUsers ?? 0)
+                                                .toString(),
+                                            style: CustomTextStyle
+                                                .roboto400sized14Grey,
+                                            overflow: TextOverflow.fade,
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
                                             Icons.person,
                                             color: AppColors.primary,
                                           ),
                                           SizedBox(width: 4.w),
                                           Text(
-                                            context
-                                                    .read<HomeCubit>()
-                                                    .eventById!
-                                                    .organizerName ??
-                                                '-',
+                                            event.organizerName ?? '-',
                                             style: CustomTextStyle
                                                 .roboto400sized14Grey,
                                             overflow: TextOverflow.fade,
@@ -162,10 +172,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                           SizedBox(width: 4.w),
                                           Text(
-                                            context
-                                                    .read<HomeCubit>()
-                                                    .eventById!
-                                                    .organizationPhoneNumber ??
+                                            event.organizationPhoneNumber ??
                                                 '-',
                                             style: CustomTextStyle
                                                 .roboto400sized14Grey,
@@ -183,11 +190,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                           SizedBox(width: 4.w),
                                           Text(
-                                            context
-                                                    .read<HomeCubit>()
-                                                    .eventById!
-                                                    .eventLocation ??
-                                                '-',
+                                            event.eventLocation ?? '-',
                                             style: CustomTextStyle
                                                 .roboto400sized14Grey,
                                             overflow: TextOverflow.fade,
@@ -204,11 +207,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                           SizedBox(width: 4.w),
                                           Text(
-                                            displayDate(context
-                                                    .read<HomeCubit>()
-                                                    .eventById!
-                                                    .eventDate) ??
-                                                "",
+                                            displayDate(event.eventDate) ?? "",
                                             style: CustomTextStyle
                                                 .roboto400sized14Grey,
                                             overflow: TextOverflow.fade,
@@ -225,7 +224,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                           SizedBox(width: 4.w),
                                           Text(
-                                            "${convertTime(context.read<HomeCubit>().eventById!.eventStartTime)} - ${convertTime(context.read<HomeCubit>().eventById!.eventEndTime)}",
+                                            "${convertTime(event.eventStartTime)} - ${convertTime(event.eventEndTime)}",
                                             style: CustomTextStyle
                                                 .roboto400sized14Grey,
                                             overflow: TextOverflow.fade,
@@ -244,11 +243,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           SizedBox(width: 4.w),
                                           Expanded(
                                             child: Text(
-                                              (context
-                                                          .read<HomeCubit>()
-                                                          .eventById!
-                                                          .eventCategory ??
-                                                      [])
+                                              (event.eventCategory ?? [])
                                                   .map((e) => e.title)
                                                   .join(', '),
                                               style: CustomTextStyle
@@ -269,11 +264,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           SizedBox(width: 4.w),
                                           Expanded(
                                             child: Text(
-                                              context
-                                                      .read<HomeCubit>()
-                                                      .eventById!
-                                                      .organizationWebsite ??
-                                                  '-',
+                                              event.organizationWebsite ?? '-',
                                               style: CustomTextStyle
                                                   .roboto400sized14Grey,
                                               overflow: TextOverflow.fade,
@@ -293,11 +284,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           SizedBox(width: 4.w),
                                           Expanded(
                                             child: Text(
-                                              context
-                                                      .read<HomeCubit>()
-                                                      .eventById!
-                                                      .ticketEventLink ??
-                                                  '-',
+                                              event.ticketEventLink ?? '-',
                                               style: CustomTextStyle
                                                   .roboto400sized14Grey,
                                               overflow: TextOverflow.fade,
@@ -317,11 +304,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           SizedBox(width: 4.w),
                                           Expanded(
                                             child: Text(
-                                              context
-                                                      .read<HomeCubit>()
-                                                      .eventById!
-                                                      .organizationEmail ??
-                                                  '-',
+                                              event.organizationEmail ?? '-',
                                               style: CustomTextStyle
                                                   .roboto400sized14Grey,
                                               overflow: TextOverflow.fade,
@@ -338,17 +321,11 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                     onPressed: () {},
                                   ),
                                   SizedBox(height: 16.h),
+                                  AddToCalenderBtn(cubit: cubit, event: event),
+                                  SizedBox(height: 16.h),
                                   //comments
-                                  if (context
-                                              .read<HomeCubit>()
-                                              .eventById!
-                                              .comments !=
-                                          null &&
-                                      context
-                                          .read<HomeCubit>()
-                                          .eventById!
-                                          .comments!
-                                          .isNotEmpty)
+                                  if (event.comments != null &&
+                                      event.comments!.isNotEmpty)
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -362,11 +339,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                         SizedBox(height: 16.h),
                                         Column(
                                           children: List.generate(
-                                            context
-                                                .read<HomeCubit>()
-                                                .eventById!
-                                                .comments!
-                                                .length,
+                                            event.comments!.length,
                                             (index) {
                                               return Row(
                                                 children: [
@@ -382,14 +355,8 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        context
-                                                                .read<
-                                                                    HomeCubit>()
-                                                                .eventById!
-                                                                .comments![
-                                                                    index]
-                                                                .user!
-                                                                .name ??
+                                                        event.comments![index]
+                                                                .user!.name ??
                                                             '-',
                                                         style: CustomTextStyle
                                                             .roboto400sized14White,
@@ -397,12 +364,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                                             TextOverflow.fade,
                                                       ),
                                                       Text(
-                                                        context
-                                                                .read<
-                                                                    HomeCubit>()
-                                                                .eventById!
-                                                                .comments![
-                                                                    index]
+                                                        event.comments![index]
                                                                 .text ??
                                                             '-',
                                                         style: CustomTextStyle
@@ -428,6 +390,74 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
           },
         ),
       ),
+    );
+  }
+}
+
+class AddToCalenderBtn extends StatelessWidget {
+  const AddToCalenderBtn({
+    super.key,
+    required this.cubit,
+    required this.event,
+  });
+
+  final HomeCubit cubit;
+  final EventModel event;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if (state is AddEventToCalenderFailed) {
+          showTwist(
+            context: context,
+            messege: AppStrings.couldNotAddToCalendar.tr(context),
+            state: ToastStates.error,
+            toastLength: Toast.LENGTH_SHORT,
+          );
+        }
+
+        // else if (state is RemoveEventToCalendrError) {
+        //   showTwist(
+        //     context: context,
+        //     messege: AppStrings.couldNotRemoveFromCalender.tr(context),
+        //     state: ToastStates.error,
+        //     toastLength: Toast.LENGTH_SHORT,
+        //   );
+        // }
+        else if (state is AddEventToCalenderSuccess) {
+          showTwist(
+            context: context,
+            messege: AppStrings.addedToCalendar.tr(context),
+            state: ToastStates.success,
+            toastLength: Toast.LENGTH_SHORT,
+          );
+        }
+        // else if (state is RemoveEventToCalenderSuccess) {
+        //   showTwist(
+        //     context: context,
+        //     messege: AppStrings.removedFromCalender.tr(context),
+        //     state: ToastStates.success,
+        //     toastLength: Toast.LENGTH_SHORT,
+        //   );
+        // }
+      },
+      builder: (context, state) {
+        return CustomElevatedButton(
+          text: cubit.isEventInCalender(event.id ?? "")
+              ? AppStrings.removeFromCalendar.tr(context)
+              : AppStrings.addToCalendar.tr(context),
+          elevation: 0,
+          onPressed: () {
+            if (cubit.isEventInCalender(event.id ?? "")) {
+              // cubit.removeEventFromCalender(eventId: event.id ?? "");
+            } else {
+              cubit.addEventToCalender(eventId: event.id ?? "");
+            }
+          },
+          color: AppColors.black,
+        );
+      },
     );
   }
 }

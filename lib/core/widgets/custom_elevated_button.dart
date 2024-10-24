@@ -17,7 +17,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.elevation,
     this.borderRadius,
   });
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final Color? textColor;
   final double? width;
@@ -47,7 +47,7 @@ class CustomElevatedButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           icon ?? const SizedBox(),
-          SizedBox(width: 8.w),
+          icon ?? SizedBox(width: 8.w),
           Text(
             text,
             style: CustomTextStyle.roboto500sized16White.copyWith(

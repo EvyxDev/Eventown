@@ -129,5 +129,14 @@
     "needAHelp": "Need Help",
     "deleteMyAccount": "Delete My Account",
     "privacyPolicy": "Privacy Policy",
-    "logout": "Logout"
+    "logout": "Logout",
+    "addToCalendar": "Add To Calendar",
+    "addedToCalendar": "Added To Calendar",
+    "couldNotAddToCalendar": "Could Not Add To Calendar",
+    "removeFromCalendar": "Remove From Calendar",
+    "removedFromCalendar": "Removed From Calendar",
+    "couldNotRemoveFromCalendar": "Could Not Remove From Calendar",
+    "profileUpdatedSuccessfully": "Profile updated successfully",
+    "couldNotUpdateProfile": "Could not update profile",
+    "saveChanges": "Save Changes"
 }

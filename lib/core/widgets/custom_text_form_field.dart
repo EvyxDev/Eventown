@@ -28,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onChanged,
     this.filled,
     this.fillColor,
-    this.style,
+    this.style, this.initialValue,
   });
   final String? hintText;
   final String? labelText;
@@ -53,6 +53,7 @@ class CustomTextFormField extends StatelessWidget {
   final FloatingLabelBehavior? floatingLabelBehavior;
   final Function(String)? onFieldSubmitted;
   final Function(String)? onChanged;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +67,7 @@ class CustomTextFormField extends StatelessWidget {
       cursorColor: AppColors.primary,
       obscureText: obscureText ?? false,
       controller: controller,
+      initialValue: initialValue,
       enabled: enabled,
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(

@@ -1,5 +1,6 @@
 import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/common/validations.dart';
+import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/routes/app_routes.dart';
 import 'package:eventown/core/utils/app_colors.dart';
@@ -113,7 +114,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 24.h),
                       CustomDropDownButton(
-                        items: SignUpCubit.get(context)
+                        items: GlobalCubit.get(context)
                             .egyptGovernorates
                             .map(
                               (city) => DropdownMenuItem<String>(

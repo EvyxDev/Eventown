@@ -2,12 +2,17 @@ import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/cubit/global_state.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/routes/app_routes.dart';
+import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
+import 'package:eventown/core/widgets/custom_cached_network_image.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/screens/view_all_screen.dart';
+import 'package:eventown/features/profile/data/repositories/profile_repo.dart';
+import 'package:eventown/features/profile/presentation/cubit/profile_cubit.dart';
+import 'package:eventown/features/profile/presentation/screens/profile_screen.dart';
 import 'package:eventown/features/settings/presentation/screens/calender_screen.dart';
 import 'package:eventown/features/settings/presentation/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
@@ -22,63 +27,116 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<GlobalCubit, GlobalState>(
         builder: (context, state) {
+          final cubit = context.read<GlobalCubit>();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.only(
-                  top: 48.h,
-                  left: 16.w,
-                  right: 16.w,
-                  bottom: 16.h,
-                ),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AppColors.primary,
-                      Colors.deepOrange.shade800,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return BlocProvider(
+                          create: (context) => ProfileCubit(sl<ProfileRepo>())
+                            ..initControllers(
+                              cubit.user?.data?.name ?? "",
+                              (cubit.user?.data?.phone
+                                      ?.replaceAll("+20", "")) ??
+                                  "",
+                              cubit.user?.data?.location,
+                              cubit.user?.data?.gender,
+                            ),
+                          child: const ProfileScreen(),
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.only(
+                    top: 48.h,
+                    left: 16.w,
+                    right: 16.w,
+                    bottom: 16.h,
+                  ),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.primary,
+                        Colors.deepOrange.shade800,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10.r),
+                      bottomRight: Radius.circular(10.r),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 32.r,
+                        backgroundImage: context
+                                    .read<GlobalCubit>()
+                                    .user
+                                    ?.data
+                                    ?.profileImg !=
+                                null
+                            ? displayProviderCachedNetworkImage(
+                                imageUrl: cubit.user?.data?.profileImg ?? "")
+                            : const AssetImage(
+                                Assets.assetsImagesPngProfile,
+                              ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              cubit.user?.data?.name ?? '',
+                              style: CustomTextStyle.roboto700sized20White,
+                            ),
+                            Text(
+                              cubit.user?.data?.email ?? "",
+                              style: CustomTextStyle.roboto400sized14White,
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return BlocProvider(
+                                  create: (context) =>
+                                      ProfileCubit(sl<ProfileRepo>())
+                                        ..initControllers(
+                                          cubit.user?.data?.name ?? "",
+                                          (cubit.user?.data?.phone
+                                                  ?.replaceAll("+20", "")) ??
+                                              "",
+                                          cubit.user?.data?.location,
+                                          cubit.user?.data?.gender,
+                                        ),
+                                  child: const ProfileScreen(),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.edit_outlined,
+                          color: AppColors.white,
+                          size: 24.r,
+                        ),
+                      )
                     ],
                   ),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10.r),
-                    bottomRight: Radius.circular(10.r),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 32.r,
-                      backgroundImage: const AssetImage(
-                        Assets.assetsImagesPngProfile,
-                      ),
-                    ),
-                    SizedBox(width: 8.w),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            context.read<GlobalCubit>().user?.data?.name ?? '',
-                            style: CustomTextStyle.roboto700sized20White,
-                          ),
-                          Text(
-                            context.read<GlobalCubit>().user?.data?.email ?? "",
-                            style: CustomTextStyle.roboto400sized14White,
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.edit_outlined,
-                        color: AppColors.white,
-                        size: 24.r,
-                      ),
-                    )
-                  ],
                 ),
               ),
               SizedBox(height: 16.h),
@@ -164,7 +222,7 @@ class SettingsScreen extends StatelessWidget {
                         title: AppStrings.language.tr(context),
                         icon: Icons.language,
                         onTap: () {
-                          context.read<GlobalCubit>().changeLanguage();
+                          cubit.changeLanguage();
                         },
                       ),
                       SettingsItem(
@@ -205,7 +263,18 @@ class SettingsScreen extends StatelessWidget {
                       SettingsItem(
                         title: AppStrings.logout.tr(context),
                         icon: Icons.logout_rounded,
-                        onTap: () {},
+                        onTap: () {
+                          // sl<CacheHelper>().clearData();
+                          // sl<CacheHelper>().saveData(
+                          //   key: AppConstants.isFirstTime,
+                          //   value: false,
+                          // );
+                          // Navigator.pushNamedAndRemoveUntil(
+                          //   context,
+                          //   Routes.signIn,
+                          //   (route) => false,
+                          // );
+                        },
                       ),
                     ],
                   ),

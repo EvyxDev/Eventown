@@ -18,26 +18,27 @@ class Data {
   DateTime? updatedAt;
   int? v;
   bool? passwordResetVerified;
+  String? profileImg;
 
-  Data({
-    this.id,
-    this.name,
-    this.email,
-    this.location,
-    this.gender,
-    this.phone,
-    this.interests,
-    this.slug,
-    this.isOAuthUser,
-    this.emailVerified,
-    this.role,
-    this.wishlist,
-    this.calendar,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-    this.passwordResetVerified,
-  });
+  Data(
+      {this.id,
+      this.name,
+      this.email,
+      this.location,
+      this.gender,
+      this.phone,
+      this.interests,
+      this.slug,
+      this.isOAuthUser,
+      this.emailVerified,
+      this.role,
+      this.wishlist,
+      this.calendar,
+      this.createdAt,
+      this.updatedAt,
+      this.v,
+      this.passwordResetVerified,
+      this.profileImg});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json['_id'] as String?,
@@ -63,6 +64,7 @@ class Data {
             : DateTime.parse(json['updatedAt'] as String),
         v: json['__v'] as int?,
         passwordResetVerified: json['passwordResetVerified'] as bool?,
+        profileImg: json['profileImg'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -83,5 +85,6 @@ class Data {
         'updatedAt': updatedAt?.toIso8601String(),
         '__v': v,
         'passwordResetVerified': passwordResetVerified,
+        'profileImg': profileImg
       };
 }

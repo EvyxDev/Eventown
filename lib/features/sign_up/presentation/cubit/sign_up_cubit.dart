@@ -126,36 +126,6 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
-  //! Get Governorates
-  List<String> egyptGovernorates = [
-    'cairo',
-    'giza',
-    'alexandria',
-    'aswan',
-    'asyut',
-    'beheira',
-    'beniSuef',
-    'dakahlia',
-    'damietta',
-    'faiyum',
-    'gharbia',
-    'ismailia',
-    'kafrElSheikh',
-    'luxor',
-    'matruh',
-    'minya',
-    'monufia',
-    'newValley',
-    'northSinai',
-    'portSaid',
-    'qalyubia',
-    'qena',
-    'redSea',
-    'sharqia',
-    'sohag',
-    'southSinai',
-    'suez'
-  ];
 
   //! OTP text editing controller
   OtpFieldController otpController = OtpFieldController();
