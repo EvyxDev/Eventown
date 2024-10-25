@@ -28,23 +28,19 @@ class ChangePasswordScreen extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
-          if (state is ProfileSuccess) {
+          if (state is ChangePasswordSuccess) {
             showTwist(
               context: context,
               messege: AppStrings.passwordChangedSuccessfully.tr(context),
               state: ToastStates.success,
             );
-            sl<CacheHelper>().clearData();
-            sl<CacheHelper>().saveData(
-              key: AppConstants.isFirstTime,
-              value: false,
-            );
+            sl<CacheHelper>().removeData(key: AppConstants.token);
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.signIn,
               (route) => false,
             );
-          } else if (state is ProfileError) {
+          } else if (state is ChangePasswordError) {
             showTwist(
               context: context,
               messege: state.error,
@@ -54,7 +50,7 @@ class ChangePasswordScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return ModalProgressHUD(
-            inAsyncCall: state is ProfileLoading,
+            inAsyncCall: state is ChangePasswordLoading,
             progressIndicator: const CustomLoadingIndicator(),
             child: Column(
               children: [

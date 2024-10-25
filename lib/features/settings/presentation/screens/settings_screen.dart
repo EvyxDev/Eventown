@@ -70,11 +70,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               text: AppStrings.logout.tr(context),
                               color: AppColors.black,
                               onPressed: () {
-                                sl<CacheHelper>().clearData();
-                                sl<CacheHelper>().saveData(
-                                  key: AppConstants.isFirstTime,
-                                  value: false,
-                                );
+                                sl<CacheHelper>()
+                                    .removeData(key: AppConstants.token);
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   Routes.signIn,
@@ -330,11 +327,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   title: AppStrings.logout.tr(context),
                                   icon: Icons.logout_rounded,
                                   onTap: () {
-                                    // sl<CacheHelper>().clearData();
-                                    // sl<CacheHelper>().saveData(
-                                    //   key: AppConstants.isFirstTime,
-                                    //   value: false,
-                                    // );
+                                    // sl<CacheHelper>().removeData(key: AppConstants.token);
                                     // Navigator.pushNamedAndRemoveUntil(
                                     //   context,
                                     //   Routes.signIn,
@@ -360,28 +353,24 @@ customDialog(context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text('Are you sure you want to logout?'),
+        title: const Text('Are you sure you want to logout?'),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () {
-              sl<CacheHelper>().clearData();
-              sl<CacheHelper>().saveData(
-                key: AppConstants.isFirstTime,
-                value: false,
-              );
+              sl<CacheHelper>().removeData(key: AppConstants.token);
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 Routes.signIn,
                 (route) => false,
               );
             },
-            child: Text('Logout'),
+            child: const Text('Logout'),
           ),
         ],
       );

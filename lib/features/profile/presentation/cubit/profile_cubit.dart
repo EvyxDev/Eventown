@@ -104,7 +104,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void changePassword() async {
-    emit(ProfileLoading());
+    emit(ChangePasswordLoading());
     final response = await repo.changePassword(
       oldPassword: oldPasswordController.text,
       password: passwordController.text,
@@ -112,10 +112,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
     response.fold(
       (error) {
-        emit(ProfileError(error));
+        emit(ChangePasswordError(error));
       },
       (data) {
-        emit(ProfileSuccess());
+        emit(ChangePasswordSuccess());
       },
     );
   }
