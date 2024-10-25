@@ -256,8 +256,6 @@ abstract class AppStrings {
   static const String accountDeletedSuccessfully = "accountDeletedSuccessfully";
   // could not delete account
   static const String couldNotDeleteAccount = "couldNotDeleteAccount";
-  // are you sure you want to logout
-  static const String areYouSureYouWantToLogout = "areYouSureYouWantToLogout";
   // can not get user data
   static const String canNotGetUserData = "canNotGetUserData";
   // try again
