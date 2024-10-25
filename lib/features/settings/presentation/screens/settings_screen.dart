@@ -23,8 +23,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<GlobalCubit>().getUserProfile();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
                             CustomElevatedButton(
                               text: AppStrings.tryAgain.tr(context),
                               onPressed: () {
-                                cubit.getUserProfile(isTryAgain: true);
+                                cubit.getUserProfile();
                               },
                             ),
                             SizedBox(height: 16.h),
@@ -329,6 +340,7 @@ class SettingsScreen extends StatelessWidget {
                                     //   Routes.signIn,
                                     //   (route) => false,
                                     // );
+                                    customDialog(context);
                                   },
                                 ),
                               ],
@@ -341,4 +353,38 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+customDialog(context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text('Are you sure you want to logout?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              sl<CacheHelper>().clearData();
+              sl<CacheHelper>().saveData(
+                key: AppConstants.isFirstTime,
+                value: false,
+              );
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                Routes.signIn,
+                (route) => false,
+              );
+            },
+            child: Text('Logout'),
+          ),
+        ],
+      );
+    },
+  );
 }
