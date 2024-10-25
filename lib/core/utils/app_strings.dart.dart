@@ -237,4 +237,29 @@ abstract class AppStrings {
   static const String couldNotUpdateProfile = "couldNotUpdateProfile";
   // save changes
   static const String saveChanges = "saveChanges";
+  // change password
+  static const String changePasswordQ = "changePasswordQ";
+  // old password
+  static const String oldPassword = "oldPassword";
+  // new password
+  static const String newPassword = "newPassword";
+  // confirm new password
+  static const String confirmNewPassword = "confirmNewPassword";
+  // could not change password
+  static const String couldNotChangePassword = "couldNotChangePassword";
+  // delete my account
+  static const String deleteMyAccountQ = "deleteMyAccountQ";
+  // are you sure you want to delete your account
+  static const String areYouSureYouWantToDeleteYourAccount =
+      "areYouSureYouWantToDeleteYourAccount";
+  // account deleted successfully
+  static const String accountDeletedSuccessfully = "accountDeletedSuccessfully";
+  // could not delete account
+  static const String couldNotDeleteAccount = "couldNotDeleteAccount";
+  // are you sure you want to logout
+  static const String areYouSureYouWantToLogout = "areYouSureYouWantToLogout";
+  // can not get user data
+  static const String canNotGetUserData = "canNotGetUserData";
+  // try again
+  static const String tryAgainQ = "tryAgainQ";
 }

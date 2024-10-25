@@ -138,5 +138,17 @@
     "couldNotRemoveFromCalendar": "Could Not Remove From Calendar",
     "profileUpdatedSuccessfully": "Profile updated successfully",
     "couldNotUpdateProfile": "Could not update profile",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "changePasswordQ": "Change Password?",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "couldNotChangePassword": "Could not change password",
+    "deleteMyAccountQ": "Delete My Account?",
+    "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?",
+    "accountDeletedSuccessfully": "Account deleted successfully",
+    "couldNotDeleteAccount": "Could not delete account",
+    "canNotGetUserData": "Can not get user data",
+    "tryAgainQ": "Do you want to try again?"
+
 }

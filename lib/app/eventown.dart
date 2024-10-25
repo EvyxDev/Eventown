@@ -13,7 +13,8 @@ class Eventown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GlobalCubit, GlobalState>(
+    return BlocConsumer<GlobalCubit, GlobalState>(
+      listener: (context, state) {},
       builder: (context, state) {
         return ScreenUtilInit(
           designSize: const Size(375, 812),

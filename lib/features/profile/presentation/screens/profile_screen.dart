@@ -3,6 +3,7 @@ import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/common/validations.dart';
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
@@ -12,8 +13,10 @@ import 'package:eventown/core/widgets/custom_drop_down_button.dart';
 import 'package:eventown/core/widgets/custom_elevated_button.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/core/widgets/custom_text_form_field.dart';
+import 'package:eventown/features/profile/data/repositories/profile_repo.dart';
 import 'package:eventown/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:eventown/features/profile/presentation/cubit/profile_state.dart';
+import 'package:eventown/features/profile/presentation/screens/change_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -321,7 +324,18 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(height: 24.h),
                             CustomElevatedButton(
                               text: AppStrings.changePassword.tr(context),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BlocProvider(
+                                      create: (context) =>
+                                          ProfileCubit(sl<ProfileRepo>()),
+                                      child: const ChangePasswordScreen(),
+                                    ),
+                                  ),
+                                );
+                              },
                               elevation: 0,
                               color: AppColors.black,
                             ),

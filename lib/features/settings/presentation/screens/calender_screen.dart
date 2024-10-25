@@ -74,7 +74,8 @@ class CalenderScreen extends StatelessWidget {
                 child: state is GetCalenderEventsLoading
                     ? const CustomLoadingIndicator()
                     : cubit.userCalender.isEmpty
-                        ? Text(AppStrings.noEventsFound.tr(context))
+                        ? Center(
+                            child: Text(AppStrings.noEventsFound.tr(context)))
                         : ListView.builder(
                             itemCount: cubit.userCalender.length,
                             itemBuilder: (context, index) {

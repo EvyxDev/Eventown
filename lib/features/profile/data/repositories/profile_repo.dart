@@ -41,4 +41,29 @@ class ProfileRepo {
       return Left(e.toString());
     }
   }
+
+  // Change my password
+  Future<Either<String, String>> changePassword({
+    required String oldPassword,
+    required String password,
+    required String confPassword,
+  }) async {
+    try {
+      await api.put(
+        EndPoints.changeMyPassword,
+        data: {
+          'currentPassword': oldPassword,
+          'password': password,
+          'confirmPassword': confPassword,
+        },
+      );
+      return const Right("updated");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

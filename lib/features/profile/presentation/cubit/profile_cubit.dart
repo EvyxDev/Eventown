@@ -79,4 +79,44 @@ class ProfileCubit extends Cubit<ProfileState> {
   updateUI() {
     emit(ProfileInitial());
   }
+
+  GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();
+  TextEditingController oldPasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confPasswordController = TextEditingController();
+
+  bool isPasswordObsure = true;
+  void changePasswordObsure() {
+    isPasswordObsure = !isPasswordObsure;
+    emit(ProfileInitial());
+  }
+
+  bool isConfPasswordObsure = true;
+  void changeConfPasswordObsure() {
+    isConfPasswordObsure = !isConfPasswordObsure;
+    emit(ProfileInitial());
+  }
+
+  bool isOldPassordObsure = true;
+  void changeOldPasswordObsure() {
+    isOldPassordObsure = !isOldPassordObsure;
+    emit(ProfileInitial());
+  }
+
+  void changePassword() async {
+    emit(ProfileLoading());
+    final response = await repo.changePassword(
+      oldPassword: oldPasswordController.text,
+      password: passwordController.text,
+      confPassword: confPasswordController.text,
+    );
+    response.fold(
+      (error) {
+        emit(ProfileError(error));
+      },
+      (data) {
+        emit(ProfileSuccess());
+      },
+    );
+  }
 }

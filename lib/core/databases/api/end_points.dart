@@ -22,7 +22,7 @@ class EndPoints {
   static const String verfiyEmailCode = '/api/v1/auth/verifyEmailCode';
   static const String resendCode = '/api/v1/auth/resendCode';
   static const String deleteMyAccount = '/api/v1/users/deleteMyAccount';
-  static const String changeMyPasswordresendCode =
+  static const String changeMyPassword =
       '/api/v1/users/changeMyPassword';
 
   static removeFromWhishList(String id) {

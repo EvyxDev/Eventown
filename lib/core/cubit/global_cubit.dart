@@ -80,13 +80,13 @@ class GlobalCubit extends Cubit<GlobalState> {
 
   //! Get User Profile
   UserModel? user;
-  getUserProfile() async {
+  getUserProfile({bool? isTryAgain}) async {
+    if (isTryAgain == true) emit(GlobalLoading());
     if (sl<CacheHelper>().getData(key: AppConstants.token) != null) {
       final response = await signInRepo.getUserProfile();
       response.fold(
         (fail) {
-          printRed(fail);
-          getUserProfile();
+          emit(FaildToGetProfile());
         },
         (model) {
           user = model;

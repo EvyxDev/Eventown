@@ -138,5 +138,16 @@
     "couldNotRemoveFromCalendar": "تعذر الإزالة من التقويم",
     "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
     "couldNotUpdateProfile": "تعذر تحديث الملف الشخصي",
-    "saveChanges": "حفظ التغييرات"
+    "saveChanges": "حفظ التغييرات",
+    "changePasswordQ": "تغيير كلمة المرور؟",
+    "oldPassword": "كلمة المرور القديمة",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+    "couldNotChangePassword": "تعذر تغيير كلمة المرور",
+    "deleteMyAccountQ": "حذف حسابي؟",
+    "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد أنك تريد حذف حسابك؟",
+    "accountDeletedSuccessfully": "تم حذف الحساب بنجاح",
+    "couldNotDeleteAccount": "تعذر حذف الحساب",
+    "canNotGetUserData": "لا يمكن الحصول على بيانات المستخدم",
+    "tryAgainQ": "هل تريد المحاولة مرة أخرى؟"
 }
