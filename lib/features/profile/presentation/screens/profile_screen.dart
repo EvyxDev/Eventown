@@ -303,17 +303,17 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 24.h),
                             CustomElevatedButton(
-                              text: "Save Changes",
+                              text: AppStrings.saveChanges.tr(context),
                               onPressed: ProfileCubit.get(context)
                                       .isUserDataChanged(context)
                                   ? () {
-                                      // if (ProfileCubit.get(context)
-                                      //     .formKey
-                                      //     .currentState!
-                                      //     .validate()) {
-                                      //
-                                      // }
-                                      ProfileCubit.get(context).updateProfile();
+                                      if (ProfileCubit.get(context)
+                                          .formKey
+                                          .currentState!
+                                          .validate()) {
+                                        ProfileCubit.get(context)
+                                            .updateProfile();
+                                      }
                                     }
                                   : null,
                               elevation: 0,
