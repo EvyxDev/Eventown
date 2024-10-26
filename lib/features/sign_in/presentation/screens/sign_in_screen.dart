@@ -32,7 +32,6 @@ class SignInScreen extends StatelessWidget {
             showTwist(
               context: context,
               messege: state.message,
-              state: ToastStates.success,
             );
           }
         },

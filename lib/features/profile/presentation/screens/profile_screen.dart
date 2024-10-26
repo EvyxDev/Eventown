@@ -35,13 +35,11 @@ class ProfileScreen extends StatelessWidget {
           showTwist(
             context: context,
             messege: state.error,
-            state: ToastStates.error,
           );
         } else if (state is ProfileSuccess) {
           showTwist(
             context: context,
             messege: AppStrings.profileUpdatedSuccessfully.tr(context),
-            state: ToastStates.success,
           );
           GlobalCubit.get(context).getUserProfile();
           Navigator.pop(context);

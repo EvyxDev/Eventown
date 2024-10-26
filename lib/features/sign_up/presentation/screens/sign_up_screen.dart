@@ -31,13 +31,11 @@ class SignUpScreen extends StatelessWidget {
             showTwist(
               context: context,
               messege: AppStrings.pleaseConfirmYourAccount.tr(context),
-              state: ToastStates.success,
             );
           } else if (state is SignUpFailed) {
             showTwist(
               context: context,
               messege: state.message,
-              state: ToastStates.error,
             );
           }
         },
@@ -357,7 +355,6 @@ class SignUpScreen extends StatelessWidget {
                                 context: context,
                                 messege:
                                     AppStrings.pleaseSelectCity.tr(context),
-                                state: ToastStates.error,
                               );
                             } else {
                               if (SignUpCubit.get(context).genderController ==
@@ -366,7 +363,6 @@ class SignUpScreen extends StatelessWidget {
                                   context: context,
                                   messege:
                                       AppStrings.pleaseSelectGender.tr(context),
-                                  state: ToastStates.error,
                                 );
                               } else {
                                 if (SignUpCubit.get(context).interests.length !=
@@ -375,7 +371,6 @@ class SignUpScreen extends StatelessWidget {
                                     context: context,
                                     messege: AppStrings.pleaseSelect5Interests
                                         .tr(context),
-                                    state: ToastStates.error,
                                   );
                                 } else {
                                   if (!SignUpCubit.get(context).agreedToTerms) {
@@ -383,7 +378,6 @@ class SignUpScreen extends StatelessWidget {
                                       context: context,
                                       messege: AppStrings.pleaseAgreeToTheTerms
                                           .tr(context),
-                                      state: ToastStates.error,
                                     );
                                   } else {
                                     SignUpCubit.get(context).signUp();

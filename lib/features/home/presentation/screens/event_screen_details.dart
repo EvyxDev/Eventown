@@ -14,7 +14,6 @@ import 'package:eventown/features/home/presentation/widgets/wishlist_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class EventScreenDetails extends StatefulWidget {
   const EventScreenDetails({super.key, required this.eventId});
@@ -412,35 +411,23 @@ class AddToCalenderBtn extends StatelessWidget {
           showTwist(
             context: context,
             messege: AppStrings.couldNotAddToCalendar.tr(context),
-            state: ToastStates.error,
-            toastLength: Toast.LENGTH_SHORT,
           );
-        }
-
-        // else if (state is RemoveEventToCalendrError) {
-        //   showTwist(
-        //     context: context,
-        //     messege: AppStrings.couldNotRemoveFromCalender.tr(context),
-        //     state: ToastStates.error,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //   );
-        // }
-        else if (state is AddEventToCalenderSuccess) {
+        } else if (state is RemoveEventFromCalenderFailed) {
+          showTwist(
+            context: context,
+            messege: AppStrings.couldNotRemoveFromCalendar.tr(context),
+          );
+        } else if (state is AddEventToCalenderSuccess) {
           showTwist(
             context: context,
             messege: AppStrings.addedToCalendar.tr(context),
-            state: ToastStates.success,
-            toastLength: Toast.LENGTH_SHORT,
+          );
+        } else if (state is RemoveEventFromCalenderSuccess) {
+          showTwist(
+            context: context,
+            messege: AppStrings.removedFromCalendar.tr(context),
           );
         }
-        // else if (state is RemoveEventToCalenderSuccess) {
-        //   showTwist(
-        //     context: context,
-        //     messege: AppStrings.removedFromCalender.tr(context),
-        //     state: ToastStates.success,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //   );
-        // }
       },
       builder: (context, state) {
         return CustomElevatedButton(
@@ -450,7 +437,7 @@ class AddToCalenderBtn extends StatelessWidget {
           elevation: 0,
           onPressed: () {
             if (cubit.isEventInCalender(event.id ?? "")) {
-              // cubit.removeEventFromCalender(eventId: event.id ?? "");
+              cubit.removeEventFromCalender(eventId: event.id ?? "");
             } else {
               cubit.addEventToCalender(eventId: event.id ?? "");
             }

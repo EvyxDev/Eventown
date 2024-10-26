@@ -29,13 +29,11 @@ class ResetPasswordScreen extends StatelessWidget {
             showTwist(
               context: context,
               messege: AppStrings.passwordChangedSuccessfully.tr(context),
-              state: ToastStates.success,
             );
           } else if (state is ResetPasswordFailed) {
             showTwist(
               context: context,
               messege: state.message,
-              state: ToastStates.error,
             );
           }
         },

@@ -87,9 +87,9 @@ class ViewAllScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is GetViewAllError) {
             showTwist(
-                context: context,
-                messege: 'Error: ${state.message}',
-                state: ToastStates.success);
+              context: context,
+              messege: state.message,
+            );
           }
         },
         builder: (context, state) {

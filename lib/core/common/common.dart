@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mime/mime.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../utils/app_colors.dart';
 import 'package:http_parser/http_parser.dart'; // For MediaType
 
@@ -135,20 +134,80 @@ Future launchCustomUrl(context, String? url) async {
   }
 }
 
+class CustomSnackbar {
+  static void show(BuildContext context, String message, {IconData? icon}) {
+    final overlay = Overlay.of(context);
+    late OverlayEntry
+        overlayEntry; // Declare overlayEntry as late to initialize it after it's built
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: MediaQuery.of(context).padding.top + 20,
+        left: 10,
+        right: 10,
+        child: Material(
+          color: Colors.transparent,
+          child: Dismissible(
+            key: const ValueKey("dismiss_snackbar"),
+            direction: DismissDirection.horizontal,
+            onDismissed: (direction) {
+              overlayEntry.remove(); // Now overlayEntry is correctly referenced
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(10.r),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 6.0,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (icon != null) Icon(icon, color: Colors.white, size: 26),
+                  if (icon != null) const SizedBox(width: 12),
+                  Expanded(
+                      child: Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  )),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    overlay.insert(overlayEntry);
+
+    // Automatically remove after 3 seconds if not swiped
+    Future.delayed(const Duration(seconds: 2), () {
+      if (overlayEntry.mounted) {
+        overlayEntry.remove();
+      }
+    });
+  }
+}
+
 void showTwist({
   required BuildContext context,
   required String messege,
-  required ToastStates state,
-  Toast? toastLength,
 }) {
-  Fluttertoast.showToast(
-    msg: messege,
-    toastLength: toastLength ?? Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: getState(context, state),
-    textColor: Colors.white,
-    fontSize: 16.sp,
+  CustomSnackbar.show(
+    context,
+    messege,
   );
 }
 

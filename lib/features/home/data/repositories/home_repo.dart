@@ -367,4 +367,20 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+  //! Remove Event from Calendar
+  Future<Either<String, String>> removeEventFromCalendar(String eventId) async {
+    try {
+      final response = await api.delete(
+        EndPoints.removeFromCalandar(eventId),
+      );
+      return Right(response['message']);
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

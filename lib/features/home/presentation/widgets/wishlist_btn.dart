@@ -1,4 +1,7 @@
+import 'package:eventown/core/common/common.dart';
+import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/utils/app_colors.dart';
+import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
@@ -20,35 +23,27 @@ class WishlistBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        // if (state is AddEventToWhishlistFailed) {
-        //   showTwist(
-        //     context: context,
-        //     messege: AppStrings.couldNotAddToWishList.tr(context),
-        //     state: ToastStates.error,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //   );
-        // } else if (state is RemoveEventToWhishlistFailed) {
-        //   showTwist(
-        //     context: context,
-        //     messege: AppStrings.couldNotRemoveFromWishList.tr(context),
-        //     state: ToastStates.error,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //   );
-        // } else if (state is AddEventToWhishlistSuccess) {
-        //   showTwist(
-        //     context: context,
-        //     messege: AppStrings.addedToWishList.tr(context),
-        //     state: ToastStates.success,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //   );
-        // } else if (state is RemoveEventToWhishlistSuccess) {
-        //   showTwist(
-        //     context: context,
-        //     messege: AppStrings.removedFromWishList.tr(context),
-        //     state: ToastStates.success,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //   );
-        // }
+        if (state is AddEventToWhishlistFailed) {
+          showTwist(
+            context: context,
+            messege: AppStrings.couldNotAddToWishList.tr(context),
+          );
+        } else if (state is RemoveEventToWhishlistFailed) {
+          showTwist(
+            context: context,
+            messege: AppStrings.couldNotRemoveFromWishList.tr(context),
+          );
+        } else if (state is AddEventToWhishlistSuccess) {
+          showTwist(
+            context: context,
+            messege: AppStrings.addedToWishList.tr(context),
+          );
+        } else if (state is RemoveEventToWhishlistSuccess) {
+          showTwist(
+            context: context,
+            messege: AppStrings.removedFromWishList.tr(context),
+          );
+        }
       },
       builder: (context, state) {
         return InkWell(

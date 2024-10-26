@@ -32,7 +32,6 @@ class ChangePasswordScreen extends StatelessWidget {
             showTwist(
               context: context,
               messege: AppStrings.passwordChangedSuccessfully.tr(context),
-              state: ToastStates.success,
             );
             context.read<GlobalCubit>().changeBottom(0);
             sl<CacheHelper>().removeData(key: AppConstants.token);
@@ -45,7 +44,6 @@ class ChangePasswordScreen extends StatelessWidget {
             showTwist(
               context: context,
               messege: state.error,
-              state: ToastStates.success,
             );
           }
         },

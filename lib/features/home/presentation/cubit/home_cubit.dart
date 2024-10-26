@@ -395,6 +395,22 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
+  //! Remove Event from Calender
+  removeEventFromCalender({required String eventId}) async {
+    userCalenmderIds.remove(eventId);
+    emit(HomeInitial());
+    final response = await homeRepo.removeEventFromCalendar(eventId);
+    response.fold(
+      (l) {
+        userCalenmderIds.add(eventId);
+        emit(RemoveEventFromCalenderFailed(l));
+      },
+      (r) {
+        emit(RemoveEventFromCalenderSuccess(r));
+      },
+    );
+  }
+
   //! Is Event In Calender
   isEventInCalender(String eventId) {
     return userCalenmderIds.contains(eventId);

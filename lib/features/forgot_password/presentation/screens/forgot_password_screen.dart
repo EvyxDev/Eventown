@@ -27,7 +27,6 @@ class ForgotPasswordScreen extends StatelessWidget {
             showTwist(
               context: context,
               messege: state.message,
-              state: ToastStates.error,
             );
           }
         },

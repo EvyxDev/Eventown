@@ -29,6 +29,10 @@ class EndPoints {
     return '/api/v1/wishlists/$id';
   }
 
+  static removeFromCalandar(String id) {
+    return '/api/v1/calendars/$id';
+  }
+
   static getEventsByCategory(String id) {
     return "/api/v1/categories/$id/events";
   }

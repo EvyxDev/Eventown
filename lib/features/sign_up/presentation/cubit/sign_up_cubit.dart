@@ -71,7 +71,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         showTwist(
           context: context,
           messege: AppStrings.youCantSelectMoreThan5Interests.tr(context),
-          state: ToastStates.success,
         );
       } else {
         interests.add(interestId);
@@ -125,7 +124,6 @@ class SignUpCubit extends Cubit<SignUpState> {
       },
     );
   }
-
 
   //! OTP text editing controller
   OtpFieldController otpController = OtpFieldController();

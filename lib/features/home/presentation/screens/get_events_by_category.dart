@@ -83,8 +83,8 @@ class GetEventsByCategory extends StatelessWidget {
           if (state is GetEventsByCategoryError) {
             showTwist(
                 context: context,
-                messege: 'Error: ${state.message}',
-                state: ToastStates.success);
+                messege: state.message,
+                );
           }
         },
         builder: (context, state) {

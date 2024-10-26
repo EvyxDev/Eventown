@@ -32,7 +32,6 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
             showTwist(
               context: outerContext,
               messege: state.message,
-              state: ToastStates.error,
             );
           }
         },
@@ -81,7 +80,6 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                             showTwist(
                               context: context,
                               messege: AppStrings.enterValidOtp.tr(context),
-                              state: ToastStates.error,
                             );
                           }
                         },

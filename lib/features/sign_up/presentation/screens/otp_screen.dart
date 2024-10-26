@@ -66,7 +66,6 @@ class _OtpScreenState extends State<OtpScreen> {
             showTwist(
               context: context,
               messege: AppStrings.accountCreated.tr(context),
-              state: ToastStates.success,
             );
             Navigator.pushNamedAndRemoveUntil(
                 context, Routes.signIn, (route) => false);
@@ -74,7 +73,6 @@ class _OtpScreenState extends State<OtpScreen> {
             showTwist(
               context: context,
               messege: state.message,
-              state: ToastStates.error,
             );
           }
         },
@@ -150,7 +148,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             showTwist(
                               context: context,
                               messege: AppStrings.enterValidOtp.tr(context),
-                              state: ToastStates.error,
+                              
                             );
                           }
                         },

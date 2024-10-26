@@ -33,6 +33,16 @@ final class AddEventToCalenderFailed extends HomeState {
   final String message;
 }
 
+final class RemoveEventFromCalenderSuccess extends HomeState {
+  RemoveEventFromCalenderSuccess(this.message);
+  final String message;
+}
+
+final class RemoveEventFromCalenderFailed extends HomeState {
+  RemoveEventFromCalenderFailed(this.message);
+  final String message;
+}
+
 final class RemoveEventToWhishlistSuccess extends HomeState {
   RemoveEventToWhishlistSuccess(this.message);
   final String message;
