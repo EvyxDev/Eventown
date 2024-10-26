@@ -415,6 +415,20 @@ class HomeCubit extends Cubit<HomeState> {
   isEventInCalender(String eventId) {
     return userCalenmderIds.contains(eventId);
   }
+
+  //delete My Account
+  deleteMyAccount() async {
+    emit(DeleteMyAccountLoading());
+    final response = await homeRepo.deleteMyAccount();
+    response.fold(
+      (l) {
+        emit(DeleteMyAccountError(l));
+      },
+      (r) {
+        emit(DeleteMyAccountSuccess());
+      },
+    );
+  }
 }
 
 enum EventsType {

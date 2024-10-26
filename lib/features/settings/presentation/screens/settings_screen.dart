@@ -18,6 +18,7 @@ import 'package:eventown/features/profile/data/repositories/profile_repo.dart';
 import 'package:eventown/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:eventown/features/profile/presentation/screens/profile_screen.dart';
 import 'package:eventown/features/settings/presentation/screens/calender_screen.dart';
+import 'package:eventown/features/settings/presentation/screens/delete_my_account_screen.dart';
 import 'package:eventown/features/settings/presentation/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -306,7 +307,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 SettingsItem(
                                   title: AppStrings.deleteMyAccount.tr(context),
                                   icon: Icons.delete_forever,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DeleteMyAccountScreen(),
+                                      ),
+                                    );
+                                  },
                                 ),
                                 SettingsItem(
                                   title:
@@ -328,13 +337,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   title: AppStrings.logout.tr(context),
                                   icon: Icons.logout_rounded,
                                   onTap: () {
-                                    // sl<CacheHelper>().removeData(key: AppConstants.token);
-                                    // Navigator.pushNamedAndRemoveUntil(
-                                    //   context,
-                                    //   Routes.signIn,
-                                    //   (route) => false,
-                                    // );
-                                    customDialog(context);
+                                    customDialog(
+                                      context,
+                                      title: AppStrings
+                                          .areYouSureYouWantToLogout
+                                          .tr(context),
+                                      btn: AppStrings.logout.tr(context),
+                                      onPressed: () {
+                                        context
+                                            .read<GlobalCubit>()
+                                            .changeBottom(0);
+                                        sl<CacheHelper>().removeData(
+                                            key: AppConstants.token);
+                                        Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          Routes.signIn,
+                                          (route) => false,
+                                        );
+                                      },
+                                    );
                                   },
                                 ),
                               ],
@@ -349,30 +370,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 }
 
-customDialog(context) {
+customDialog(
+  context, {
+  required String title,
+  required String btn,
+  required Function() onPressed,
+}) {
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Are you sure you want to logout?'),
+        backgroundColor: AppColors.black,
+        title: Text(
+          title,
+        ),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text('Cancel'),
+            child: Text(AppStrings.cancel.tr(context)),
           ),
           TextButton(
-            onPressed: () {
-              context.read<GlobalCubit>().changeBottom(0);
-              sl<CacheHelper>().removeData(key: AppConstants.token);
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                Routes.signIn,
-                (route) => false,
-              );
-            },
-            child: const Text('Logout'),
+            onPressed: onPressed,
+            child: Text(
+              btn,
+            ),
           ),
         ],
       );

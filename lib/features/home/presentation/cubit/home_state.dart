@@ -119,3 +119,12 @@ final class GetEventByIdError extends HomeState {
   GetEventByIdError(this.message);
   final String message;
 }
+
+final class DeleteMyAccountLoading extends HomeState {}
+
+final class DeleteMyAccountSuccess extends HomeState {}
+
+final class DeleteMyAccountError extends HomeState {
+  DeleteMyAccountError(this.message);
+  final String message;
+}

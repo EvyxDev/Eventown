@@ -260,4 +260,9 @@ abstract class AppStrings {
   static const String canNotGetUserData = "canNotGetUserData";
   // try again
   static const String tryAgainQ = "tryAgainQ";
+  //cancel
+  static const String cancel = "cancel";
+  // are you sure you want to logout
+  static const String areYouSureYouWantToLogout =
+      "areYouSureYouWantToLogout";
 }

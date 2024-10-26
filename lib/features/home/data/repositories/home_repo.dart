@@ -383,4 +383,20 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+  //! Delete My Account
+  Future<Either<String, String>> deleteMyAccount() async {
+    try {
+      await api.delete(
+        EndPoints.deleteMyAccount,
+      );
+      return const Right("Account Deleted Successfully");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }
