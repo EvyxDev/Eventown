@@ -15,9 +15,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SearchAndFilterScreen extends StatelessWidget {
-  SearchAndFilterScreen({super.key});
+class SearchAndFilterScreen extends StatefulWidget {
+  const SearchAndFilterScreen({super.key, required this.openFilter});
+  final bool openFilter;
+
+  @override
+  State<SearchAndFilterScreen> createState() => _SearchAndFilterScreenState();
+}
+
+class _SearchAndFilterScreenState extends State<SearchAndFilterScreen> {
   final ScrollController _scrollController = ScrollController();
+  @override
+  void initState() {
+    if (widget.openFilter) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          Future.delayed(
+            const Duration(milliseconds: 100),
+            () {
+              showFilterBottomSheet(context);
+            },
+          );
+        },
+      );
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +143,7 @@ class SearchAndFilterScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 13.h),
+                              horizontal: 12.w, vertical: 11.h),
                           child: SvgPicture.asset(
                             Assets.assetsImagesSvgFilter,
                             width: 24.w,

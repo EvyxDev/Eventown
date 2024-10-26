@@ -85,7 +85,9 @@ AppBar getHomeAppBar(BuildContext context) {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
-                return SearchAndFilterScreen();
+                return const SearchAndFilterScreen(
+                  openFilter: false,
+                );
               },
             ),
           ).whenComplete(() {
@@ -126,18 +128,35 @@ AppBar getHomeAppBar(BuildContext context) {
                 ),
               ),
               SizedBox(width: 8.w),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 11.h),
-                  child: SvgPicture.asset(
-                    Assets.assetsImagesSvgFilter,
-                    width: 24.w,
-                    height: 24.h,
+              GestureDetector(
+                onTap: () {
+                  context.read<HomeCubit>().searchEventsByQuery();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SearchAndFilterScreen(
+                          openFilter: true,
+                        );
+                      },
+                    ),
+                  ).whenComplete(() {
+                    context.read<HomeCubit>().searchController.clear();
+                    context.read<HomeCubit>().searchEvents = [];
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 11.h),
+                    child: SvgPicture.asset(
+                      Assets.assetsImagesSvgFilter,
+                      width: 24.w,
+                      height: 24.h,
+                    ),
                   ),
                 ),
               ),

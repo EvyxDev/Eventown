@@ -34,6 +34,7 @@ class ChangePasswordScreen extends StatelessWidget {
               messege: AppStrings.passwordChangedSuccessfully.tr(context),
               state: ToastStates.success,
             );
+            context.read<GlobalCubit>().changeBottom(0);
             sl<CacheHelper>().removeData(key: AppConstants.token);
             Navigator.pushNamedAndRemoveUntil(
               context,

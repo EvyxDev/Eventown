@@ -70,6 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               text: AppStrings.logout.tr(context),
                               color: AppColors.black,
                               onPressed: () {
+                                context.read<GlobalCubit>().changeBottom(0);
                                 sl<CacheHelper>()
                                     .removeData(key: AppConstants.token);
                                 Navigator.pushNamedAndRemoveUntil(
@@ -363,6 +364,7 @@ customDialog(context) {
           ),
           TextButton(
             onPressed: () {
+              context.read<GlobalCubit>().changeBottom(0);
               sl<CacheHelper>().removeData(key: AppConstants.token);
               Navigator.pushNamedAndRemoveUntil(
                 context,

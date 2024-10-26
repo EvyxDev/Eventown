@@ -19,54 +19,64 @@ class BaseScreen extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: state is HomeLoading,
-          progressIndicator: const CustomLoadingIndicator(),
-          child: BlocBuilder<GlobalCubit, GlobalState>(
-            builder: (context, state) {
-              return Scaffold(
-                extendBody: false,
-                body: cubit.bottomScreens[cubit.currentIndex],
-                bottomNavigationBar: CrystalNavigationBar(
-                  backgroundColor: AppColors.black,
-                  unselectedItemColor: AppColors.primary,
-                  selectedItemColor: AppColors.primary,
-                  onTap: (index) {
-                    cubit.changeBottom(index);
-                  },
-                  currentIndex: cubit.currentIndex,
-                  items: [
-                    /// Home
-                    CrystalNavigationBarItem(
-                      icon: IconlyBold.home,
-                      unselectedIcon: IconlyLight.home,
-                      selectedColor: AppColors.primary,
-                    ),
+        // ignore: deprecated_member_use
+        return WillPopScope(
+          onWillPop: () async {
+            if (cubit.currentIndex != 0) {
+              cubit.changeBottom(0);
+              return false; // Prevent app from closing
+            }
+            return true; // Allow app to close
+          },
+          child: ModalProgressHUD(
+            inAsyncCall: state is HomeLoading,
+            progressIndicator: const CustomLoadingIndicator(),
+            child: BlocBuilder<GlobalCubit, GlobalState>(
+              builder: (context, state) {
+                return Scaffold(
+                  extendBody: false,
+                  body: cubit.bottomScreens[cubit.currentIndex],
+                  bottomNavigationBar: CrystalNavigationBar(
+                    backgroundColor: AppColors.black,
+                    unselectedItemColor: AppColors.primary,
+                    selectedItemColor: AppColors.primary,
+                    onTap: (index) {
+                      cubit.changeBottom(index);
+                    },
+                    currentIndex: cubit.currentIndex,
+                    items: [
+                      /// Home
+                      CrystalNavigationBarItem(
+                        icon: IconlyBold.home,
+                        unselectedIcon: IconlyLight.home,
+                        selectedColor: AppColors.primary,
+                      ),
 
-                    /// Favourite
-                    CrystalNavigationBarItem(
-                      icon: IconlyBold.game,
-                      unselectedIcon: IconlyLight.game,
-                      selectedColor: AppColors.primary,
-                    ),
+                      /// Favourite
+                      CrystalNavigationBarItem(
+                        icon: IconlyBold.game,
+                        unselectedIcon: IconlyLight.game,
+                        selectedColor: AppColors.primary,
+                      ),
 
-                    /// Add
-                    CrystalNavigationBarItem(
-                      icon: IconlyBold.notification,
-                      unselectedIcon: IconlyLight.notification,
-                      selectedColor: AppColors.primary,
-                    ),
+                      /// Add
+                      CrystalNavigationBarItem(
+                        icon: IconlyBold.notification,
+                        unselectedIcon: IconlyLight.notification,
+                        selectedColor: AppColors.primary,
+                      ),
 
-                    /// Profile
-                    CrystalNavigationBarItem(
-                      icon: IconlyBold.user_3,
-                      unselectedIcon: IconlyLight.user,
-                      selectedColor: AppColors.primary,
-                    ),
-                  ],
-                ),
-              );
-            },
+                      /// Profile
+                      CrystalNavigationBarItem(
+                        icon: IconlyBold.user_3,
+                        unselectedIcon: IconlyLight.user,
+                        selectedColor: AppColors.primary,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         );
       },
