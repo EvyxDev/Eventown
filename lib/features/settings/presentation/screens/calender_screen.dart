@@ -85,7 +85,10 @@ class CalenderScreen extends StatelessWidget {
                                     .getUserCalender();
                               },
                               backgroundColor: AppColors.white,
-                              child: ListView.builder(
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) {
+                                  return SizedBox(height: 16.h);
+                                },
                                 itemCount: cubit.userCalender.length,
                                 itemBuilder: (context, index) {
                                   return SizedBox(
