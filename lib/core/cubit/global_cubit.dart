@@ -1,6 +1,7 @@
 import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
+import 'package:eventown/features/notification/presentation/screens/notification_screen.dart';
 import 'package:eventown/features/settings/data/models/user/user.dart';
 import 'package:eventown/features/settings/presentation/screens/settings_screen.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
@@ -19,7 +20,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   List<Widget> bottomScreens = [
     const HomeScreen(),
     const WheelScreen(),
-    const Scaffold(),
+    const NotificationScreen(),
     const SettingsScreen()
   ];
 

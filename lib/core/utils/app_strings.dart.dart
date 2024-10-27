@@ -263,6 +263,7 @@ abstract class AppStrings {
   //cancel
   static const String cancel = "cancel";
   // are you sure you want to logout
-  static const String areYouSureYouWantToLogout =
-      "areYouSureYouWantToLogout";
+  static const String areYouSureYouWantToLogout = "areYouSureYouWantToLogout";
+  //Notifications
+  static const String notifications = "notifications";
 }

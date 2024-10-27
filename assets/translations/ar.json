@@ -149,6 +149,7 @@
     "accountDeletedSuccessfully": "تم حذف الحساب بنجاح",
     "couldNotDeleteAccount": "تعذر حذف الحساب",
     "canNotGetUserData": "لا يمكن الحصول على بيانات المستخدم",
-    "tryAgainQ": "هل تريد المحاولة مرة أخرى؟"
+    "tryAgainQ": "هل تريد المحاولة مرة أخرى؟",
+    "notifications":"الإشعارات"
     
 }

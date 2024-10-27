@@ -149,6 +149,6 @@
     "accountDeletedSuccessfully": "Account deleted successfully",
     "couldNotDeleteAccount": "Could not delete account",
     "canNotGetUserData": "Can not get user data",
-    "tryAgainQ": "Do you want to try again?"
-
+    "tryAgainQ": "Do you want to try again?",
+    "notifications":"Notifications"
 }
