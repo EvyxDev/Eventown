@@ -437,9 +437,9 @@ class AddToCalenderBtn extends StatelessWidget {
           elevation: 0,
           onPressed: () {
             if (cubit.isEventInCalender(event.id ?? "")) {
-              cubit.removeEventFromCalender(eventId: event.id ?? "");
+              cubit.removeEventFromCalender(event: event);
             } else {
-              cubit.addEventToCalender(eventId: event.id ?? "");
+              cubit.addEventToCalender(event: event);
             }
           },
           color: AppColors.black,

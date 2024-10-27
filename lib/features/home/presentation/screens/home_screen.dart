@@ -1,6 +1,7 @@
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/cubit/global_state.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
@@ -23,10 +24,14 @@ class HomeScreen extends StatelessWidget {
           appBar: getHomeAppBar(context),
           body: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Column(
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    return context.read<HomeCubit>().getHomeData();
+                  },
+                  backgroundColor: AppColors.white,
+                  child: ListView(
                     children: [
                       SizedBox(height: 16.h),
                       //! Home Categories
@@ -57,6 +62,7 @@ class HomeScreen extends StatelessWidget {
                               onRefresh: () async {
                                 context.read<HomeCubit>().getHomeData();
                               },
+                              backgroundColor: AppColors.white,
                               child: SizedBox(
                                 height: 200.h,
                                 child: ListView(

@@ -150,5 +150,8 @@
     "couldNotDeleteAccount": "Could not delete account",
     "canNotGetUserData": "Can not get user data",
     "tryAgainQ": "Do you want to try again?",
-    "notifications":"Notifications"
+    "areYouSureYouWantToLogout":"Are You Sure You Want To Logout?",
+    "cancel":"Cancel",
+    "notifications":"Notifications",
+    "favorite":"Favorite"
 }

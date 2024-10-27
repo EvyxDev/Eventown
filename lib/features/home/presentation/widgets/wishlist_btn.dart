@@ -1,7 +1,4 @@
-import 'package:eventown/core/common/common.dart';
-import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/utils/app_colors.dart';
-import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
@@ -22,29 +19,7 @@ class WishlistBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
-      listener: (context, state) {
-        if (state is AddEventToWhishlistFailed) {
-          showTwist(
-            context: context,
-            messege: AppStrings.couldNotAddToWishList.tr(context),
-          );
-        } else if (state is RemoveEventToWhishlistFailed) {
-          showTwist(
-            context: context,
-            messege: AppStrings.couldNotRemoveFromWishList.tr(context),
-          );
-        } else if (state is AddEventToWhishlistSuccess) {
-          showTwist(
-            context: context,
-            messege: AppStrings.addedToWishList.tr(context),
-          );
-        } else if (state is RemoveEventToWhishlistSuccess) {
-          showTwist(
-            context: context,
-            messege: AppStrings.removedFromWishList.tr(context),
-          );
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return InkWell(
           borderRadius: BorderRadius.circular(5),
@@ -52,13 +27,12 @@ class WishlistBtn extends StatelessWidget {
             if (context.read<HomeCubit>().isEventInWishlist(event.id ?? "")) {
               context
                   .read<HomeCubit>()
-                  .removeEventFromWishlist(eventId: "${event.id}");
+                  .removeEventFromWishlist(context, event: event);
             } else {
               context
                   .read<HomeCubit>()
-                  .addEventToWishlist(eventId: "${event.id}");
+                  .addEventToWishlist(context, event: event);
             }
-            // toggle();
           },
           child: Container(
             padding: EdgeInsets.symmetric(

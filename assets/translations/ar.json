@@ -150,6 +150,8 @@
     "couldNotDeleteAccount": "تعذر حذف الحساب",
     "canNotGetUserData": "لا يمكن الحصول على بيانات المستخدم",
     "tryAgainQ": "هل تريد المحاولة مرة أخرى؟",
-    "notifications":"الإشعارات"
-    
+    "areYouSureYouWantToLogout":"هل انت متأكد انك تريد تسجيل الخروج ؟",
+    "cancel":"إلغاء",
+    "notifications":"الإشعارات",
+    "favorite":"المفضلة"
 }

@@ -128,3 +128,12 @@ final class DeleteMyAccountError extends HomeState {
   DeleteMyAccountError(this.message);
   final String message;
 }
+
+final class GetUserWishListLoading extends HomeState {}
+
+final class GetUserWishListSuccess extends HomeState {}
+
+final class GetUserWishListError extends HomeState {
+  GetUserWishListError(this.message);
+  final String message;
+}

@@ -52,14 +52,21 @@ class BaseScreen extends StatelessWidget {
                         selectedColor: AppColors.primary,
                       ),
 
-                      /// Favourite
+                      /// Fav
+                      CrystalNavigationBarItem(
+                        icon: IconlyBold.heart,
+                        unselectedIcon: IconlyLight.heart,
+                        selectedColor: AppColors.primary,
+                      ),
+
+                      /// Game
                       CrystalNavigationBarItem(
                         icon: IconlyBold.game,
                         unselectedIcon: IconlyLight.game,
                         selectedColor: AppColors.primary,
                       ),
 
-                      /// Add
+                      /// Notification
                       CrystalNavigationBarItem(
                         icon: IconlyBold.notification,
                         unselectedIcon: IconlyLight.notification,

@@ -1,4 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:eventown/core/common/common.dart';
+import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/events_model.dart';
@@ -96,32 +99,52 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   //! Add Event To Wishlist
-  addEventToWishlist({required String eventId}) async {
-    wishlistEventsIds.add(eventId);
+  addEventToWishlist(context, {required EventModel event}) async {
+    wishlistEventsIds.add(event.id ?? "");
+    // wishListEvents.add(event);
     emit(HomeInitial());
-    final response = await homeRepo.addEventToWishlist(eventId);
+    final response = await homeRepo.addEventToWishlist(event.id ?? "");
     response.fold(
       (l) {
-        wishlistEventsIds.remove(eventId);
+        wishlistEventsIds.remove(event.id ?? "");
+        // wishListEvents.remove(event);
+        showTwist(
+          context: context,
+          messege: AppStrings.couldNotAddToWishList.tr(context),
+        );
         emit(AddEventToWhishlistFailed(l));
       },
       (r) {
+        showTwist(
+          context: context,
+          messege: AppStrings.addedToWishList.tr(context),
+        );
         emit(AddEventToWhishlistSuccess(r));
       },
     );
   }
 
   //! Remove Event From Wishlist
-  removeEventFromWishlist({required String eventId}) async {
-    wishlistEventsIds.remove(eventId);
+  removeEventFromWishlist(context, {required EventModel event}) async {
+    wishlistEventsIds.remove(event.id ?? "");
+    // wishListEvents.remove(event);
     emit(HomeInitial());
-    final response = await homeRepo.removeEventFromWishlist(eventId);
+    final response = await homeRepo.removeEventFromWishlist(event.id ?? "");
     response.fold(
       (l) {
-        wishlistEventsIds.add(eventId);
+        wishlistEventsIds.add(event.id ?? "");
+        // wishListEvents.add(event);
+        showTwist(
+          context: context,
+          messege: AppStrings.couldNotRemoveFromWishList.tr(context),
+        );
         emit(RemoveEventToWhishlistFailed(l));
       },
       (r) {
+        showTwist(
+          context: context,
+          messege: AppStrings.removedFromWishList.tr(context),
+        );
         emit(RemoveEventToWhishlistSuccess(r));
       },
     );
@@ -129,12 +152,18 @@ class HomeCubit extends Cubit<HomeState> {
 
   //! Get Wishlist Events
   List<String> wishlistEventsIds = [];
-  getWishlistEvents() async {
+  List<EventModel> wishListEvents = [];
+  getWishlistEvents({bool isLoading = false}) async {
+    if (isLoading) emit(GetUserWishListLoading());
     final response = await homeRepo.fetchWishlistEvents();
     response.fold(
-      (l) {},
+      (l) {
+        if (isLoading) emit(GetUserWishListError(l));
+      },
       (r) {
         wishlistEventsIds = r.data?.map((e) => e.id ?? '').toList() ?? [];
+        wishListEvents = r.data ?? [];
+        if (isLoading) emit(GetUserWishListSuccess());
       },
     );
   }
@@ -380,13 +409,14 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   //! Add Event to Calender
-  addEventToCalender({required String eventId}) async {
-    userCalenmderIds.add(eventId);
+  addEventToCalender({required EventModel event}) async {
+    userCalenmderIds.add(event.id ?? "");
+
     emit(HomeInitial());
-    final response = await homeRepo.addEventToCalendar(eventId);
+    final response = await homeRepo.addEventToCalendar(event.id ?? "");
     response.fold(
       (l) {
-        userCalenmderIds.remove(eventId);
+        userCalenmderIds.remove(event.id ?? "");
         emit(AddEventToCalenderFailed(l));
       },
       (r) {
@@ -396,13 +426,13 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   //! Remove Event from Calender
-  removeEventFromCalender({required String eventId}) async {
-    userCalenmderIds.remove(eventId);
+  removeEventFromCalender({required EventModel event}) async {
+    userCalenmderIds.remove(event.id ?? "");
     emit(HomeInitial());
-    final response = await homeRepo.removeEventFromCalendar(eventId);
+    final response = await homeRepo.removeEventFromCalendar(event.id ?? "");
     response.fold(
       (l) {
-        userCalenmderIds.add(eventId);
+        userCalenmderIds.add(event.id ?? "");
         emit(RemoveEventFromCalenderFailed(l));
       },
       (r) {

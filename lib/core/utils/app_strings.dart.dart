@@ -266,4 +266,6 @@ abstract class AppStrings {
   static const String areYouSureYouWantToLogout = "areYouSureYouWantToLogout";
   //Notifications
   static const String notifications = "notifications";
+  //favorite
+  static const String favorite = "favorite";
 }
