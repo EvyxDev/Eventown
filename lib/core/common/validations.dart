@@ -47,6 +47,41 @@ class Validation {
     }
     return null;
   }
+
+  static String? validateWebsite(String website) {
+    var urlRegExp = RegExp(
+      r"^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+\/?$",
+    );
+    if (website.trim().isEmpty) {
+      return AppStrings.thisFieldIsRequired;
+    } else if (!urlRegExp.hasMatch(website)) {
+      return AppStrings.pleaseEnterValidWebsite;
+    }
+    return null;
+  }
+
+  static String? validateLink(String link) {
+    var linkRegExp = RegExp(
+      r"^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$",
+    );
+    if (link.trim().isEmpty) {
+      return AppStrings.thisFieldIsRequired;
+    } else if (!linkRegExp.hasMatch(link)) {
+      return AppStrings.pleaseEnterValidLink;
+    }
+    return null;
+  }
+
+  static String? validateDouble(String value) {
+    if (value.trim().isEmpty) {
+      return AppStrings.thisFieldIsRequired;
+    }
+    if (double.tryParse(value) == null) {
+      return AppStrings.pleaseEnterValidPrice;
+    }
+    return null;
+  }
+
 //   static validateLength(
 //       String value, String textField, int minLength, int maxLength) {
 //     if (minLength != 0 && validateEmpty(value, textField) != null) {

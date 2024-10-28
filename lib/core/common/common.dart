@@ -53,6 +53,23 @@ String? displayDate(DateTime? dateTime) {
   return DateFormat('dd/MM/yyyy').format(dateTime);
 }
 
+String? displayDateAndTime(DateTime? dateTime) {
+  if (dateTime == null) {
+    return null;
+  }
+  return DateFormat('MM/dd/yyyy - hh:mm a').format(dateTime);
+}
+
+String? formatTimeOfDay(TimeOfDay? timeOfDay) {
+  if (timeOfDay != null) {
+    final hours = timeOfDay.hourOfPeriod == 0 ? 12 : timeOfDay.hourOfPeriod;
+    final minutes = timeOfDay.minute.toString().padLeft(2, '0');
+    final period = timeOfDay.period == DayPeriod.am ? "AM" : "PM";
+    return "$hours:$minutes $period";
+  }
+  return null;
+}
+
 String formatDate(String dateString) {
   DateTime dateTime = DateTime.parse(dateString);
   return DateFormat('dd MMM').format(dateTime);

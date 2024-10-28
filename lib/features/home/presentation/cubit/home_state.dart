@@ -137,3 +137,12 @@ final class GetUserWishListError extends HomeState {
   GetUserWishListError(this.message);
   final String message;
 }
+
+final class CreateEventLoading extends HomeState {}
+
+final class CreateEventSuccess extends HomeState {}
+
+final class CreateEventError extends HomeState {
+  CreateEventError(this.message);
+  final String message;
+}

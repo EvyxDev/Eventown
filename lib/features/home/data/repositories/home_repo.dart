@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/databases/api/api_consumer.dart';
 import 'package:eventown/core/databases/api/end_points.dart';
 import 'package:eventown/core/errors/exceptions.dart';
@@ -7,6 +8,7 @@ import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/events_model.dart';
 import 'package:eventown/features/home/data/models/wish_list_model/wish_list_model.dart';
 import 'package:eventown/features/settings/data/models/calender_model/calender_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomeRepo {
   final ApiConsumer api;
@@ -391,6 +393,58 @@ class HomeRepo {
         EndPoints.deleteMyAccount,
       );
       return const Right("Account Deleted Successfully");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  //!Create Event
+  Future<Either<String, String>> createEvent({
+    required XFile eventImage,
+    required String eventName,
+    required String eventAddress,
+    required String organizerName,
+    required String organizationName,
+    required String organizationPhoneNumber,
+    required String organizationEmail,
+    required String organizationWebsite,
+    required String ticketEventLink,
+    required String eventPrice,
+    required String eventDescription,
+    required String eventLocation,
+    required String eventCategory,
+    required String eventDate,
+    required String eventStartTime,
+    required String eventEndTime,
+    required String organizerPlan,
+  }) async {
+    try {
+      await api.post(EndPoints.createEvents,
+          data: {
+            'eventImage': await uploadImageToAPI(eventImage),
+            'eventName': eventName,
+            'eventAddress': eventAddress,
+            'organizerName': organizerName,
+            'organizationName': organizationName,
+            'organizationPhoneNumber': organizationPhoneNumber,
+            'organizationEmail': organizationEmail,
+            'organizationWebsite': organizationWebsite,
+            'ticketEventLink': ticketEventLink,
+            'eventPrice': eventPrice,
+            'eventDescription': eventDescription,
+            'eventLocation': eventLocation,
+            'eventCategory': eventCategory,
+            'eventDate': eventDate,
+            'eventStartTime': eventStartTime,
+            'eventEndTime': eventEndTime,
+            'organizerPlan': organizerPlan
+          },
+          isFormData: true);
+      return const Right("created");
     } on ServerException catch (e) {
       return Left(e.errorModel.detail);
     } on NoInternetException catch (e) {

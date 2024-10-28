@@ -9,10 +9,12 @@ import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   final HomeRepo homeRepo;
+  static HomeCubit get(context) => BlocProvider.of(context);
 
   //! Get Home Data
   void getHomeData() async {
@@ -446,7 +448,7 @@ class HomeCubit extends Cubit<HomeState> {
     return userCalenmderIds.contains(eventId);
   }
 
-  //delete My Account
+  //! Delete My Account
   deleteMyAccount() async {
     emit(DeleteMyAccountLoading());
     final response = await homeRepo.deleteMyAccount();
@@ -456,6 +458,122 @@ class HomeCubit extends Cubit<HomeState> {
       },
       (r) {
         emit(DeleteMyAccountSuccess());
+      },
+    );
+  }
+
+  //! Create Event
+  final GlobalKey<FormState> createEventFormKey = GlobalKey();
+  final TextEditingController nameCreateEventController =
+      TextEditingController();
+  final TextEditingController addressCreateEventController =
+      TextEditingController();
+  final TextEditingController organizerNameCreateEventController =
+      TextEditingController();
+  final TextEditingController organizationNameCreateEventController =
+      TextEditingController();
+  final TextEditingController organizationPhoneNumberCreateEventController =
+      TextEditingController();
+  final TextEditingController organizationEmailCreateEventController =
+      TextEditingController();
+  final TextEditingController organizationWebsiteCreateEventController =
+      TextEditingController();
+  final TextEditingController ticketEventLinkCreateEventController =
+      TextEditingController();
+  final TextEditingController eventPriceCreateEventController =
+      TextEditingController();
+  final TextEditingController eventDescriptionCreateEventController =
+      TextEditingController();
+  XFile? eventImage;
+  updateEventImage(XFile image) {
+    eventImage = image;
+    emit(HomeInitial());
+  }
+
+  String? selectedCityCreateEvent;
+  updateSelectedCityCreateEvent(String city) {
+    selectedCityCreateEvent = city;
+    emit(HomeInitial());
+  }
+
+  String? selectedCategoryIdCreateEvent;
+  updateSelectedCategoryIdCreateEvent(String id) {
+    selectedCategoryIdCreateEvent = id;
+    emit(HomeInitial());
+  }
+
+  String? selectedorganizerPlan;
+  updateSelectedOrganizerPlan(String plane) {
+    selectedorganizerPlan = plane;
+    emit(HomeInitial());
+  }
+
+  DateTime? selectedEventDateCreateEvent;
+  updateSelectedEventDateCreateEvent(DateTime date) {
+    selectedEventDateCreateEvent = date;
+    emit(HomeInitial());
+  }
+
+  DateTime? selectedStartTimeCreateEvent;
+  updateSelectedStarttime(DateTime time) {
+    selectedStartTimeCreateEvent = time;
+    emit(HomeInitial());
+  }
+
+  DateTime? selectedEndTimeCreateEvent;
+  updateSelectedEndtime(DateTime time) {
+    selectedEndTimeCreateEvent = time;
+    emit(HomeInitial());
+  }
+
+  clearDate() {
+    eventImage = null;
+    nameCreateEventController.clear();
+    addressCreateEventController.clear();
+    organizerNameCreateEventController.clear();
+    organizationNameCreateEventController.clear();
+    organizationPhoneNumberCreateEventController.clear();
+    organizationEmailCreateEventController.clear();
+    organizationWebsiteCreateEventController.clear();
+    ticketEventLinkCreateEventController.clear();
+    eventPriceCreateEventController.clear();
+    eventDescriptionCreateEventController.clear();
+    selectedCityCreateEvent = null;
+    selectedCategoryIdCreateEvent = null;
+    selectedorganizerPlan = null;
+    selectedEventDateCreateEvent = null;
+    selectedStartTimeCreateEvent = null;
+    selectedEndTimeCreateEvent = null;
+  }
+
+  createEvent() async {
+    emit(CreateEventLoading());
+    final response = await homeRepo.createEvent(
+      eventImage: eventImage!,
+      eventName: nameCreateEventController.text.trim(),
+      eventAddress: addressCreateEventController.text.trim(),
+      organizerName: organizerNameCreateEventController.text.trim(),
+      organizationName: organizationNameCreateEventController.text.trim(),
+      organizationPhoneNumber:
+          organizationPhoneNumberCreateEventController.text.trim(),
+      organizationEmail: organizationEmailCreateEventController.text.trim(),
+      organizationWebsite: organizationWebsiteCreateEventController.text.trim(),
+      ticketEventLink: ticketEventLinkCreateEventController.text.trim(),
+      eventPrice: eventPriceCreateEventController.text.trim(),
+      eventDescription: eventDescriptionCreateEventController.text.trim(),
+      eventLocation: selectedCityCreateEvent ?? "",
+      eventCategory: selectedCategoryIdCreateEvent ?? "",
+      organizerPlan: selectedorganizerPlan ?? "",
+      eventDate: selectedEventDateCreateEvent.toString(),
+      eventStartTime: selectedStartTimeCreateEvent.toString(),
+      eventEndTime: selectedEndTimeCreateEvent.toString(),
+    );
+    response.fold(
+      (l) {
+        emit(CreateEventError(l));
+      },
+      (r) {
+        emit(CreateEventSuccess());
       },
     );
   }

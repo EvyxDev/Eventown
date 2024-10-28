@@ -10,6 +10,9 @@ abstract class AppStrings {
   static const String continuee = "continue";
   static const String thisFieldIsRequired = "thisFieldIsRequired";
   static const String pleaseEnterValidPassword = "pleaseEnterValidPassword";
+  static const String pleaseEnterValidWebsite = "pleaseEnterValidWebsite";
+  static const String pleaseEnterValidLink = "pleaseEnterValidLink";
+  static const String pleaseEnterValidPrice = "pleaseEnterValidPrice";
   static const String passwordsDoNotMatch = "passwordsDoNotMatch";
   static const String pleaseEnterValidEmailAddress =
       "pleaseEnterValidEmailAddress";
@@ -268,4 +271,40 @@ abstract class AppStrings {
   static const String notifications = "notifications";
   //favorite
   static const String favorite = "favorite";
+  //!
+  // "Upload Event Image"
+  static const String uploadEventImage = "uploadEventImage";
+  //"eventName"
+  static const String eventName = "eventName";
+  //eventAddress
+  static const String eventAddress = "eventAddress";
+  //organizerName
+  static const String organizerName = "organizerName";
+  //organizationPhoneNumber
+  static const String organizationPhoneNumber = "organizationPhoneNumber";
+  //organizationName
+  static const String organizationName = "organizationName";
+  //organizationEmail
+  static const String organizationEmail = "organizationEmail";
+  //organizationWebsite
+  static const String organizationWebsite = "organizationWebsite";
+  //ticketEventLink
+  static const String ticketEventLink = "ticketEventLink";
+  //eventPrice
+  static const String eventPrice = "eventPrice";
+  //eventDescription
+  static const String eventDescription = "eventDescription";
+  //eventCategory
+  static const String eventCategory = "eventCategory";
+  //organizer Plan
+  static const String organizerPlan = "organizerPlan";
+  //"Event Date"
+  static const String eventDate = "eventDate";
+  //"endTime"
+  static const String endTime = "endTime";
+  //startTime
+  static const String startTime = "startTime";
+  //eventCreatedSuc
+  static const String eventCreatedSuccessfuly = "eventCreatedSuccessfuly";
+  
 }

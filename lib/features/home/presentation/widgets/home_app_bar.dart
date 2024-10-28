@@ -5,6 +5,7 @@ import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_text_form_field.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
+import 'package:eventown/features/home/presentation/screens/create_event_screen.dart';
 import 'package:eventown/features/search_and_filter/presentation/screens/search_and_filter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,16 @@ AppBar getHomeAppBar(BuildContext context) {
     backgroundColor: Colors.black,
     actions: [
       TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const CreateEventScreen();
+              },
+            ),
+          );
+        },
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.primary,
