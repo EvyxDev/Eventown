@@ -1,4 +1,5 @@
 import 'package:eventown/core/common/common.dart';
+import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_cached_network_image.dart';
 import 'package:eventown/core/widgets/custom_elevated_button.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
+import 'package:eventown/core/widgets/custom_text_form_field.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
@@ -33,7 +35,19 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocBuilder<HomeCubit, HomeState>(
+        body: BlocConsumer<HomeCubit, HomeState>(
+          listener: (context, state) {
+            if (state is CreateCommentSuccess) {
+              showTwist(
+                  context: context,
+                  messege: AppStrings.commentCreatedSuccessfully.tr(context));
+            } else if (state is CreateCommentError) {
+              showTwist(
+                context: context,
+                messege: AppStrings.faildToCreateComment.tr(context),
+              );
+            }
+          },
           builder: (context, state) {
             var event = context.read<HomeCubit>().eventById;
             var cubit = context.read<HomeCubit>();
@@ -323,63 +337,127 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                   AddToCalenderBtn(cubit: cubit, event: event),
                                   SizedBox(height: 16.h),
                                   //comments
-                                  if (event.comments != null &&
-                                      event.comments!.isNotEmpty)
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          AppStrings.comments.tr(context),
-                                          style: CustomTextStyle
-                                              .roboto700sized20White,
-                                          overflow: TextOverflow.fade,
-                                        ),
-                                        SizedBox(height: 16.h),
-                                        Column(
-                                          children: List.generate(
-                                            event.comments!.length,
-                                            (index) {
-                                              return Row(
-                                                children: [
-                                                  CircleAvatar(
-                                                      radius: 18.r,
-                                                      backgroundImage:
-                                                          const AssetImage(Assets
-                                                              .assetsImagesPngProfile)),
-                                                  SizedBox(width: 16.w),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        event.comments![index]
-                                                                .user!.name ??
-                                                            '-',
-                                                        style: CustomTextStyle
-                                                            .roboto400sized14White,
-                                                        overflow:
-                                                            TextOverflow.fade,
-                                                      ),
-                                                      Text(
-                                                        event.comments![index]
-                                                                .text ??
-                                                            '-',
-                                                        style: CustomTextStyle
-                                                            .roboto400sized12Grey,
-                                                        overflow:
-                                                            TextOverflow.fade,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              );
-                                            },
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        AppStrings.comments.tr(context),
+                                        style: CustomTextStyle
+                                            .roboto700sized20White,
+                                        overflow: TextOverflow.fade,
+                                      ),
+                                      SizedBox(height: 16.h),
+                                      CustomTextFormField(
+                                        hintText: AppStrings.writeYourComment
+                                            .tr(context),
+                                        suffixIcon: InkWell(
+                                          onTap: () async {
+                                            if (HomeCubit.get(context)
+                                                .commentController
+                                                .text
+                                                .isNotEmpty) {
+                                              HomeCubit.get(context)
+                                                  .createComment(
+                                                      event.id ?? "",
+                                                      context
+                                                              .read<
+                                                                  GlobalCubit>()
+                                                              .user
+                                                              ?.data
+                                                              ?.name ??
+                                                          "");
+                                              HomeCubit.get(context)
+                                                  .commentController
+                                                  .clear();
+                                            }
+                                          },
+                                          child: const Icon(
+                                            Icons.send,
+                                            color: AppColors.primary,
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                        ),
+                                        controller: HomeCubit.get(context)
+                                            .commentController,
+                                      ),
+                                      SizedBox(height: 32.h),
+                                      HomeCubit.get(context)
+                                              .eventByIdComments
+                                              .isEmpty
+                                          ? Column(
+                                              children: [
+                                                Align(
+                                                  child: Text(
+                                                    AppStrings.noCommentsYet
+                                                        .tr(context),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 64.h,
+                                                )
+                                              ],
+                                            )
+                                          : Column(
+                                              children: List.generate(
+                                                HomeCubit.get(context)
+                                                    .eventByIdComments
+                                                    .length,
+                                                (index) {
+                                                  return Padding(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 16.h),
+                                                    child: Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 18.r,
+                                                          backgroundImage:
+                                                              const AssetImage(
+                                                            Assets
+                                                                .assetsImagesPngProfile,
+                                                          ),
+                                                        ),
+                                                        SizedBox(width: 16.w),
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                HomeCubit.get(
+                                                                            context)
+                                                                        .eventByIdComments[
+                                                                            index]
+                                                                        .user!
+                                                                        .name ??
+                                                                    '-',
+                                                                style: CustomTextStyle
+                                                                    .roboto400sized14White,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .fade),
+                                                            Text(
+                                                                HomeCubit.get(
+                                                                            context)
+                                                                        .eventByIdComments[
+                                                                            index]
+                                                                        .text ??
+                                                                    '-',
+                                                                style: CustomTextStyle
+                                                                    .roboto400sized12Grey,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .fade),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                      SizedBox(height: 32.h),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),

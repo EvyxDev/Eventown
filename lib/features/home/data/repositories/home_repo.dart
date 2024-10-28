@@ -453,4 +453,27 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+  //! Create Comment
+  Future<Either<String, String>> createComment({
+    required String eventId,
+    required String comment,
+  }) async {
+    try {
+      await api.post(
+        EndPoints.createComment,
+        data: {
+          "event": eventId,
+          "text": comment,
+        },
+      );
+      return const Right("created");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

@@ -306,5 +306,13 @@ abstract class AppStrings {
   static const String startTime = "startTime";
   //eventCreatedSuc
   static const String eventCreatedSuccessfuly = "eventCreatedSuccessfuly";
-  
+  //"Comment Created Successfully"
+  static const String commentCreatedSuccessfully = "commentCreatedSuccessfully";
+  //Faild To Create Comment
+  static const String faildToCreateComment = "faildToCreateComment";
+  //"Write your comment"
+  static const String writeYourComment = "writeYourComment";
+  //"No Comments Yet"
+  static const String noCommentsYet = "noCommentsYet";
+
 }

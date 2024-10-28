@@ -173,5 +173,9 @@
     "pleaseEnterValidWebsite": "يرجى إدخال موقع ويب صالح",
     "pleaseEnterValidLink": "يرجى إدخال رابط صالح",
     "pleaseEnterValidPrice": "يرجى إدخال سعر صالح",
-    "eventCreatedSuccessfuly": "تم إنشاء الحدث بنجاح"
+    "eventCreatedSuccessfuly": "تم إنشاء الحدث بنجاح",
+    "commentCreatedSuccessfully": "تم إنشاء التعليق بنجاح",
+    "faildToCreateComment": "فشل في إنشاء التعليق",
+    "writeYourComment": "اكتب تعليقك",
+    "noCommentsYet": "لا توجد تعليقات"
 }

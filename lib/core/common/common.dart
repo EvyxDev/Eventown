@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,15 @@ String? formatTimeOfDay(TimeOfDay? timeOfDay) {
     return "$hours:$minutes $period";
   }
   return null;
+}
+
+String generateRandomString(int length) {
+  const characters =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  Random random = Random();
+
+  return List.generate(
+      length, (index) => characters[random.nextInt(characters.length)]).join();
 }
 
 String formatDate(String dateString) {

@@ -146,3 +146,12 @@ final class CreateEventError extends HomeState {
   CreateEventError(this.message);
   final String message;
 }
+
+final class CreateCommentLoading extends HomeState {}
+
+final class CreateCommentSuccess extends HomeState {}
+
+final class CreateCommentError extends HomeState {
+  CreateCommentError(this.message);
+  final String message;
+}

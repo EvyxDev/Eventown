@@ -5,6 +5,8 @@ import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/home/data/models/events_model/events_model.dart';
+import 'package:eventown/features/home/data/models/wish_list_model/comment.dart';
+import 'package:eventown/features/home/data/models/wish_list_model/user.dart';
 import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:flutter/material.dart';
@@ -292,6 +294,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   //! Get Event By Id
   EventModel? eventById;
+  List<Comment> eventByIdComments = [];
   getEventById(String eventId) async {
     emit(GetEventByIdLoading());
     final response = await homeRepo.fetchEventDetails(eventId);
@@ -301,7 +304,35 @@ class HomeCubit extends Cubit<HomeState> {
       },
       (r) {
         eventById = r;
+        eventByIdComments = r.comments ?? [];
         emit(GetEventByIdSuccess());
+      },
+    );
+  }
+
+  //!Create Comment
+  final TextEditingController commentController = TextEditingController();
+  createComment(String eventId, String name) async {
+    final comment = Comment(
+      id: generateRandomString(15),
+      user: User(
+        name: name,
+      ),
+      text: commentController.text.trim(),
+    );
+    eventByIdComments.insert(0, comment);
+    emit(CreateCommentLoading());
+    final response = await homeRepo.createComment(
+      eventId: eventId,
+      comment: commentController.text.trim(),
+    );
+    response.fold(
+      (fail) {
+        eventByIdComments.remove(comment);
+        emit(CreateCommentError(fail));
+      },
+      (success) {
+        emit(CreateCommentSuccess());
       },
     );
   }

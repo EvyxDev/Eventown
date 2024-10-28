@@ -173,5 +173,9 @@
     "pleaseEnterValidWebsite": "Please enter a valid website",
     "pleaseEnterValidLink": "Please enter a valid link",
     "pleaseEnterValidPrice": "Please enter a valid price",
-    "eventCreatedSuccessfuly": "Event created successfully"
+    "eventCreatedSuccessfuly": "Event created successfully",
+    "commentCreatedSuccessfully": "Comment created successfully",
+    "faildToCreateComment": "Failed to create comment",
+    "writeYourComment": "Write your comment",
+    "noCommentsYet": "No comments yet"
 }
