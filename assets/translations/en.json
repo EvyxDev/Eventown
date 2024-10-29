@@ -177,5 +177,13 @@
     "commentCreatedSuccessfully": "Comment created successfully",
     "faildToCreateComment": "Failed to create comment",
     "writeYourComment": "Write your comment",
-    "noCommentsYet": "No comments yet"
+    "noCommentsYet": "No comments yet",
+    "noNotificationsYet": "No notifications yet",
+    "website": "Website",
+    "copiedToClipboard": "Copied to Clipboard",
+    "createOrganizer": "Create Organizer",
+    "organizationField": "Organization Field",
+    "advice": "Advice",
+    "adviceMessage": "Advice Message",
+    "organizerCreatedSuccessfully": "Organizer created successfully"
 }

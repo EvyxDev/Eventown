@@ -177,5 +177,13 @@
     "commentCreatedSuccessfully": "تم إنشاء التعليق بنجاح",
     "faildToCreateComment": "فشل في إنشاء التعليق",
     "writeYourComment": "اكتب تعليقك",
-    "noCommentsYet": "لا توجد تعليقات"
+    "noCommentsYet": "لا توجد تعليقات",
+    "noNotificationsYet": "لا توجد إشعارات بعد",
+    "website": "الموقع الإلكتروني",
+    "copiedToClipboard": "تم النسخ إلى الحافظة",
+    "createOrganizer": "إنشاء منظم",
+    "organizationField": "مجال المؤسسة",
+    "advice": "نصيحة",
+    "adviceMessage": "رسالة النصيحة",
+    "organizerCreatedSuccessfully": "تم إنشاء المنظم بنجاح"
 }
