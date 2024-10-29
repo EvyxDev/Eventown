@@ -314,5 +314,21 @@ abstract class AppStrings {
   static const String writeYourComment = "writeYourComment";
   //"No Comments Yet"
   static const String noCommentsYet = "noCommentsYet";
-
+  // Get Specific Event
+  static const String noNotificationsYet = "noNotificationsYet";
+  // Website
+  static const String website = "website";
+  //"Copied to Clipboard"
+  static const String copiedToClipboard = "copiedToClipboard";
+  //create Organizer 
+  static const String createOrganizer = "createOrganizer";
+  //organizationField
+  static const String organizationField = "organizationField";
+  //advice
+  static const String advice = "advice";
+  //adviceMessage
+  static const String adviceMessage = "adviceMessage";
+  //Organizer Created Successfully
+  static const String organizerCreatedSuccessfully = "organizerCreatedSuccessfully";
+  
 }

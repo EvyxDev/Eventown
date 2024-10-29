@@ -608,6 +608,53 @@ class HomeCubit extends Cubit<HomeState> {
       },
     );
   }
+
+  //! Create Organizer
+  final GlobalKey<FormState> createOrganizerFormKey = GlobalKey();
+  final TextEditingController organizerNameController = TextEditingController();
+  final TextEditingController organizationNameController =
+      TextEditingController();
+  final TextEditingController organizationFieldController =
+      TextEditingController();
+  final TextEditingController organizationWebsiteController =
+      TextEditingController();
+  final TextEditingController organizationPhoneNumberController =
+      TextEditingController();
+  final TextEditingController organizationEmailController =
+      TextEditingController();
+  final TextEditingController adviceCreateOrganizerController =
+      TextEditingController();
+  createOrganizer() async {
+    emit(CreateOrganizerLoading());
+    final response = await homeRepo.createOrganizer(
+      organizerName: organizerNameController.text.trim(),
+      organizationName: organizationNameController.text.trim(),
+      organizationField: organizationFieldController.text.trim(),
+      organizationWebsite: organizationWebsiteController.text.trim(),
+      organizationPhoneNumber: organizationPhoneNumberController.text.trim(),
+      organizationEmail: organizationEmailController.text.trim(),
+      advice: adviceCreateOrganizerController.text.trim(),
+    );
+    response.fold(
+      (l) {
+        emit(CreateOrganizerError(l));
+      },
+      (r) {
+        emit(CreateOrganizerSuccess());
+      },
+    );
+  }
+
+  //clear organizer
+  clearOrganizer() {
+    organizerNameController.clear();
+    organizationNameController.clear();
+    organizationFieldController.clear();
+    organizationWebsiteController.clear();
+    organizationPhoneNumberController.clear();
+    organizationEmailController.clear();
+    adviceCreateOrganizerController.clear();
+  }
 }
 
 enum EventsType {

@@ -476,4 +476,37 @@ class HomeRepo {
       return Left(e.toString());
     }
   }
+
+  //! Create Organizer
+  Future<Either<String, String>> createOrganizer({
+    required String organizerName,
+    required String organizationName,
+    required String organizationPhoneNumber,
+    required String organizationEmail,
+    required String organizationWebsite,
+    required String organizationField,
+    required String advice,
+  }) async {
+    try {
+      await api.post(
+        EndPoints.createOrganizer,
+        data: {
+          "organizerName": organizerName,
+          "organizationName": organizationName,
+          "organizationField": organizationField,
+          "organizationWebsite": organizationWebsite,
+          "organizationPhoneNumber": organizationPhoneNumber,
+          "organizationEmail": organizationEmail,
+          "advice": advice,
+        },
+      );
+      return const Right("created");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.detail);
+    } on NoInternetException catch (e) {
+      return Left(e.errorModel.detail);
+    } on Exception catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

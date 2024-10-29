@@ -14,6 +14,7 @@ import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:eventown/features/home/presentation/widgets/wishlist_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -176,22 +177,46 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                         ],
                                       ),
                                       // Event Contact
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.phone,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Text(
-                                            event.organizationPhoneNumber ??
-                                                '-',
-                                            style: CustomTextStyle
-                                                .roboto400sized14Grey,
-                                            overflow: TextOverflow.fade,
-                                          ),
-                                        ],
+                                      InkWell(
+                                        onTap: () {
+                                          if (event.organizationPhoneNumber !=
+                                              null) {
+                                            Clipboard.setData(
+                                              ClipboardData(
+                                                text: event
+                                                    .organizationPhoneNumber!,
+                                              ),
+                                            );
+                                            showTwist(
+                                              context: context,
+                                              messege: AppStrings
+                                                  .copiedToClipboard
+                                                  .tr(context),
+                                            );
+                                          }
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.phone,
+                                              color: AppColors.primary,
+                                            ),
+                                            SizedBox(width: 4.w),
+                                            Text(
+                                              event.organizationPhoneNumber ??
+                                                  '-',
+                                              style: CustomTextStyle
+                                                  .roboto400sized14Grey
+                                                  .copyWith(
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor: AppColors.grey,
+                                              ),
+                                              overflow: TextOverflow.fade,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       // Event Location
                                       Row(
@@ -245,6 +270,94 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                         ],
                                       ),
+
+                                      // Event Website
+                                      InkWell(
+                                        onTap: () {
+                                          launchCustomUrl(context,
+                                              event.organizationWebsite);
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.web,
+                                              color: AppColors.primary,
+                                            ),
+                                            SizedBox(width: 4.w),
+                                            Text(
+                                              AppStrings.website.tr(context),
+                                              style: CustomTextStyle
+                                                  .roboto400sized14Grey
+                                                  .copyWith(
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor: AppColors.grey,
+                                              ),
+                                              overflow: TextOverflow.fade,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                      // Event Ticket Link
+                                      InkWell(
+                                        onTap: () {
+                                          launchCustomUrl(
+                                              context, event.ticketEventLink);
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.link,
+                                              color: AppColors.primary,
+                                            ),
+                                            SizedBox(width: 4.w),
+                                            Text(
+                                              AppStrings.ticketEventLink
+                                                  .tr(context),
+                                              style: CustomTextStyle
+                                                  .roboto400sized14Grey
+                                                  .copyWith(
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor: AppColors.grey,
+                                              ),
+                                              overflow: TextOverflow.fade,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                      // Event Social Media
+                                      InkWell(
+                                        onTap: () {
+                                          launchEmailClient(
+                                              context, event.organizationEmail);
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.share,
+                                              color: AppColors.primary,
+                                            ),
+                                            SizedBox(width: 4.w),
+                                            Text(
+                                              AppStrings.email.tr(context),
+                                              style: CustomTextStyle
+                                                  .roboto400sized14Grey
+                                                  .copyWith(
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor: AppColors.grey,
+                                              ),
+                                              overflow: TextOverflow.fade,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                       // Event Category
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -259,65 +372,6 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                               (event.eventCategory ?? [])
                                                   .map((e) => e.title)
                                                   .join(', '),
-                                              style: CustomTextStyle
-                                                  .roboto400sized14Grey,
-                                              overflow: TextOverflow.fade,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      // Event Website
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.web,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Expanded(
-                                            child: Text(
-                                              event.organizationWebsite ?? '-',
-                                              style: CustomTextStyle
-                                                  .roboto400sized14Grey,
-                                              overflow: TextOverflow.fade,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      // Event Ticket Link
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.link,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Expanded(
-                                            child: Text(
-                                              event.ticketEventLink ?? '-',
-                                              style: CustomTextStyle
-                                                  .roboto400sized14Grey,
-                                              overflow: TextOverflow.fade,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      // Event Social Media
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.share,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Expanded(
-                                            child: Text(
-                                              event.organizationEmail ?? '-',
                                               style: CustomTextStyle
                                                   .roboto400sized14Grey,
                                               overflow: TextOverflow.fade,

@@ -147,6 +147,15 @@ final class CreateEventError extends HomeState {
   final String message;
 }
 
+final class CreateOrganizerLoading extends HomeState {}
+
+final class CreateOrganizerSuccess extends HomeState {}
+
+final class CreateOrganizerError extends HomeState {
+  CreateOrganizerError(this.message);
+  final String message;
+}
+
 final class CreateCommentLoading extends HomeState {}
 
 final class CreateCommentSuccess extends HomeState {}

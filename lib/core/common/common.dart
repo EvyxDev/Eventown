@@ -161,6 +161,50 @@ Future launchCustomUrl(context, String? url) async {
   }
 }
 
+Future<void> launchPhoneDialer(context, String phoneNumber) async {
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: phoneNumber,
+  );
+  if (await canLaunchUrl(launchUri)) {
+    await launchUrl(launchUri);
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Cannot launch $phoneNumber"),
+      ),
+    );
+  }
+}
+
+Future<void> launchWhatsApp(context, String phoneNumber) async {
+  final Uri launchUri = Uri(
+    scheme: 'https',
+    host: 'wa.me',
+    path: phoneNumber,
+  );
+  if (await canLaunchUrl(launchUri)) {
+    await launchUrl(launchUri);
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Cannot Lunch $phoneNumber"),
+      ),
+    );
+  }
+}
+
+Future<void> launchEmailClient(
+    BuildContext context, String? emailAddress) async {
+  final Uri emailUri = Uri(
+    scheme: 'mailto',
+    path: emailAddress,
+  );
+  if (emailAddress != null) {
+    await launchUrl(emailUri);
+  }
+}
+
 class CustomSnackbar {
   static void show(BuildContext context, String message, {IconData? icon}) {
     final overlay = Overlay.of(context);

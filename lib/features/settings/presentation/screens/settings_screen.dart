@@ -13,7 +13,7 @@ import 'package:eventown/core/widgets/custom_cached_network_image.dart';
 import 'package:eventown/core/widgets/custom_elevated_button.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
-import 'package:eventown/features/home/presentation/screens/create_event_screen.dart';
+import 'package:eventown/features/home/presentation/screens/create_organizer_screen.dart';
 import 'package:eventown/features/home/presentation/screens/view_all_screen.dart';
 import 'package:eventown/features/profile/data/repositories/profile_repo.dart';
 import 'package:eventown/features/profile/presentation/cubit/profile_cubit.dart';
@@ -276,21 +276,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 SettingsItem(
                                   title: AppStrings.createEvents.tr(context),
                                   icon: Icons.add_box_rounded,
+                                  onTap: () {},
+                                ),
+                                SettingsItem(
+                                  title: AppStrings.iAmOrganizer.tr(context),
+                                  icon: Icons.people,
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const CreateEventScreen();
+                                          return const CreateOrganizerScreen();
                                         },
                                       ),
                                     );
                                   },
-                                ),
-                                SettingsItem(
-                                  title: AppStrings.iAmOrganizer.tr(context),
-                                  icon: Icons.people,
-                                  onTap: () {},
                                 ),
                                 SettingsItem(
                                   title: AppStrings.language.tr(context),
