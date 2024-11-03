@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-showFilterBottomSheet(context) {
+showFilterBottomSheet(context,onPressed) {
   showModalBottomSheet(
     context: context,
     builder: (context) {
@@ -78,11 +78,7 @@ showFilterBottomSheet(context) {
                   ),
                   CustomElevatedButton(
                     text: AppStrings.searchAndApplyFilters.tr(context),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      context.read<HomeCubit>().searchEventsByQuery();
-                      // context.read<HomeCubit>().clearSearch();
-                    },
+                    onPressed: onPressed,
                     elevation: 0,
                   ),
                   SizedBox(height: 16.h),

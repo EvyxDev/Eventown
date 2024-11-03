@@ -207,24 +207,44 @@ class HomeCubit extends Cubit<HomeState> {
         response = await homeRepo.fetchHomeTopEvents(
           limit: limit,
           page: currentPage,
+          query: searchController.text,
+          startDate: startDate?.toString(),
+          endDate: endDate?.toString(),
+          eventCategory: selectedCategoryId,
+          isSortByPrice: isSortByPriceLowToHigh,
         );
         break;
       case EventsType.onThisWeek:
         response = await homeRepo.fetchHomeOnThisWeekEvents(
           limit: limit,
           page: currentPage,
+          query: searchController.text,
+          startDate: startDate?.toString(),
+          endDate: endDate?.toString(),
+          eventCategory: selectedCategoryId,
+          isSortByPrice: isSortByPriceLowToHigh,
         );
         break;
       case EventsType.forYou:
         response = await homeRepo.fetchHomeForYouEvents(
           limit: limit,
           page: currentPage,
+          query: searchController.text,
+          startDate: startDate?.toString(),
+          endDate: endDate?.toString(),
+          eventCategory: selectedCategoryId,
+          isSortByPrice: isSortByPriceLowToHigh,
         );
         break;
       case EventsType.inYourArea:
         response = await homeRepo.fetchHomeInYourAreaEvents(
           limit: limit,
           page: currentPage,
+          query: searchController.text,
+          startDate: startDate?.toString(),
+          endDate: endDate?.toString(),
+          eventCategory: selectedCategoryId,
+          isSortByPrice: isSortByPriceLowToHigh,
         );
         break;
     }

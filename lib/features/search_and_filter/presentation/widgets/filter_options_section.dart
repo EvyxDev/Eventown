@@ -9,8 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class FiltersOptionsSection extends StatelessWidget {
-  const FiltersOptionsSection({super.key});
-
+  const FiltersOptionsSection(
+      {super.key, required this.isViewAll, this.eventsType});
+  final bool isViewAll;
+  final EventsType? eventsType;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
@@ -42,7 +44,12 @@ class FiltersOptionsSection extends StatelessWidget {
                                     AppStrings.sortByPriceLowToHigh.tr(context),
                                 onTap: () {
                                   cubit.sortByPriceLowToHigh();
-                                  cubit.searchEventsByQuery();
+                                  isViewAll
+                                      ? cubit.getViewAllEvents(
+                                          type: eventsType ??
+                                              EventsType.topEvents,
+                                        )
+                                      : cubit.searchEventsByQuery();
                                 },
                               )
                             : const SizedBox.shrink(),
@@ -57,7 +64,12 @@ class FiltersOptionsSection extends StatelessWidget {
                                     "",
                                 onTap: () {
                                   cubit.updateSelectedCategoryId(null);
-                                  cubit.searchEventsByQuery();
+                                  isViewAll
+                                      ? cubit.getViewAllEvents(
+                                          type: eventsType ??
+                                              EventsType.topEvents,
+                                        )
+                                      : cubit.searchEventsByQuery();
                                 },
                               )
                             : const SizedBox.shrink(),
@@ -67,7 +79,12 @@ class FiltersOptionsSection extends StatelessWidget {
                                 label: dateRangeText,
                                 onTap: () {
                                   cubit.updateStartAndEndData(null, null);
-                                  cubit.searchEventsByQuery();
+                                  isViewAll
+                                      ? cubit.getViewAllEvents(
+                                          type: eventsType ??
+                                              EventsType.topEvents,
+                                        )
+                                      : cubit.searchEventsByQuery();
                                 },
                               )
                             : const SizedBox.shrink(),

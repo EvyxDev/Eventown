@@ -33,7 +33,11 @@ class _SearchAndFilterScreenState extends State<SearchAndFilterScreen> {
           Future.delayed(
             const Duration(milliseconds: 100),
             () {
-              showFilterBottomSheet(context);
+              showFilterBottomSheet(context, () {
+                Navigator.pop(context);
+                context.read<HomeCubit>().searchEventsByQuery();
+                // context.read<HomeCubit>().clearSearch();
+              });
             },
           );
         },
@@ -134,7 +138,11 @@ class _SearchAndFilterScreenState extends State<SearchAndFilterScreen> {
                     SizedBox(width: 8.w),
                     InkWell(
                       onTap: () {
-                        showFilterBottomSheet(context);
+                        showFilterBottomSheet(context, () {
+                          Navigator.pop(context);
+                          context.read<HomeCubit>().searchEventsByQuery();
+                          // context.read<HomeCubit>().clearSearch();
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -170,7 +178,7 @@ class _SearchAndFilterScreenState extends State<SearchAndFilterScreen> {
                       return const Center(
                         child: Column(
                           children: [
-                            FiltersOptionsSection(),
+                            FiltersOptionsSection(isViewAll: false),
                             CustomLoadingIndicator(),
                           ],
                         ),
@@ -188,7 +196,7 @@ class _SearchAndFilterScreenState extends State<SearchAndFilterScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const FiltersOptionsSection(),
+                                  const FiltersOptionsSection(isViewAll: false),
                                   Text(
                                     AppStrings.noEventsFound.tr(context),
                                     style: CustomTextStyle.roboto700sized14Grey,
@@ -200,7 +208,7 @@ class _SearchAndFilterScreenState extends State<SearchAndFilterScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const FiltersOptionsSection(),
+                                  const FiltersOptionsSection(isViewAll: false),
                                   Expanded(
                                     child: ListView.separated(
                                       controller: _scrollController,

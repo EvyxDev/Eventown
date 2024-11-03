@@ -35,6 +35,11 @@ class HomeRepo {
   Future<Either<String, EventsModel>> fetchHomeTopEvents({
     int? page,
     int? limit,
+    String? query,
+    String? startDate,
+    String? endDate,
+    String? eventCategory,
+    bool? isSortByPrice,
   }) async {
     try {
       Map<String, dynamic> queryParameters = {};
@@ -44,6 +49,22 @@ class HomeRepo {
       if (limit != null) {
         queryParameters.addAll({'limit': limit});
       }
+      if (query != null) {
+        queryParameters.addAll({'keyword': query});
+      }
+      if (startDate != null) {
+        queryParameters.addAll({'eventDate[gte]': startDate});
+      }
+      if (endDate != null) {
+        queryParameters.addAll({'eventDate[lt]': endDate});
+      }
+      if (eventCategory != null) {
+        queryParameters.addAll({'eventCategory': eventCategory});
+      }
+      if (isSortByPrice != null && isSortByPrice == true) {
+        queryParameters.addAll({'sort': 'eventPrice'});
+      }
+
       final response = await api.get(
         EndPoints.getTopEvents,
         queryParameters: queryParameters,
@@ -63,6 +84,11 @@ class HomeRepo {
   Future<Either<String, EventsModel>> fetchHomeOnThisWeekEvents({
     int? page,
     int? limit,
+    String? query,
+    String? startDate,
+    String? endDate,
+    String? eventCategory,
+    bool? isSortByPrice,
   }) async {
     try {
       Map<String, dynamic> queryParameters = {};
@@ -71,6 +97,21 @@ class HomeRepo {
       }
       if (limit != null) {
         queryParameters.addAll({'limit': limit});
+      }
+      if (query != null) {
+        queryParameters.addAll({'keyword': query});
+      }
+      if (startDate != null) {
+        queryParameters.addAll({'eventDate[gte]': startDate});
+      }
+      if (endDate != null) {
+        queryParameters.addAll({'eventDate[lt]': endDate});
+      }
+      if (eventCategory != null) {
+        queryParameters.addAll({'eventCategory': eventCategory});
+      }
+      if (isSortByPrice != null && isSortByPrice == true) {
+        queryParameters.addAll({'sort': 'eventPrice'});
       }
       final response = await api.get(
         EndPoints.getWeekEvents,
@@ -91,6 +132,11 @@ class HomeRepo {
   Future<Either<String, EventsModel>> fetchHomeForYouEvents({
     int? page,
     int? limit,
+    String? query,
+    String? startDate,
+    String? endDate,
+    String? eventCategory,
+    bool? isSortByPrice,
   }) async {
     try {
       Map<String, dynamic> queryParameters = {};
@@ -99,6 +145,21 @@ class HomeRepo {
       }
       if (limit != null) {
         queryParameters.addAll({'limit': limit});
+      }
+      if (query != null) {
+        queryParameters.addAll({'keyword': query});
+      }
+      if (startDate != null) {
+        queryParameters.addAll({'eventDate[gte]': startDate});
+      }
+      if (endDate != null) {
+        queryParameters.addAll({'eventDate[lt]': endDate});
+      }
+      if (eventCategory != null) {
+        queryParameters.addAll({'eventCategory': eventCategory});
+      }
+      if (isSortByPrice != null && isSortByPrice == true) {
+        queryParameters.addAll({'sort': 'eventPrice'});
       }
       final response = await api.get(
         EndPoints.getForYouEvents,
@@ -119,6 +180,11 @@ class HomeRepo {
   Future<Either<String, EventsModel>> fetchHomeInYourAreaEvents({
     int? page,
     int? limit,
+    String? query,
+    String? startDate,
+    String? endDate,
+    String? eventCategory,
+    bool? isSortByPrice,
   }) async {
     try {
       Map<String, dynamic> queryParameters = {};
@@ -127,6 +193,21 @@ class HomeRepo {
       }
       if (limit != null) {
         queryParameters.addAll({'limit': limit});
+      }
+      if (query != null) {
+        queryParameters.addAll({'keyword': query});
+      }
+      if (startDate != null) {
+        queryParameters.addAll({'eventDate[gte]': startDate});
+      }
+      if (endDate != null) {
+        queryParameters.addAll({'eventDate[lt]': endDate});
+      }
+      if (eventCategory != null) {
+        queryParameters.addAll({'eventCategory': eventCategory});
+      }
+      if (isSortByPrice != null && isSortByPrice == true) {
+        queryParameters.addAll({'sort': 'eventPrice'});
       }
       final response = await api.get(
         EndPoints.getInYourAreaEvents,
