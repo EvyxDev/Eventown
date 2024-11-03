@@ -15,17 +15,16 @@ import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/screens/create_event_screen.dart';
 import 'package:eventown/features/home/presentation/screens/create_organizer_screen.dart';
-import 'package:eventown/features/home/presentation/screens/view_all_screen.dart';
 import 'package:eventown/features/profile/data/repositories/profile_repo.dart';
 import 'package:eventown/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:eventown/features/profile/presentation/screens/profile_screen.dart';
 import 'package:eventown/features/settings/presentation/screens/calender_screen.dart';
+import 'package:eventown/features/settings/presentation/screens/city_and_area.dart';
 import 'package:eventown/features/settings/presentation/screens/delete_my_account_screen.dart';
 import 'package:eventown/features/settings/presentation/widgets/setting_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../favorite/presentation/screens/favorite_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -254,17 +253,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   title: AppStrings.cityAndArea.tr(context),
                                   icon: Icons.location_on,
                                   onTap: () {
-                                    context.read<HomeCubit>().getViewAllEvents(
-                                        type: EventsType.inYourArea);
+                                    context.read<HomeCubit>().clearFilters();
+                                    context
+                                        .read<HomeCubit>()
+                                        .searchEventsByQuery();
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return ViewAllScreen(
-                                            eventsType: EventsType.inYourArea,
-                                            title: AppStrings.inYourAreaEvents
-                                                .tr(context),
-                                          );
+                                          return CityAndArea();
                                         },
                                       ),
                                     );

@@ -287,6 +287,7 @@ class HomeRepo {
     String? startDate,
     String? endDate,
     bool? isSortByPrice,
+    String? selectedCity,
   }) async {
     try {
       Map<String, dynamic> queryParameters = {'keyword': query};
@@ -307,6 +308,9 @@ class HomeRepo {
       }
       if (isSortByPrice != null && isSortByPrice == true) {
         queryParameters.addAll({'sort': 'eventPrice'});
+      }
+      if (selectedCity != null) {
+        queryParameters.addAll({'eventLocation': selectedCity});
       }
       final response = await api.get(
         EndPoints.getEvents,

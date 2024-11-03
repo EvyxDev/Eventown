@@ -22,7 +22,6 @@ class GlobalCubit extends Cubit<GlobalState> {
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     const HomeScreen(),
-    // const FavoriteScreen(),
     const WheelScreen(),
     const NotificationScreen(),
     const SettingsScreen()
@@ -60,7 +59,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   ];
 
   void changeBottom(int index) {
-    currentIndex = index;
+    controller.jumpToTab(index);
     emit(GlobalInitial());
   }
 

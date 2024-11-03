@@ -355,6 +355,13 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeInitial());
   }
 
+  //! selected City
+  String? selectedCity;
+  updateSelectedCity(String city) {
+    selectedCity = city;
+    emit(HomeInitial());
+  }
+
   //! Update Selected Category
   String? selectedCategoryId;
   updateSelectedCategoryId(String? categoryId) {
@@ -397,6 +404,7 @@ class HomeCubit extends Cubit<HomeState> {
       endDate: endDate?.toString(),
       eventCategory: selectedCategoryId,
       isSortByPrice: isSortByPriceLowToHigh,
+      selectedCity: selectedCity,
     );
 
     response.fold(
@@ -421,6 +429,16 @@ class HomeCubit extends Cubit<HomeState> {
         endDate == null &&
         selectedCategoryId == null &&
         isSortByPriceLowToHigh == false;
+  }
+
+  //! Clear Filters
+  clearFilters() {
+    startDate = null;
+    endDate = null;
+    selectedCategoryId = null;
+    isSortByPriceLowToHigh = false;
+    selectedCity = null;
+    emit(HomeInitial());
   }
 
   //! Get User Calender

@@ -50,51 +50,49 @@ class BaseScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         // ignore: deprecated_member_use
-        return WillPopScope(
-          onWillPop: () async {
-            if (cubit.currentIndex != 0) {
-              cubit.changeBottom(0);
-              return false; // Prevent app from closing
-            }
-            return true; // Allow app to close
-          },
-          child: ModalProgressHUD(
-            inAsyncCall: state is HomeLoading,
-            progressIndicator: const CustomLoadingIndicator(),
-            child: BlocBuilder<GlobalCubit, GlobalState>(
-              builder: (context, state) {
-                return Scaffold(
-                  body: PersistentTabView(
-                    context,
-                    controller: context.read<GlobalCubit>().controller,
-                    screens: context.read<GlobalCubit>().bottomScreens,
-                    items: _navBarsItems(),
-                    handleAndroidBackButtonPress: true,
-                    resizeToAvoidBottomInset: true,
-                    stateManagement: true,
-                    hideNavigationBarWhenKeyboardAppears: true,
-                    padding: const EdgeInsets.only(
-                      top: 8,
-                      bottom: 8,
-                      right: 8,
-                      left: 8,
-                    ),
-                    backgroundColor: AppColors.black,
-                    isVisible: true,
-                    animationSettings: const NavBarAnimationSettings(
-                      navBarItemAnimation: ItemAnimationSettings(
-                        // Navigation Bar's items animation properties.
-                        duration: Duration(milliseconds: 400),
-                        curve: Curves.ease,
-                      ),
-                    ),
-                    confineToSafeArea: true,
-                    navBarHeight: kBottomNavigationBarHeight,
-                    navBarStyle: NavBarStyle.style13,
+        return ModalProgressHUD(
+          inAsyncCall: state is HomeLoading,
+          progressIndicator: const CustomLoadingIndicator(),
+          child: BlocBuilder<GlobalCubit, GlobalState>(
+            builder: (context, state) {
+              return Scaffold(
+                body: PersistentTabView(
+                  context,
+                  controller: context.read<GlobalCubit>().controller,
+                  screens: context.read<GlobalCubit>().bottomScreens,
+                  items: _navBarsItems(),
+                  // handleAndroidBackButtonPress: true,
+                  onWillPop: (c) async {
+                    if (cubit.currentIndex != 0) {
+                      cubit.changeBottom(0);
+                      return false; // Prevent app from closing
+                    }
+                    return true; // Allow app to close
+                  },
+                  resizeToAvoidBottomInset: true,
+                  stateManagement: true,
+                  hideNavigationBarWhenKeyboardAppears: true,
+                  padding: const EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    right: 8,
+                    left: 8,
                   ),
-                );
-              },
-            ),
+                  backgroundColor: AppColors.black,
+                  isVisible: true,
+                  animationSettings: const NavBarAnimationSettings(
+                    navBarItemAnimation: ItemAnimationSettings(
+                      // Navigation Bar's items animation properties.
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.ease,
+                    ),
+                  ),
+                  confineToSafeArea: true,
+                  navBarHeight: kBottomNavigationBarHeight,
+                  navBarStyle: NavBarStyle.style13,
+                ),
+              );
+            },
           ),
         );
       },
