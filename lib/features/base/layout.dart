@@ -1,17 +1,47 @@
-import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/cubit/global_state.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class BaseScreen extends StatelessWidget {
   const BaseScreen({super.key});
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const Icon(IconlyBold.home),
+        title: ("Home"),
+        activeColorPrimary: AppColors.primary,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(IconlyBold.game),
+        title: ("game"),
+        activeColorPrimary: AppColors.primary,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(IconlyBold.notification),
+        title: ("notification"),
+        activeColorPrimary: AppColors.primary,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(IconlyBold.user_3),
+        title: ("user_3"),
+        activeColorPrimary: AppColors.primary,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,52 +64,33 @@ class BaseScreen extends StatelessWidget {
             child: BlocBuilder<GlobalCubit, GlobalState>(
               builder: (context, state) {
                 return Scaffold(
-                  extendBody: false,
-                  body: cubit.bottomScreens[cubit.currentIndex],
-                  bottomNavigationBar: CrystalNavigationBar(
+                  body: PersistentTabView(
+                    context,
+                    controller: context.read<GlobalCubit>().controller,
+                    screens: context.read<GlobalCubit>().bottomScreens,
+                    items: _navBarsItems(),
+                    handleAndroidBackButtonPress: true,
+                    resizeToAvoidBottomInset: true,
+                    stateManagement: true,
+                    hideNavigationBarWhenKeyboardAppears: true,
+                    padding: const EdgeInsets.only(
+                      top: 8,
+                      bottom: 8,
+                      right: 8,
+                      left: 8,
+                    ),
                     backgroundColor: AppColors.black,
-                    unselectedItemColor: AppColors.primary,
-                    selectedItemColor: AppColors.primary,
-                    onTap: (index) {
-                      cubit.changeBottom(index);
-                    },
-                    currentIndex: cubit.currentIndex,
-                    items: [
-                      /// Home
-                      CrystalNavigationBarItem(
-                        icon: IconlyBold.home,
-                        unselectedIcon: IconlyLight.home,
-                        selectedColor: AppColors.primary,
+                    isVisible: true,
+                    animationSettings: const NavBarAnimationSettings(
+                      navBarItemAnimation: ItemAnimationSettings(
+                        // Navigation Bar's items animation properties.
+                        duration: Duration(milliseconds: 400),
+                        curve: Curves.ease,
                       ),
-
-                      /// Fav
-                      CrystalNavigationBarItem(
-                        icon: IconlyBold.heart,
-                        unselectedIcon: IconlyLight.heart,
-                        selectedColor: AppColors.primary,
-                      ),
-
-                      /// Game
-                      CrystalNavigationBarItem(
-                        icon: IconlyBold.game,
-                        unselectedIcon: IconlyLight.game,
-                        selectedColor: AppColors.primary,
-                      ),
-
-                      /// Notification
-                      CrystalNavigationBarItem(
-                        icon: IconlyBold.notification,
-                        unselectedIcon: IconlyLight.notification,
-                        selectedColor: AppColors.primary,
-                      ),
-
-                      /// Profile
-                      CrystalNavigationBarItem(
-                        icon: IconlyBold.user_3,
-                        unselectedIcon: IconlyLight.user,
-                        selectedColor: AppColors.primary,
-                      ),
-                    ],
+                    ),
+                    confineToSafeArea: true,
+                    navBarHeight: kBottomNavigationBarHeight,
+                    navBarStyle: NavBarStyle.style13,
                   ),
                 );
               },

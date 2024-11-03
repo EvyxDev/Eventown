@@ -330,5 +330,9 @@ abstract class AppStrings {
   static const String adviceMessage = "adviceMessage";
   //Organizer Created Successfully
   static const String organizerCreatedSuccessfully = "organizerCreatedSuccessfully";
-  
+  //"Wheel of Fortune"
+  static const String wheelOfFortune = "wheelOfFortune";
+  //"Feeling lucky? Test your fortune on our game wheel! Gather points with every spin to win tickets to upcoming events."
+  static const String feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents =
+      "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents";
 }

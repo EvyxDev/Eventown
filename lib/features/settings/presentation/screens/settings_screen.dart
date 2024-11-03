@@ -26,6 +26,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../favorite/presentation/screens/favorite_screen.dart';
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -236,19 +238,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 ),
                                 SettingsItem(
                                   title: AppStrings.interstedEvents.tr(context),
-                                  icon: Icons.turned_in_outlined,
+                                  icon: Icons.favorite,
                                   onTap: () {
-                                    context.read<HomeCubit>().getViewAllEvents(
-                                        type: EventsType.forYou);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return ViewAllScreen(
-                                            eventsType: EventsType.forYou,
-                                            title: AppStrings.interstedEvents
-                                                .tr(context),
-                                          );
+                                          return const FavoriteScreen();
                                         },
                                       ),
                                     );

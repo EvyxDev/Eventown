@@ -9,6 +9,7 @@ import 'package:eventown/features/home/presentation/cubit/home_state.dart';
 import 'package:eventown/features/home/presentation/widgets/categories_in_home_section.dart';
 import 'package:eventown/features/home/presentation/widgets/events_section.dart';
 import 'package:eventown/features/home/presentation/widgets/home_app_bar.dart';
+import 'package:eventown/features/home/presentation/widgets/wheel_promotion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -99,6 +100,10 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       )
                                     : const SizedBox.shrink(),
+                                SizedBox(height: 16.h),
+                                //! Game Promotion Section
+                                const WheelPromotion(),
+                                SizedBox(height: 16.h),
                                 //! On This Week Events
                                 context
                                         .read<HomeCubit>()
@@ -118,22 +123,6 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       )
                                     : const SizedBox.shrink(),
-                                // //! All Events
-                                // context.read<HomeCubit>().allEvents.isNotEmpty
-                                //     ? Column(
-                                //         children: [
-                                //           EventsSection(
-                                //             title: AppStrings.allEvents
-                                //                 .tr(context),
-                                //             eventsType: EventsType.allEvents,
-                                //             events: context
-                                //                 .read<HomeCubit>()
-                                //                 .allEvents,
-                                //           ),
-                                //           SizedBox(height: 16.h),
-                                //         ],
-                                //       )
-                                //     : const SizedBox.shrink(),
                                 //! For You Events
                                 context
                                         .read<HomeCubit>()
