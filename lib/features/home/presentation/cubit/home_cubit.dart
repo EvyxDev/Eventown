@@ -551,7 +551,13 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeInitial());
   }
 
-  String? selectedorganizerPlan;
+  List<String> organizerPlans = [
+    "free",
+    "basic",
+    "standard",
+    "premium",
+  ];
+  String? selectedorganizerPlan = "free";
   updateSelectedOrganizerPlan(String plane) {
     selectedorganizerPlan = plane;
     emit(HomeInitial());

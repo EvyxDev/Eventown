@@ -320,7 +320,7 @@ abstract class AppStrings {
   static const String website = "website";
   //"Copied to Clipboard"
   static const String copiedToClipboard = "copiedToClipboard";
-  //create Organizer 
+  //create Organizer
   static const String createOrganizer = "createOrganizer";
   //organizationField
   static const String organizationField = "organizationField";
@@ -329,10 +329,14 @@ abstract class AppStrings {
   //adviceMessage
   static const String adviceMessage = "adviceMessage";
   //Organizer Created Successfully
-  static const String organizerCreatedSuccessfully = "organizerCreatedSuccessfully";
+  static const String organizerCreatedSuccessfully =
+      "organizerCreatedSuccessfully";
   //"Wheel of Fortune"
   static const String wheelOfFortune = "wheelOfFortune";
   //"Feeling lucky? Test your fortune on our game wheel! Gather points with every spin to win tickets to upcoming events."
-  static const String feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents =
+  static const String
+      feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents =
       "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents";
+  //select plan
+  static const String selectPlan = "selectPlan";
 }
