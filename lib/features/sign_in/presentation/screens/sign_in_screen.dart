@@ -1,5 +1,6 @@
 import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/common/validations.dart';
+import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/routes/app_routes.dart';
 import 'package:eventown/core/utils/app_colors.dart';
@@ -23,6 +24,7 @@ class SignInScreen extends StatelessWidget {
       body: BlocConsumer<SignInCubit, SignInState>(
         listener: (context, state) {
           if (state is SignInSuccess) {
+            context.read<GlobalCubit>().getUserProfile();
             Navigator.pushNamedAndRemoveUntil(
               context,
               Routes.base,

@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                                 SizedBox(height: 16.h),
                                 //! Game Promotion Section
                                 Container(
-                                  height: 180.h,
+                                  height: 200.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
                                   ),

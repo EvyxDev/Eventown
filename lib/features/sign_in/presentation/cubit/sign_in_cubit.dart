@@ -1,6 +1,5 @@
 import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/constants/app_constants.dart';
-import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
@@ -34,7 +33,6 @@ class SignInCubit extends Cubit<SignInState> {
       (r) {
         sl<CacheHelper>().saveData(key: AppConstants.token, value: r.token);
         printGreen("Welcome ${r.data!.name ?? ""}");
-        sl<GlobalCubit>().getUserProfile();
         emit(SignInSuccess());
       },
     );
