@@ -130,36 +130,30 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                         CustomTextStyle.roboto700sized20White,
                                     overflow: TextOverflow.fade,
                                   ),
-                                  SizedBox(height: 16.h),
-                                  // Event Description
-                                  Text(
-                                    event.eventDescription ?? '-',
-                                    style: CustomTextStyle.roboto400sized14Grey,
-                                    overflow: TextOverflow.fade,
-                                  ),
+
                                   SizedBox(height: 16.h),
                                   Wrap(
                                     spacing: 12.w,
                                     runSpacing: 12.h,
                                     // Event Organizer
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.people_alt,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Text(
-                                            (event.numberOfGoingUsers ?? 0)
-                                                .toString(),
-                                            style: CustomTextStyle
-                                                .roboto400sized14Grey,
-                                            overflow: TextOverflow.fade,
-                                          ),
-                                        ],
-                                      ),
+                                      // Row(
+                                      //   mainAxisSize: MainAxisSize.min,
+                                      //   children: [
+                                      //     const Icon(
+                                      //       Icons.people_alt,
+                                      //       color: AppColors.primary,
+                                      //     ),
+                                      //     SizedBox(width: 4.w),
+                                      //     Text(
+                                      //       (event.numberOfGoingUsers ?? 0)
+                                      //           .toString(),
+                                      //       style: CustomTextStyle
+                                      //           .roboto400sized14Grey,
+                                      //       overflow: TextOverflow.fade,
+                                      //     ),
+                                      //   ],
+                                      // ),
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -176,48 +170,6 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                         ],
                                       ),
-                                      // Event Contact
-                                      InkWell(
-                                        onTap: () {
-                                          if (event.organizationPhoneNumber !=
-                                              null) {
-                                            Clipboard.setData(
-                                              ClipboardData(
-                                                text: event
-                                                    .organizationPhoneNumber!,
-                                              ),
-                                            );
-                                            showTwist(
-                                              context: context,
-                                              messege: AppStrings
-                                                  .copiedToClipboard
-                                                  .tr(context),
-                                            );
-                                          }
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Icon(
-                                              Icons.phone,
-                                              color: AppColors.primary,
-                                            ),
-                                            SizedBox(width: 4.w),
-                                            Text(
-                                              event.organizationPhoneNumber ??
-                                                  '-',
-                                              style: CustomTextStyle
-                                                  .roboto400sized14Grey
-                                                  .copyWith(
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                decorationColor: AppColors.grey,
-                                              ),
-                                              overflow: TextOverflow.fade,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
                                       // Event Location
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -228,49 +180,13 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ),
                                           SizedBox(width: 4.w),
                                           Text(
-                                            event.eventLocation ?? '-',
+                                            event.eventAddress ?? '-',
                                             style: CustomTextStyle
                                                 .roboto400sized14Grey,
                                             overflow: TextOverflow.fade,
                                           ),
                                         ],
                                       ),
-                                      // Event Date
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.calendar_today,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Text(
-                                            displayDate(event.eventDate) ?? "",
-                                            style: CustomTextStyle
-                                                .roboto400sized14Grey,
-                                            overflow: TextOverflow.fade,
-                                          ),
-                                        ],
-                                      ),
-                                      // Event Time
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.access_time,
-                                            color: AppColors.primary,
-                                          ),
-                                          SizedBox(width: 4.w),
-                                          Text(
-                                            "${convertTime(event.eventStartTime)} - ${convertTime(event.eventEndTime)}",
-                                            style: CustomTextStyle
-                                                .roboto400sized14Grey,
-                                            overflow: TextOverflow.fade,
-                                            textDirection: TextDirection.ltr,
-                                          ),
-                                        ],
-                                      ),
-
                                       // Event Website
                                       InkWell(
                                         onTap: () {
@@ -299,37 +215,6 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ],
                                         ),
                                       ),
-
-                                      // Event Ticket Link
-                                      InkWell(
-                                        onTap: () {
-                                          launchCustomUrl(
-                                              context, event.ticketEventLink);
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Icon(
-                                              Icons.link,
-                                              color: AppColors.primary,
-                                            ),
-                                            SizedBox(width: 4.w),
-                                            Text(
-                                              AppStrings.ticketEventLink
-                                                  .tr(context),
-                                              style: CustomTextStyle
-                                                  .roboto400sized14Grey
-                                                  .copyWith(
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                decorationColor: AppColors.grey,
-                                              ),
-                                              overflow: TextOverflow.fade,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-
                                       // Event Social Media
                                       InkWell(
                                         onTap: () {
@@ -340,7 +225,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             const Icon(
-                                              Icons.share,
+                                              Icons.email,
                                               color: AppColors.primary,
                                             ),
                                             SizedBox(width: 4.w),
@@ -358,6 +243,44 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ],
                                         ),
                                       ),
+                                      // Event Date
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.calendar_today,
+                                            color: AppColors.primary,
+                                          ),
+                                          SizedBox(width: 4.w),
+                                          Text(
+                                            displayDate(event.eventDate) ?? "",
+                                            style: CustomTextStyle
+                                                .roboto400sized14Grey,
+                                            overflow: TextOverflow.fade,
+                                          ),
+                                        ],
+                                      ),
+                                      // Event Time
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.access_time,
+                                            color: AppColors.primary,
+                                          ),
+                                          SizedBox(width: 4.w),
+                                          Expanded(
+                                            child: Text(
+                                              "${AppStrings.startTime.tr(context)} ${displayDateAndTime(event.eventStartTime)}\n${AppStrings.endTime.tr(context)} ${displayDateAndTime(event.eventEndTime)}",
+                                              style: CustomTextStyle
+                                                  .roboto400sized14Grey,
+                                              overflow: TextOverflow.fade,
+                                              textDirection: TextDirection.ltr,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
                                       // Event Category
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -385,10 +308,20 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                   CustomElevatedButton(
                                     text: AppStrings.getTicket.tr(context),
                                     elevation: 0,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      launchCustomUrl(
+                                          context, event.ticketEventLink);
+                                    },
                                   ),
                                   SizedBox(height: 16.h),
                                   AddToCalenderBtn(cubit: cubit, event: event),
+                                  SizedBox(height: 16.h),
+                                  // Event Description
+                                  Text(
+                                    event.eventDescription ?? '-',
+                                    style: CustomTextStyle.roboto400sized14Grey,
+                                    overflow: TextOverflow.fade,
+                                  ),
                                   SizedBox(height: 16.h),
                                   //comments
                                   Column(

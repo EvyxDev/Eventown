@@ -15,10 +15,12 @@ class EventsSection extends StatelessWidget {
     required this.title,
     required this.events,
     required this.eventsType,
+    this.width,
   });
   final String title;
   final List<EventModel> events;
   final EventsType eventsType;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,6 +60,7 @@ class EventsSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return EventCard(
                 event: events[index],
+                width: width,
               );
             },
             separatorBuilder: (context, index) => SizedBox(width: 16.w),

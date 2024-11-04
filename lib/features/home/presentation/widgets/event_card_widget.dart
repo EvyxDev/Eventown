@@ -13,9 +13,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 class EventCard extends StatelessWidget {
-  const EventCard({super.key, required this.event});
+  const EventCard({
+    super.key,
+    required this.event,
+    this.width,
+  });
 
   final EventModel event;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class EventCard extends StatelessWidget {
         );
       },
       child: Container(
-        width: 280.w,
+        width: width ?? 280.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
         ),
@@ -158,8 +163,7 @@ class EventCard extends StatelessWidget {
                                     SizedBox(width: 4.w),
                                     Expanded(
                                       child: Text(
-                                        convertTime(
-                                            event.eventStartTime),
+                                        convertTime(event.eventStartTime),
                                         style: CustomTextStyle
                                             .roboto400sized14White,
                                       ),

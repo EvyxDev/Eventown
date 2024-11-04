@@ -1,8 +1,7 @@
 import 'package:eventown/core/cubit/global_cubit.dart';
-import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
-import 'package:eventown/core/utils/app_strings.dart.dart';
+import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,11 @@ import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
 class WheelPromotion extends StatelessWidget {
-  const WheelPromotion({super.key});
+  const WheelPromotion({
+    super.key,
+    required this.index,
+  });
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class WheelPromotion extends StatelessWidget {
         ),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             WidgetAnimator(
               // incomingEffect: WidgetTransitionEffects(
@@ -45,16 +49,17 @@ class WheelPromotion extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    AppStrings.wheelOfFortune.tr(context),
-                    style: CustomTextStyle.roboto700sized18Primary,
+                    context.read<HomeCubit>().wheelPromotions[index]['title'],
+                    style: CustomTextStyle.roboto700sized16Primary,
+                    maxLines: 4,
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    AppStrings
-                        .feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents
-                        .tr(context),
+                    context.read<HomeCubit>().wheelPromotions[index]
+                        ['description'],
                     style: CustomTextStyle.roboto400sized12Secoundry,
                     maxLines: 4,
                   ),

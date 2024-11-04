@@ -30,6 +30,25 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoaded());
   }
 
+  //! Wheel Promotions
+  final List<Map<String, dynamic>> wheelPromotions = [
+    {
+      "title": "Spin & Win: Your Ticket to Any Event! 🎟",
+      "description":
+          "Are you feeling lucky? Try it now and win big with Evntown! 🎉",
+    },
+    {
+      "title": "Unleash your luck with Evntown’s Lucky Ticket Spin! 🎡",
+      "description":
+          "Spin the wheel once a day, collect points, and get closer to winning a free ticket to your dream event. Reach 1,000 points, and you’re in! Simply submit your points for a chance to win. 🌟",
+    },
+    {
+      "title": "✨ How It Works",
+      "description":
+          "Daily Spin: Earn points with each spin! Collect 1,000 Points: Once you hit 1,000, submit a request to enter the monthly draw.\nChoose Your Event: Pick up to 3 events you’d love to attend!",
+    },
+  ];
+
   //! Home Categories
   List<Category> homeCategories = [];
   getHomeCategories() async {

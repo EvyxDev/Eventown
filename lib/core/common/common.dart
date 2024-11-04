@@ -58,7 +58,7 @@ String? displayDateAndTime(DateTime? dateTime) {
   if (dateTime == null) {
     return null;
   }
-  return DateFormat('MM/dd/yyyy - hh:mm a').format(dateTime);
+  return DateFormat('dd/MM/yyyy - hh:mm a').format(dateTime);
 }
 
 String? formatTimeOfDay(TimeOfDay? timeOfDay) {

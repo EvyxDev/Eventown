@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/cubit/global_state.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
@@ -102,7 +103,27 @@ class HomeScreen extends StatelessWidget {
                                     : const SizedBox.shrink(),
                                 SizedBox(height: 16.h),
                                 //! Game Promotion Section
-                                const WheelPromotion(),
+                                Container(
+                                  height: 180.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Swiper(
+                                    loop: true,
+                                    autoplay: true,
+                                    duration: const Duration(milliseconds: 2000)
+                                        .inMilliseconds,
+                                    itemCount: 3,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.w),
+                                        child: WheelPromotion(index: index),
+                                      );
+                                    },
+                                  ),
+                                ),
                                 SizedBox(height: 16.h),
                                 //! On This Week Events
                                 context
@@ -115,6 +136,7 @@ class HomeScreen extends StatelessWidget {
                                             title: AppStrings.onThisWeekEvents
                                                 .tr(context),
                                             eventsType: EventsType.onThisWeek,
+                                            width: 200.w,
                                             events: context
                                                 .read<HomeCubit>()
                                                 .onThisWeekEvents,
@@ -134,6 +156,7 @@ class HomeScreen extends StatelessWidget {
                                             title: AppStrings.forYouEvents
                                                 .tr(context),
                                             eventsType: EventsType.forYou,
+                                            width: 200.w,
                                             events: context
                                                 .read<HomeCubit>()
                                                 .forYouEvents,
@@ -153,6 +176,7 @@ class HomeScreen extends StatelessWidget {
                                             title: AppStrings.inYourAreaEvents
                                                 .tr(context),
                                             eventsType: EventsType.inYourArea,
+                                            width: 200.w,
                                             events: context
                                                 .read<HomeCubit>()
                                                 .inYourAreaEvents,
