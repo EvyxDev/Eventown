@@ -82,9 +82,9 @@ class GetEventsByCategory extends StatelessWidget {
         listener: (context, state) {
           if (state is GetEventsByCategoryError) {
             showTwist(
-                context: context,
-                messege: state.message,
-                );
+              context: context,
+              messege: state.message,
+            );
           }
         },
         builder: (context, state) {

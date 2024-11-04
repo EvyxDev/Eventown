@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-showFilterBottomSheet(context,onPressed) {
+showFilterBottomSheet(context, onPressed) {
   showModalBottomSheet(
     context: context,
     builder: (context) {

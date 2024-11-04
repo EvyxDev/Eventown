@@ -24,6 +24,13 @@ class EndPoints {
   static const String deleteMyAccount = '/api/v1/users/deleteMyAccount';
   static const String createOrganizer = '/api/v1/organizers';
   static const String changeMyPassword = '/api/v1/users/changeMyPassword';
+  static const String getMyPoints = '/api/v1/gamefication/myPoints';
+  static const String addPoints = '/api/v1/gamefication/addPoints';
+  static const String requestFreeTicket =
+      '/api/v1/gamefication/requestFreeTicket';
+  static const String myHistory = '/api/v1/gamefication/myHistory';
+  static const String addComment = '/api/v1/gamefication/addComment';
+  static const String getComments = '/api/v1/gamefication/getComments';
 
   static removeFromWhishList(String id) {
     return '/api/v1/wishlists/$id';

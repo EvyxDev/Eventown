@@ -28,7 +28,8 @@ class CustomTextFormField extends StatelessWidget {
     this.onChanged,
     this.filled,
     this.fillColor,
-    this.style, this.initialValue,
+    this.style,
+    this.initialValue,
   });
   final String? hintText;
   final String? labelText;

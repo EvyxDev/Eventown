@@ -148,7 +148,6 @@ class _OtpScreenState extends State<OtpScreen> {
                             showTwist(
                               context: context,
                               messege: AppStrings.enterValidOtp.tr(context),
-                              
                             );
                           }
                         },
