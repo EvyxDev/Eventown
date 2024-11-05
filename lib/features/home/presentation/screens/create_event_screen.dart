@@ -17,8 +17,57 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CreateEventScreen extends StatelessWidget {
+class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
+
+  @override
+  State<CreateEventScreen> createState() => _CreateEventScreenState();
+}
+
+class _CreateEventScreenState extends State<CreateEventScreen> {
+  late GlobalKey<FormState> createEventFormKey;
+  late TextEditingController nameCreateEventController;
+  late TextEditingController addressCreateEventController;
+  late TextEditingController organizerNameCreateEventController;
+  late TextEditingController organizationNameCreateEventController;
+  late TextEditingController organizationPhoneNumberCreateEventController;
+  late TextEditingController organizationEmailCreateEventController;
+  late TextEditingController organizationWebsiteCreateEventController;
+  late TextEditingController ticketEventLinkCreateEventController;
+  late TextEditingController eventPriceCreateEventController;
+  late TextEditingController eventDescriptionCreateEventController;
+
+  @override
+  void initState() {
+    super.initState();
+    createEventFormKey = GlobalKey<FormState>();
+    nameCreateEventController = TextEditingController();
+    addressCreateEventController = TextEditingController();
+    organizerNameCreateEventController = TextEditingController();
+    organizationNameCreateEventController = TextEditingController();
+    organizationPhoneNumberCreateEventController = TextEditingController();
+    organizationEmailCreateEventController = TextEditingController();
+    organizationWebsiteCreateEventController = TextEditingController();
+    ticketEventLinkCreateEventController = TextEditingController();
+    eventPriceCreateEventController = TextEditingController();
+    eventDescriptionCreateEventController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameCreateEventController.dispose();
+    addressCreateEventController.dispose();
+    organizerNameCreateEventController.dispose();
+    organizationNameCreateEventController.dispose();
+    organizationPhoneNumberCreateEventController.dispose();
+    organizationEmailCreateEventController.dispose();
+    organizationWebsiteCreateEventController.dispose();
+    ticketEventLinkCreateEventController.dispose();
+    eventPriceCreateEventController.dispose();
+    eventDescriptionCreateEventController.dispose();
+    createEventFormKey.currentState?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +82,7 @@ class CreateEventScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Form(
-                    key: HomeCubit.get(context).createEventFormKey,
+                    key: createEventFormKey,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -44,8 +93,7 @@ class CreateEventScreen extends StatelessWidget {
                           SizedBox(height: 16.h),
                           CustomTextFormField(
                             labelText: AppStrings.eventName.tr(context),
-                            controller: HomeCubit.get(context)
-                                .nameCreateEventController,
+                            controller: nameCreateEventController,
                             validator: (value) {
                               return Validation.validateEmpty(value!) != null
                                   ? Validation.validateEmpty(value)!.tr(context)
@@ -56,8 +104,7 @@ class CreateEventScreen extends StatelessWidget {
                           //! eventAddress
                           CustomTextFormField(
                             labelText: AppStrings.eventAddress.tr(context),
-                            controller: HomeCubit.get(context)
-                                .addressCreateEventController,
+                            controller: addressCreateEventController,
                             validator: (value) {
                               return Validation.validateEmpty(value!) != null
                                   ? Validation.validateEmpty(value)!.tr(context)
@@ -68,8 +115,7 @@ class CreateEventScreen extends StatelessWidget {
                           //!organizerName
                           CustomTextFormField(
                             labelText: AppStrings.organizerName.tr(context),
-                            controller: HomeCubit.get(context)
-                                .organizerNameCreateEventController,
+                            controller: organizerNameCreateEventController,
                             validator: (value) {
                               return Validation.validateEmpty(value!) != null
                                   ? Validation.validateEmpty(value)!.tr(context)
@@ -80,8 +126,7 @@ class CreateEventScreen extends StatelessWidget {
                           //!organizationName
                           CustomTextFormField(
                             labelText: AppStrings.organizationName.tr(context),
-                            controller: HomeCubit.get(context)
-                                .organizationNameCreateEventController,
+                            controller: organizationNameCreateEventController,
                             validator: (value) {
                               return Validation.validateEmpty(value!) != null
                                   ? Validation.validateEmpty(value)!.tr(context)
@@ -93,8 +138,8 @@ class CreateEventScreen extends StatelessWidget {
                           Directionality(
                             textDirection: TextDirection.ltr,
                             child: CustomTextFormField(
-                              controller: HomeCubit.get(context)
-                                  .organizationPhoneNumberCreateEventController,
+                              controller:
+                                  organizationPhoneNumberCreateEventController,
                               labelText: AppStrings.organizationPhoneNumber
                                   .tr(context),
                               keyboardType: TextInputType.phone,
@@ -121,8 +166,7 @@ class CreateEventScreen extends StatelessWidget {
                           //! organizationEmail
                           CustomTextFormField(
                             labelText: AppStrings.organizationEmail.tr(context),
-                            controller: HomeCubit.get(context)
-                                .organizationEmailCreateEventController,
+                            controller: organizationEmailCreateEventController,
                             validator: (value) {
                               return Validation.validateEmail(value!) != null
                                   ? Validation.validateEmail(value)!.tr(context)
@@ -134,8 +178,8 @@ class CreateEventScreen extends StatelessWidget {
                           CustomTextFormField(
                             labelText:
                                 AppStrings.organizationWebsite.tr(context),
-                            controller: HomeCubit.get(context)
-                                .organizationWebsiteCreateEventController,
+                            controller:
+                                organizationWebsiteCreateEventController,
                             validator: (value) {
                               return Validation.validateWebsite(value!) != null
                                   ? Validation.validateWebsite(value)!
@@ -147,8 +191,7 @@ class CreateEventScreen extends StatelessWidget {
                           //! ticketEventLink
                           CustomTextFormField(
                             labelText: AppStrings.ticketEventLink.tr(context),
-                            controller: HomeCubit.get(context)
-                                .ticketEventLinkCreateEventController,
+                            controller: ticketEventLinkCreateEventController,
                             validator: (value) {
                               return Validation.validateLink(value!) != null
                                   ? Validation.validateLink(value)!.tr(context)
@@ -160,8 +203,7 @@ class CreateEventScreen extends StatelessWidget {
                           CustomTextFormField(
                             labelText: AppStrings.eventPrice.tr(context),
                             keyboardType: TextInputType.number,
-                            controller: HomeCubit.get(context)
-                                .eventPriceCreateEventController,
+                            controller: eventPriceCreateEventController,
                             validator: (value) {
                               return Validation.validateDouble(value!) != null
                                   ? Validation.validateDouble(value)!
@@ -174,8 +216,7 @@ class CreateEventScreen extends StatelessWidget {
                           CustomTextFormField(
                             hintText: AppStrings.eventDescription.tr(context),
                             maxLines: 5,
-                            controller: HomeCubit.get(context)
-                                .eventDescriptionCreateEventController,
+                            controller: eventDescriptionCreateEventController,
                             validator: (value) {
                               return Validation.validateEmpty(value!) != null
                                   ? Validation.validateEmpty(value)!.tr(context)
@@ -382,10 +423,7 @@ class CreateEventScreen extends StatelessWidget {
                           CustomElevatedButton(
                             text: AppStrings.continuee.tr(context),
                             onPressed: () {
-                              if (HomeCubit.get(context)
-                                  .createEventFormKey
-                                  .currentState!
-                                  .validate()) {
+                              if (createEventFormKey.currentState!.validate()) {
                                 if (HomeCubit.get(context).eventImage == null) {
                                   showTwist(
                                     context: context,
@@ -396,8 +434,45 @@ class CreateEventScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SelectPlanScreen(),
+                                      builder: (context) => SelectPlanScreen(
+                                        eventName: nameCreateEventController
+                                            .text
+                                            .trim(),
+                                        eventAddress:
+                                            addressCreateEventController.text
+                                                .trim(),
+                                        organizerName:
+                                            organizerNameCreateEventController
+                                                .text
+                                                .trim(),
+                                        organizationName:
+                                            organizationNameCreateEventController
+                                                .text
+                                                .trim(),
+                                        organizationPhoneNumber:
+                                            organizationPhoneNumberCreateEventController
+                                                .text
+                                                .trim(),
+                                        organizationEmail:
+                                            organizationEmailCreateEventController
+                                                .text
+                                                .trim(),
+                                        organizationWebsite:
+                                            organizationWebsiteCreateEventController
+                                                .text
+                                                .trim(),
+                                        ticketEventLink:
+                                            ticketEventLinkCreateEventController
+                                                .text
+                                                .trim(),
+                                        eventPrice:
+                                            eventPriceCreateEventController.text
+                                                .trim(),
+                                        eventDescription:
+                                            eventDescriptionCreateEventController
+                                                .text
+                                                .trim(),
+                                      ),
                                     ),
                                   );
                                 }

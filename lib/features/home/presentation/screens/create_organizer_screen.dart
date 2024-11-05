@@ -14,8 +14,49 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class CreateOrganizerScreen extends StatelessWidget {
+class CreateOrganizerScreen extends StatefulWidget {
   const CreateOrganizerScreen({super.key});
+
+  @override
+  State<CreateOrganizerScreen> createState() => _CreateOrganizerScreenState();
+}
+
+class _CreateOrganizerScreenState extends State<CreateOrganizerScreen> {
+  late GlobalKey<FormState> createOrganizerFormKey;
+  late TextEditingController organizerNameController;
+  late TextEditingController organizationNameController;
+  late TextEditingController organizationFieldController;
+  late TextEditingController organizationWebsiteController;
+  late TextEditingController organizationPhoneNumberController;
+  late TextEditingController organizationEmailController;
+  late TextEditingController adviceCreateOrganizerController;
+
+  @override
+  void initState() {
+    createOrganizerFormKey = GlobalKey<FormState>();
+    organizerNameController = TextEditingController();
+    organizationNameController = TextEditingController();
+    organizationFieldController = TextEditingController();
+    organizationWebsiteController = TextEditingController();
+    organizationPhoneNumberController = TextEditingController();
+    organizationEmailController = TextEditingController();
+    adviceCreateOrganizerController = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    organizerNameController.dispose();
+    organizationNameController.dispose();
+    organizationFieldController.dispose();
+    organizationWebsiteController.dispose();
+    organizationPhoneNumberController.dispose();
+    organizationEmailController.dispose();
+    adviceCreateOrganizerController.dispose();
+    createOrganizerFormKey.currentState?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +64,6 @@ class CreateOrganizerScreen extends StatelessWidget {
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state is CreateOrganizerSuccess) {
-            HomeCubit.get(context).clearOrganizer();
             Navigator.pop(context);
             showTwist(
                 context: context,
@@ -43,7 +83,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Form(
-                      key: HomeCubit.get(context).createOrganizerFormKey,
+                      key: createOrganizerFormKey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -51,8 +91,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             //!organizerName
                             CustomTextFormField(
                               labelText: AppStrings.organizerName.tr(context),
-                              controller: HomeCubit.get(context)
-                                  .organizerNameController,
+                              controller: organizerNameController,
                               validator: (value) {
                                 return Validation.validateEmpty(value!) != null
                                     ? Validation.validateEmpty(value)!
@@ -65,8 +104,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             CustomTextFormField(
                               labelText:
                                   AppStrings.organizationName.tr(context),
-                              controller: HomeCubit.get(context)
-                                  .organizationNameController,
+                              controller: organizationNameController,
                               validator: (value) {
                                 return Validation.validateEmpty(value!) != null
                                     ? Validation.validateEmpty(value)!
@@ -79,8 +117,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             CustomTextFormField(
                               labelText:
                                   AppStrings.organizationField.tr(context),
-                              controller: HomeCubit.get(context)
-                                  .organizationFieldController,
+                              controller: organizationFieldController,
                               validator: (value) {
                                 return Validation.validateEmpty(value!) != null
                                     ? Validation.validateEmpty(value)!
@@ -93,8 +130,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             Directionality(
                               textDirection: TextDirection.ltr,
                               child: CustomTextFormField(
-                                controller: HomeCubit.get(context)
-                                    .organizationPhoneNumberController,
+                                controller: organizationPhoneNumberController,
                                 labelText: AppStrings.organizationPhoneNumber
                                     .tr(context),
                                 keyboardType: TextInputType.phone,
@@ -123,8 +159,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             CustomTextFormField(
                               labelText:
                                   AppStrings.organizationEmail.tr(context),
-                              controller: HomeCubit.get(context)
-                                  .organizationEmailController,
+                              controller: organizationEmailController,
                               validator: (value) {
                                 return Validation.validateEmail(value!) != null
                                     ? Validation.validateEmail(value)!
@@ -137,8 +172,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             CustomTextFormField(
                               labelText:
                                   AppStrings.organizationWebsite.tr(context),
-                              controller: HomeCubit.get(context)
-                                  .organizationWebsiteController,
+                              controller: organizationWebsiteController,
                               validator: (value) {
                                 return Validation.validateWebsite(value!) !=
                                         null
@@ -153,8 +187,7 @@ class CreateOrganizerScreen extends StatelessWidget {
                             CustomTextFormField(
                               hintText: AppStrings.advice.tr(context),
                               maxLines: 5,
-                              controller: HomeCubit.get(context)
-                                  .adviceCreateOrganizerController,
+                              controller: adviceCreateOrganizerController,
                               validator: (value) {
                                 return Validation.validateEmpty(value!) != null
                                     ? Validation.validateEmpty(value)!
@@ -167,11 +200,27 @@ class CreateOrganizerScreen extends StatelessWidget {
                             CustomElevatedButton(
                               text: AppStrings.createOrganizer.tr(context),
                               onPressed: () {
-                                if (HomeCubit.get(context)
-                                    .createOrganizerFormKey
-                                    .currentState!
+                                if (createOrganizerFormKey.currentState!
                                     .validate()) {
-                                  HomeCubit.get(context).createOrganizer();
+                                  HomeCubit.get(context).createOrganizer(
+                                    organizerName:
+                                        organizerNameController.text.trim(),
+                                    organizationName:
+                                        organizationNameController.text.trim(),
+                                    organizationField:
+                                        organizationFieldController.text.trim(),
+                                    organizationPhoneNumber:
+                                        organizationPhoneNumberController.text
+                                            .trim(),
+                                    organizationEmail:
+                                        organizationEmailController.text.trim(),
+                                    organizationWebsite:
+                                        organizationWebsiteController.text
+                                            .trim(),
+                                    adviceCreateOrganizer:
+                                        adviceCreateOrganizerController.text
+                                            .trim(),
+                                  );
                                 }
                               },
                             ),

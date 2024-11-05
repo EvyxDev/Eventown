@@ -9,12 +9,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../../../../core/common/common.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 
 class SelectPlanScreen extends StatelessWidget {
-  const SelectPlanScreen({super.key});
+  const SelectPlanScreen({
+    super.key,
+    required this.eventName,
+    required this.eventAddress,
+    required this.organizerName,
+    required this.organizationName,
+    required this.organizationPhoneNumber,
+    required this.organizationEmail,
+    required this.organizationWebsite,
+    required this.ticketEventLink,
+    required this.eventPrice,
+    required this.eventDescription,
+  });
+
+  final String eventName;
+  final String eventAddress;
+  final String organizerName;
+  final String organizationName;
+  final String organizationPhoneNumber;
+  final String organizationEmail;
+  final String organizationWebsite;
+  final String ticketEventLink;
+  final String eventPrice;
+  final String eventDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +174,18 @@ class SelectPlanScreen extends StatelessWidget {
                   child: CustomElevatedButton(
                     text: AppStrings.createEvent.tr(context),
                     onPressed: () {
-                      context.read<HomeCubit>().createEvent();
+                      context.read<HomeCubit>().createEvent(
+                            eventName: eventName,
+                            eventAddress: eventAddress,
+                            organizerName: organizerName,
+                            organizationName: organizationName,
+                            organizationPhoneNumber: organizationPhoneNumber,
+                            organizationEmail: organizationEmail,
+                            organizationWebsite: organizationWebsite,
+                            ticketEventLink: ticketEventLink,
+                            eventPrice: eventPrice,
+                            eventDescription: eventDescription,
+                          );
                     },
                   ),
                 ),

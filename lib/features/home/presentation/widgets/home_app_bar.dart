@@ -27,7 +27,9 @@ AppBar getHomeAppBar(BuildContext context) {
                 return const CreateEventScreen();
               },
             ),
-          );
+          ).whenComplete(() {
+            context.read<HomeCubit>().clearDate();
+          });
         },
         child: Container(
           decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:eventown/core/common/common.dart';
+import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
@@ -551,27 +552,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   //! Create Event
-  final GlobalKey<FormState> createEventFormKey = GlobalKey();
-  final TextEditingController nameCreateEventController =
-      TextEditingController();
-  final TextEditingController addressCreateEventController =
-      TextEditingController();
-  final TextEditingController organizerNameCreateEventController =
-      TextEditingController();
-  final TextEditingController organizationNameCreateEventController =
-      TextEditingController();
-  final TextEditingController organizationPhoneNumberCreateEventController =
-      TextEditingController();
-  final TextEditingController organizationEmailCreateEventController =
-      TextEditingController();
-  final TextEditingController organizationWebsiteCreateEventController =
-      TextEditingController();
-  final TextEditingController ticketEventLinkCreateEventController =
-      TextEditingController();
-  final TextEditingController eventPriceCreateEventController =
-      TextEditingController();
-  final TextEditingController eventDescriptionCreateEventController =
-      TextEditingController();
+
   XFile? eventImage;
   updateEventImage(XFile image) {
     eventImage = image;
@@ -622,16 +603,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   clearDate() {
     eventImage = null;
-    nameCreateEventController.clear();
-    addressCreateEventController.clear();
-    organizerNameCreateEventController.clear();
-    organizationNameCreateEventController.clear();
-    organizationPhoneNumberCreateEventController.clear();
-    organizationEmailCreateEventController.clear();
-    organizationWebsiteCreateEventController.clear();
-    ticketEventLinkCreateEventController.clear();
-    eventPriceCreateEventController.clear();
-    eventDescriptionCreateEventController.clear();
     selectedCityCreateEvent = null;
     selectedCategoryIdCreateEvent = null;
     selectedorganizerPlan = null;
@@ -640,21 +611,32 @@ class HomeCubit extends Cubit<HomeState> {
     selectedEndTimeCreateEvent = null;
   }
 
-  createEvent() async {
+  createEvent({
+    required String eventName,
+    required String eventAddress,
+    required String organizerName,
+    required String organizationName,
+    required String organizationPhoneNumber,
+    required String organizationEmail,
+    required String organizationWebsite,
+    required String ticketEventLink,
+    required String eventPrice,
+    required String eventDescription,
+  }) async {
+    printYellow(eventName);
     emit(CreateEventLoading());
     final response = await homeRepo.createEvent(
       eventImage: eventImage!,
-      eventName: nameCreateEventController.text.trim(),
-      eventAddress: addressCreateEventController.text.trim(),
-      organizerName: organizerNameCreateEventController.text.trim(),
-      organizationName: organizationNameCreateEventController.text.trim(),
-      organizationPhoneNumber:
-          organizationPhoneNumberCreateEventController.text.trim(),
-      organizationEmail: organizationEmailCreateEventController.text.trim(),
-      organizationWebsite: organizationWebsiteCreateEventController.text.trim(),
-      ticketEventLink: ticketEventLinkCreateEventController.text.trim(),
-      eventPrice: eventPriceCreateEventController.text.trim(),
-      eventDescription: eventDescriptionCreateEventController.text.trim(),
+      eventName: eventName,
+      eventAddress: eventAddress,
+      organizerName: organizerName,
+      organizationName: organizationName,
+      organizationPhoneNumber: organizationPhoneNumber,
+      organizationEmail: organizationEmail,
+      organizationWebsite: organizationWebsite,
+      ticketEventLink: ticketEventLink,
+      eventPrice: eventPrice,
+      eventDescription: eventDescription,
       eventLocation: selectedCityCreateEvent ?? "",
       eventCategory: selectedCategoryIdCreateEvent ?? "",
       organizerPlan: selectedorganizerPlan ?? "",
@@ -673,30 +655,24 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   //! Create Organizer
-  final GlobalKey<FormState> createOrganizerFormKey = GlobalKey();
-  final TextEditingController organizerNameController = TextEditingController();
-  final TextEditingController organizationNameController =
-      TextEditingController();
-  final TextEditingController organizationFieldController =
-      TextEditingController();
-  final TextEditingController organizationWebsiteController =
-      TextEditingController();
-  final TextEditingController organizationPhoneNumberController =
-      TextEditingController();
-  final TextEditingController organizationEmailController =
-      TextEditingController();
-  final TextEditingController adviceCreateOrganizerController =
-      TextEditingController();
-  createOrganizer() async {
+  createOrganizer({
+    required String organizerName,
+    required String organizationName,
+    required String organizationField,
+    required String organizationWebsite,
+    required String organizationPhoneNumber,
+    required String organizationEmail,
+    required String adviceCreateOrganizer,
+  }) async {
     emit(CreateOrganizerLoading());
     final response = await homeRepo.createOrganizer(
-      organizerName: organizerNameController.text.trim(),
-      organizationName: organizationNameController.text.trim(),
-      organizationField: organizationFieldController.text.trim(),
-      organizationWebsite: organizationWebsiteController.text.trim(),
-      organizationPhoneNumber: organizationPhoneNumberController.text.trim(),
-      organizationEmail: organizationEmailController.text.trim(),
-      advice: adviceCreateOrganizerController.text.trim(),
+      organizerName: organizerName,
+      organizationName: organizationName,
+      organizationField: organizationField,
+      organizationWebsite: organizationWebsite,
+      organizationPhoneNumber: organizationPhoneNumber,
+      organizationEmail: organizationEmail,
+      advice: adviceCreateOrganizer,
     );
     response.fold(
       (l) {
@@ -706,17 +682,6 @@ class HomeCubit extends Cubit<HomeState> {
         emit(CreateOrganizerSuccess());
       },
     );
-  }
-
-  //clear organizer
-  clearOrganizer() {
-    organizerNameController.clear();
-    organizationNameController.clear();
-    organizationFieldController.clear();
-    organizationWebsiteController.clear();
-    organizationPhoneNumberController.clear();
-    organizationEmailController.clear();
-    adviceCreateOrganizerController.clear();
   }
 }
 
