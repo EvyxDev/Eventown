@@ -441,7 +441,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                                 },
                                               ),
                                             ),
-                                      SizedBox(height: 32.h),
+                                      SizedBox(height: 150.h),
                                     ],
                                   ),
                                 ],

@@ -21,10 +21,29 @@ class WheelScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<GameCubit>();
     return Scaffold(
-      body: BlocBuilder<GameCubit, GameState>(
+      body: BlocConsumer<GameCubit, GameState>(
+        listener: (context, state) {
+          if (state is GetMyPointsError) {
+            showTwist(context: context, messege: state.message);
+          }
+          if (state is AddCommentError) {
+            showTwist(context: context, messege: state.message);
+          }
+
+          if (state is AddCommentSuccess) {
+            showTwist(
+              context: context,
+              messege: AppStrings.commentCreatedSuccessfully.tr(context),
+            );
+          }
+
+          if (state is AddPointsToMyAccountError) {
+            showTwist(context: context, messege: state.message);
+          }
+        },
         builder: (context, state) {
+          var cubit = context.read<GameCubit>();
           final remainingTime = cubit.getRemainingTime();
           return ModalProgressHUD(
             inAsyncCall: state is GetMyPointsLoading,
@@ -256,6 +275,7 @@ class WheelScreen extends StatelessWidget {
                             },
                           ),
                         ),
+                        SizedBox(height: 150.h),
                       ],
                     ),
                   )

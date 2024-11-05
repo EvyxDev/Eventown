@@ -4,7 +4,7 @@ import 'package:eventown/core/databases/api/end_points.dart';
 import 'package:eventown/core/errors/exceptions.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/game_comments.dart';
 import 'package:eventown/features/wheel/data/models/points_model/points_model.dart';
-import 'package:eventown/features/wheel/data/models/requests_history_model.dart';
+import 'package:eventown/features/wheel/data/models/requests_history_model/requests_history_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 class WheelRepo {

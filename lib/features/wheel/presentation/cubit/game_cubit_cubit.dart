@@ -5,7 +5,7 @@ import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/comment.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/user.dart';
-import 'package:eventown/features/wheel/data/models/requests_history_model.dart';
+import 'package:eventown/features/wheel/data/models/requests_history_model/requests_history_model.dart';
 import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,8 +111,8 @@ class GameCubit extends Cubit<GameState> {
         text: commentController.text.trim(),
         user: User(
           name: GlobalCubit.get(context).user?.data?.name,
+          profileImg: GlobalCubit.get(context).user?.data?.profileImg,
         ),
-        img: GlobalCubit.get(context).user?.data?.profileImg,
       ),
     );
     final response = await wheelRepo.addComment(
