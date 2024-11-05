@@ -1,5 +1,6 @@
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
+import 'package:eventown/core/widgets/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,16 +8,16 @@ class ReviewCardGame extends StatelessWidget {
   final String title;
   final String content;
   final String userName;
-  final String eventName;
+  final String? userImage;
   final String timeAgo;
 
   const ReviewCardGame({
     super.key,
+    this.userImage,
     required this.title,
     required this.content,
     required this.userName,
     required this.timeAgo,
-    required this.eventName,
   });
 
   @override
@@ -34,10 +35,15 @@ class ReviewCardGame extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset(
-                  Assets.assetsImagesPngProfile,
-                  width: 42.w,
-                ),
+                userImage == null
+                    ? Image.asset(
+                        Assets.assetsImagesPngProfile,
+                        width: 42.w,
+                      )
+                    : displayCachedNetworkImage(
+                        imageUrl: userImage!,
+                        width: 42.w,
+                      ),
                 SizedBox(width: 8.w),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -46,10 +52,6 @@ class ReviewCardGame extends StatelessWidget {
                     Text(
                       userName,
                       style: CustomTextStyle.roboto500sized14Primary,
-                    ),
-                    Text(
-                      eventName,
-                      style: CustomTextStyle.roboto400sized12Secoundry,
                     ),
                   ],
                 ),

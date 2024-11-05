@@ -16,7 +16,7 @@ displayCachedNetworkImage({
     errorWidget: (context, url, error) => Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.image, size: 50.w),
+        Icon(Icons.image, size: 32.w),
       ],
     ),
     height: height,

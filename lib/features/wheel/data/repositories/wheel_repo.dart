@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/databases/api/api_consumer.dart';
 import 'package:eventown/core/databases/api/end_points.dart';
 import 'package:eventown/core/errors/exceptions.dart';
@@ -11,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 class WheelRepo {
   final ApiConsumer api;
 
-  WheelRepo({required this.api});
+  WheelRepo(this.api);
 
   //! Get My Points
   Future<Either<String, PointsModel>> getMyPoints() async {
@@ -85,14 +84,14 @@ class WheelRepo {
   //! Add comment
   Future<Either<String, String>> addComment({
     required String comment,
-    required XFile image,
+    required XFile? image,
   }) async {
     try {
       await api.post(
         EndPoints.addComment,
         data: {
           'text': comment,
-          'img': await uploadImageToAPI(image),
+          // 'img': await uploadImageToAPI(image),
         },
         isFormData: true,
       );

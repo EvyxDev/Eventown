@@ -5,6 +5,7 @@ import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/profile/data/repositories/profile_repo.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
 import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
+import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
 import 'package:get_it/get_it.dart';
 import '../connection/network_info.dart';
 import '../cubit/global_cubit.dart';
@@ -26,4 +27,5 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => ForgotPasswordRepo(sl<DioConsumer>()));
   sl.registerLazySingleton(() => HomeRepo(sl<DioConsumer>()));
   sl.registerLazySingleton(() => ProfileRepo(sl<DioConsumer>()));
+  sl.registerLazySingleton(() => WheelRepo(sl<DioConsumer>()));
 }

@@ -5,6 +5,8 @@ import 'package:eventown/features/notification/presentation/screens/notification
 import 'package:eventown/features/settings/data/models/user/user.dart';
 import 'package:eventown/features/settings/presentation/screens/settings_screen.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
+import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
+import 'package:eventown/features/wheel/presentation/cubit/game_cubit_cubit.dart';
 import 'package:eventown/features/wheel/presentation/screens/wheel_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +24,12 @@ class GlobalCubit extends Cubit<GlobalState> {
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     const HomeScreen(),
-    const WheelScreen(),
+    BlocProvider(
+      create: (context) => GameCubit(sl<WheelRepo>())
+        ..getMyPoints()
+        ..getAllComments(),
+      child: const WheelScreen(),
+    ),
     const NotificationScreen(),
     const SettingsScreen()
   ];
