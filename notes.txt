@@ -1,0 +1,148 @@
+/*
+Variant: debug
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+Variant: release
+Config: release
+Store: D:\CS\Flutter\Evyx\event_town\eventown\upload-keystore.jks
+Alias: upload
+MD5: E8:F2:ED:8C:89:0E:7D:B2:72:B4:7A:19:28:23:67:6E
+SHA1: DA:F7:20:95:D8:45:90:54:72:9A:BD:74:85:27:DE:08:F4:FA:BC:54
+SHA-256: 68:3C:46:F6:02:5E:2C:6F:23:45:7F:E0:A3:00:A0:79:14:F1:16:E7:41:68:33:46:4E:CE:D8:F8:60:50:C9:8A
+Valid until: Sunday, March 24, 2052
+----------
+Variant: profile
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :flutter_localization:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :flutter_plugin_android_lifecycle:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :image_picker_android:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :path_provider_android:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :shared_preferences_android:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :sqflite_android:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+> Task :url_launcher_android:signingReport
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\lenovo\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 5F:5B:8E:8C:84:FA:A6:2F:AB:6A:E5:57:7B:CD:E4:6F
+SHA1: BA:50:B7:49:52:3A:06:88:B5:D0:96:E6:00:E1:6A:F3:83:26:52:BE
+SHA-256: 29:AA:E4:5B:40:B4:B7:6D:CA:09:CC:E0:1F:09:53:B0:03:65:F4:50:AD:8D:64:E5:5B:75:6E:56:F0:F6:48:59
+Valid until: Thursday, October 8, 2054
+----------
+
+BUILD SUCCESSFUL in 2s
+12 actionable tasks: 8 executed, 4 up-to-date 
+*/
+
+
+
+// {
+//   "applinks": {
+//     "apps": [],
+//     "details": [
+//       {
+//         "appID": "TEAMID.api.evntown.site",
+//         "paths": [ "/event/*" ]
+//       }
+//     ]
+//   }
+// }
+
+
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.evntown.evyx",
+            "sha256_cert_fingerprints": [
+                "68:3C:46:F6:02:5E:2C:6F:23:45:7F:E0:A3:00:A0:79:14:F1:16:E7:41:68:33:46:4E:CE:D8:F8:60:50:C9:8A"
+            ]
+        }
+    }
+]
