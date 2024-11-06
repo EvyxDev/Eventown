@@ -35,18 +35,26 @@ class GameCubit extends Cubit<GameState> {
     return remainingTime.isNegative ? Duration.zero : remainingTime;
   }
 
+  //! Get Game Data
+  getGameData() async {
+    emit(GetMyPointsLoading());
+    await getMyPoints();
+    await getAllComments();
+    emit(GetMyPointsSuccess());
+  }
+
   //! Get My Points
   int myPoint = 0;
   getMyPoints() async {
-    emit(GetMyPointsLoading());
+    // emit(GetMyPointsLoading());
     final response = await wheelRepo.getMyPoints();
     response.fold(
       (l) {
-        emit(GetMyPointsError(l));
+        // emit(GetMyPointsError(l));
       },
       (r) {
         myPoint = r.myPoints?.points ?? 0;
-        emit(GetMyPointsSuccess());
+        // emit(GetMyPointsSuccess());
       },
     );
   }

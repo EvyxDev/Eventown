@@ -25,7 +25,10 @@ class Comment {
             ? null
             : User.fromJson(json['user'] as Map<String, dynamic>),
         text: json['text'] as String?,
-        img: json['img'] as String?,
+        img: json['img'] ==
+                "https://api.evntown.site/gamefication/comments/gamefication-comment-b759356e-b5e9-47ef-a523-2e1863024989-1730402488878.jpeg"
+            ? null
+            : json['img'] as String?,
         createdAt: json['createdAt'] == null
             ? null
             : DateTime.parse(json['createdAt'] as String),

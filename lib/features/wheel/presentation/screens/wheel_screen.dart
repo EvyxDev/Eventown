@@ -271,6 +271,7 @@ class WheelScreen extends StatelessWidget {
                                     "",
                                 userImage:
                                     cubit.allComments[index].user?.profileImg,
+                                img: cubit.allComments[index].img,
                               );
                             },
                           ),

@@ -9,11 +9,13 @@ class ReviewCardGame extends StatelessWidget {
   final String content;
   final String userName;
   final String? userImage;
+  final String? img;
   final String timeAgo;
 
   const ReviewCardGame({
     super.key,
     this.userImage,
+    this.img,
     required this.title,
     required this.content,
     required this.userName,
@@ -29,39 +31,62 @@ class ReviewCardGame extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 16.h,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                userImage == null
-                    ? Image.asset(
-                        Assets.assetsImagesPngProfile,
-                        width: 42.w,
-                      )
-                    : displayCachedNetworkImage(
-                        imageUrl: userImage!,
-                        width: 42.w,
-                      ),
-                SizedBox(width: 8.w),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      userName,
-                      style: CustomTextStyle.roboto500sized14Primary,
+                Container(
+                  height: 40.h,
+                  width: 40.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    image: DecorationImage(
+                      image: userImage == null
+                          ? const AssetImage(
+                              Assets.assetsImagesPngProfile,
+                            )
+                          : displayProviderCachedNetworkImage(
+                              imageUrl: userImage!,
+                            ),
+                      fit: BoxFit.cover,
                     ),
-                  ],
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: Text(
+                    userName,
+                    style: CustomTextStyle.roboto500sized14Primary,
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 12.h),
+            img != null
+                ? Container(
+                    height: 200.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image:
+                            displayProviderCachedNetworkImage(imageUrl: img!),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
+            SizedBox(height: 16.h),
             Text(
               content,
               style: CustomTextStyle.roboto400sized14Grey,
               maxLines: 3,
+              textAlign: TextAlign.start,
             ),
             SizedBox(height: 16.h),
             Row(

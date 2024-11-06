@@ -25,9 +25,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   List<Widget> bottomScreens = [
     const HomeScreen(),
     BlocProvider(
-      create: (context) => GameCubit(sl<WheelRepo>())
-        ..getMyPoints()
-        ..getAllComments(),
+      create: (context) => GameCubit(sl<WheelRepo>())..getGameData(),
       child: const WheelScreen(),
     ),
     const NotificationScreen(),
