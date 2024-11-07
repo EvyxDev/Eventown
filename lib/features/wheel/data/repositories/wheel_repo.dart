@@ -119,15 +119,13 @@ class WheelRepo {
       await api.post(
         EndPoints.requestFreeTicket,
         data: {
-          {
-            "name": name,
-            "email": email,
-            "phone": phone,
-            "address": address,
-            "event1": event1,
-            "event2": event2,
-            "event3": event3,
-          }
+          "name": name,
+          "email": email,
+          "phone": phone,
+          "address": address,
+          "event1": event1,
+          "event2": event2,
+          "event3": event3,
         },
       );
       return const Right("Ticket requested successfully");

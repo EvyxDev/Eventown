@@ -1,34 +1,38 @@
+import 'package:eventown/features/home/data/models/events_model/datum.dart';
+import 'logged_user.dart';
 import 'user_information.dart';
 
 class MyHistory {
-  UserInformation? userInformation;
   String? id;
-  String? loggedUser;
-  List<String>? events;
+  UserInformation? userInformation;
+  LoggedUser? loggedUser;
+  List<EventModel>? events;
   String? status;
   DateTime? createdAt;
   DateTime? updatedAt;
-  int? v;
 
   MyHistory({
-    this.userInformation,
     this.id,
+    this.userInformation,
     this.loggedUser,
     this.events,
     this.status,
     this.createdAt,
     this.updatedAt,
-    this.v,
   });
 
   factory MyHistory.fromJson(Map<String, dynamic> json) => MyHistory(
+        id: json['_id'] as String?,
         userInformation: json['userInformation'] == null
             ? null
             : UserInformation.fromJson(
                 json['userInformation'] as Map<String, dynamic>),
-        id: json['_id'] as String?,
-        loggedUser: json['loggedUser'] as String?,
-        events: json['events'] as List<String>?,
+        loggedUser: json['loggedUser'] == null
+            ? null
+            : LoggedUser.fromJson(json['loggedUser'] as Map<String, dynamic>),
+        events: (json['events'] as List<dynamic>?)
+            ?.map((e) => EventModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
         status: json['status'] as String?,
         createdAt: json['createdAt'] == null
             ? null
@@ -36,17 +40,15 @@ class MyHistory {
         updatedAt: json['updatedAt'] == null
             ? null
             : DateTime.parse(json['updatedAt'] as String),
-        v: json['__v'] as int?,
       );
 
   Map<String, dynamic> toJson() => {
-        'userInformation': userInformation?.toJson(),
         '_id': id,
-        'loggedUser': loggedUser,
-        'events': events,
+        'userInformation': userInformation?.toJson(),
+        'loggedUser': loggedUser?.toJson(),
+        'events': events?.map((e) => e.toJson()).toList(),
         'status': status,
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),
-        '__v': v,
       };
 }

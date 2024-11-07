@@ -9,6 +9,7 @@ environment:
   sdk: ^3.5.3
 
 dependencies:
+  app_links: ^6.3.2
   bottom_sheet: ^4.0.4
   cached_network_image: ^3.4.1
   card_swiper: ^3.0.1
@@ -36,7 +37,6 @@ dependencies:
   persistent_bottom_nav_bar: ^6.2.1
   rxdart: ^0.28.0
   shared_preferences: ^2.3.2
-  uni_links3: ^0.5.3
   url_launcher: ^6.3.1
   widget_and_text_animator: ^1.1.5
 

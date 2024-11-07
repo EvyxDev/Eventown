@@ -1,11 +1,14 @@
 import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
+import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
 import 'package:eventown/features/wheel/presentation/cubit/game_cubit_cubit.dart';
 import 'package:eventown/features/wheel/presentation/cubit/game_cubit_state.dart';
+import 'package:eventown/features/wheel/presentation/screens/redeem_ticket_screen.dart';
 import 'package:eventown/features/wheel/presentation/widgets/gradient_progress_indicator.dart';
 import 'package:eventown/features/wheel/presentation/widgets/review_card_image.dart';
 import 'package:eventown/features/wheel/presentation/widgets/spin_button.dart';
@@ -182,12 +185,22 @@ class WheelScreen extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             if (cubit.myPoint >= 1000) {
-                              // setState(() {
-                              //   _redeemTicket();
-                              //   _loadScore();
-                              //   _saveLastSpinTime();
-                              //   lastSpinTime = DateTime.now();
-                              // });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) {
+                                    return BlocProvider(
+                                      create: (context) =>
+                                          GameCubit(sl<WheelRepo>()),
+                                      child: const RedeemTicketScreen(),
+                                    );
+                                  },
+                                ),
+                              ).whenComplete(
+                                () {
+                                  cubit.getGameData();
+                                },
+                              );
                             }
                           },
                           child: Container(
@@ -324,8 +337,8 @@ Widget buildFortuneWheel(BuildContext context) {
           if (cubit.selected.hasValue) {
             final int rewardValue = cubit.items[cubit.selected.value];
             cubit.addPointsToMyAccount(rewardValue);
-            cubit.saveLastSpinTime();
             cubit.lastSpinTime = DateTime.now();
+            cubit.saveLastSpinTime();
           }
         },
         items: [

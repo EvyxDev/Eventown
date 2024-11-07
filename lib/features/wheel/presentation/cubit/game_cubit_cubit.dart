@@ -3,6 +3,7 @@ import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
+import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/comment.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/user.dart';
 import 'package:eventown/features/wheel/data/models/requests_history_model/requests_history_model.dart';
@@ -139,7 +140,24 @@ class GameCubit extends Cubit<GameState> {
   }
 
   //! Request free ticket
-  List<String> selectedEvents = [];
+  List<EventModel> selectedEvents = [];
+  updateSelectedEvents(BuildContext context, EventModel event) {
+    if (selectedEvents.contains(event)) {
+      selectedEvents.remove(event);
+    } else {
+      if (selectedEvents.length != 3) {
+        selectedEvents.add(event);
+      } else {
+        showTwist(context: context, messege: "You can select only 3 events");
+      }
+    }
+    emit(GameInitial());
+  }
+
+  bool isEventSelected(EventModel event) {
+    return selectedEvents.contains(event);
+  }
+
   requestFreeTicket({
     required String name,
     required String email,
@@ -152,9 +170,9 @@ class GameCubit extends Cubit<GameState> {
       email: email,
       phone: phone,
       address: address,
-      event1: selectedEvents[0],
-      event2: selectedEvents[1],
-      event3: selectedEvents[2],
+      event1: selectedEvents[0].id ?? "",
+      event2: selectedEvents[1].id ?? "",
+      event3: selectedEvents[2].id ?? "",
     );
     response.fold(
       (l) {
