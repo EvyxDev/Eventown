@@ -6,7 +6,7 @@ import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/comment.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/user.dart';
-import 'package:eventown/features/wheel/data/models/requests_history_model/requests_history_model.dart';
+import 'package:eventown/features/wheel/data/models/requests_history_model/my_history.dart';
 import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,7 +77,7 @@ class GameCubit extends Cubit<GameState> {
   }
 
   //! Get My Requests History
-  RequestsHistoryModel? myRequestsHistory;
+  List<EventModel> myRequestsHistory = [];
   getMyRequestsHistory() async {
     emit(GetMyRequestsHistoryLoading());
     final response = await wheelRepo.getMyRequestsHistory();
@@ -86,7 +86,9 @@ class GameCubit extends Cubit<GameState> {
         emit(GetMyRequestsHistoryError(l));
       },
       (r) {
-        myRequestsHistory = r;
+        for (final MyHistory myHistory in r.myHistory ?? []) {
+          myRequestsHistory.addAll(myHistory.events ?? []);
+        }
         emit(GetMyRequestsHistorySuccess());
       },
     );

@@ -8,6 +8,7 @@ import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
 import 'package:eventown/features/wheel/presentation/cubit/game_cubit_cubit.dart';
 import 'package:eventown/features/wheel/presentation/cubit/game_cubit_state.dart';
+import 'package:eventown/features/wheel/presentation/screens/my_requests_history_screen.dart';
 import 'package:eventown/features/wheel/presentation/screens/redeem_ticket_screen.dart';
 import 'package:eventown/features/wheel/presentation/widgets/gradient_progress_indicator.dart';
 import 'package:eventown/features/wheel/presentation/widgets/review_card_image.dart';
@@ -147,12 +148,16 @@ class WheelScreen extends StatelessWidget {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (_) => Ticket_History_Screen(),
-                                  //     ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => BlocProvider(
+                                        create: (context) =>
+                                            GameCubit(sl<WheelRepo>()),
+                                        child: const MyRequestsHistoryScreen(),
+                                      ),
+                                    ),
+                                  );
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
