@@ -1,7 +1,11 @@
 import 'package:eventown/app/eventown.dart';
 import 'package:eventown/features/home/data/repositories/home_repo.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
+import 'package:eventown/features/notification/local_notification_handler.dart';
+import 'package:eventown/features/notification/notification_handler.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
+import 'package:eventown/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +16,11 @@ import 'core/services/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Future.wait([
+    NotificationHandler.init(),
+    LocalNotificationService.init(),
+  ]);
   await ScreenUtil.ensureScreenSize();
   //! Orientations
   SystemChrome.setPreferredOrientations([

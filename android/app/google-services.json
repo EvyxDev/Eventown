@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "419674672882",
+    "project_id": "evntown-b5f0e",
+    "storage_bucket": "evntown-b5f0e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419674672882:android:8894cd209f14a3a6b88a6b",
+        "android_client_info": {
+          "package_name": "com.evntown.evyx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJje6to19sUT7M0WWbN1ql-jLnSgGjKtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
