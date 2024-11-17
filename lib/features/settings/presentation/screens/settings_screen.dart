@@ -25,6 +25,7 @@ import 'package:eventown/features/settings/presentation/widgets/setting_item.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:restart/restart.dart';
 import '../../../favorite/presentation/screens/favorite_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -77,11 +78,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 context.read<GlobalCubit>().changeBottom(0);
                                 sl<CacheHelper>()
                                     .removeData(key: AppConstants.token);
-                                Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  Routes.signIn,
-                                  (route) => false,
-                                );
+                                restart();
+                                // Navigator.pushNamedAndRemoveUntil(
+                                //   context,
+                                //   Routes.signIn,
+                                //   (route) => false,
+                                // );
                               },
                             ),
                           ],
@@ -362,11 +364,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                             .changeBottom(0);
                                         sl<CacheHelper>().removeData(
                                             key: AppConstants.token);
-                                        Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          Routes.signIn,
-                                          (route) => false,
-                                        );
+                                        restart();
+                                        // Navigator.pushNamedAndRemoveUntil(
+                                        //   context,
+                                        //   Routes.signIn,
+                                        //   (route) => false,
+                                        // );
                                       },
                                     );
                                   },
