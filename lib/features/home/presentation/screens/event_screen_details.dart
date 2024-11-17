@@ -214,34 +214,34 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                           ],
                                         ),
                                       ),
-                                      // Event Social Media
-                                      InkWell(
-                                        onTap: () {
-                                          launchEmailClient(
-                                              context, event.organizationEmail);
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Icon(
-                                              Icons.email,
-                                              color: AppColors.primary,
-                                            ),
-                                            SizedBox(width: 4.w),
-                                            Text(
-                                              AppStrings.email.tr(context),
-                                              style: CustomTextStyle
-                                                  .roboto400sized14Grey
-                                                  .copyWith(
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                decorationColor: AppColors.grey,
-                                              ),
-                                              overflow: TextOverflow.fade,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                      // // Event Social Media
+                                      // InkWell(
+                                      //   onTap: () {
+                                      //     launchEmailClient(
+                                      //         context, event.organizationEmail);
+                                      //   },
+                                      //   child: Row(
+                                      //     mainAxisSize: MainAxisSize.min,
+                                      //     children: [
+                                      //       const Icon(
+                                      //         Icons.email,
+                                      //         color: AppColors.primary,
+                                      //       ),
+                                      //       SizedBox(width: 4.w),
+                                      //       Text(
+                                      //         AppStrings.email.tr(context),
+                                      //         style: CustomTextStyle
+                                      //             .roboto400sized14Grey
+                                      //             .copyWith(
+                                      //           decoration:
+                                      //               TextDecoration.underline,
+                                      //           decorationColor: AppColors.grey,
+                                      //         ),
+                                      //         overflow: TextOverflow.fade,
+                                      //       ),
+                                      //     ],
+                                      //   ),
+                                      // ),
                                       // Event Date
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -304,6 +304,20 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                     ],
                                   ),
                                   SizedBox(height: 16.h),
+                                  Text(
+                                    AppStrings.description.tr(context),
+                                    style:
+                                        CustomTextStyle.roboto700sized20White,
+                                    overflow: TextOverflow.fade,
+                                  ),
+                                  SizedBox(height: 16.h),
+                                  // Event Description
+                                  Text(
+                                    event.eventDescription ?? '-',
+                                    style: CustomTextStyle.roboto400sized14Grey,
+                                    overflow: TextOverflow.fade,
+                                  ),
+                                  SizedBox(height: 16.h),
                                   CustomElevatedButton(
                                     text: AppStrings.getTicket.tr(context),
                                     elevation: 0,
@@ -315,13 +329,7 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                   SizedBox(height: 16.h),
                                   AddToCalenderBtn(cubit: cubit, event: event),
                                   SizedBox(height: 16.h),
-                                  // Event Description
-                                  Text(
-                                    event.eventDescription ?? '-',
-                                    style: CustomTextStyle.roboto400sized14Grey,
-                                    overflow: TextOverflow.fade,
-                                  ),
-                                  SizedBox(height: 16.h),
+
                                   //comments
                                   Column(
                                     crossAxisAlignment:

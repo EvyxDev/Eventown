@@ -54,14 +54,14 @@ class WheelPromotion extends StatelessWidget {
                   Text(
                     context.read<HomeCubit>().wheelPromotions[index]['title'],
                     style: CustomTextStyle.roboto700sized16Primary,
-                    maxLines: 4,
+                    maxLines: 2,
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     context.read<HomeCubit>().wheelPromotions[index]
                         ['description'],
                     style: CustomTextStyle.roboto400sized12Secoundry,
-                    maxLines: 4,
+                    maxLines: 3,
                   ),
                 ],
               ),

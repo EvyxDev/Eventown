@@ -1,16 +1,13 @@
 import 'dart:async';
 import 'package:eventown/core/common/common.dart';
-import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/features/home/data/models/events_model/datum.dart';
 import 'package:eventown/features/wheel/data/models/game_comments/comment.dart';
-import 'package:eventown/features/wheel/data/models/game_comments/user.dart';
 import 'package:eventown/features/wheel/data/models/requests_history_model/my_history.dart';
 import 'package:eventown/features/wheel/data/repositories/wheel_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:rxdart/rxdart.dart';
 import 'game_cubit_state.dart';
 
@@ -18,7 +15,7 @@ class GameCubit extends Cubit<GameState> {
   GameCubit(this.wheelRepo) : super(GameInitial());
   final WheelRepo wheelRepo;
   BehaviorSubject<int> selected = BehaviorSubject<int>();
-  final List<int> items = [10, 25, 50, 75, 100, 150, 200];
+  final List<int> items = [10, 20, 30, 40, 50, 100, 0];
   int totalPoints = 1000;
   DateTime lastSpinTime = DateTime.fromMillisecondsSinceEpoch(
       sl<CacheHelper>().getData(key: "last_spin_time") ?? 0);
@@ -110,36 +107,36 @@ class GameCubit extends Cubit<GameState> {
     );
   }
 
-  //! Add Comment
-  final TextEditingController commentController = TextEditingController();
-  XFile? imageFile;
-  addComment(context) async {
-    emit(AddCommentLoading());
-    allComments.insert(
-      0,
-      Comment(
-        id: generateRandomString(15),
-        text: commentController.text.trim(),
-        user: User(
-          name: GlobalCubit.get(context).user?.data?.name,
-          profileImg: GlobalCubit.get(context).user?.data?.profileImg,
-        ),
-      ),
-    );
-    final response = await wheelRepo.addComment(
-      comment: commentController.text.trim(),
-      image: imageFile,
-    );
-    response.fold(
-      (l) {
-        allComments.removeAt(0);
-        emit(AddCommentError(l));
-      },
-      (r) {
-        emit(AddCommentSuccess());
-      },
-    );
-  }
+  // //! Add Comment
+  // final TextEditingController commentController = TextEditingController();
+  // XFile? imageFile;
+  // addComment(context) async {
+  //   emit(AddCommentLoading());
+  //   allComments.insert(
+  //     0,
+  //     Comment(
+  //       id: generateRandomString(15),
+  //       text: commentController.text.trim(),
+  //       user: User(
+  //         name: GlobalCubit.get(context).user?.data?.name,
+  //         profileImg: GlobalCubit.get(context).user?.data?.profileImg,
+  //       ),
+  //     ),
+  //   );
+  //   final response = await wheelRepo.addComment(
+  //     comment: commentController.text.trim(),
+  //     image: imageFile,
+  //   );
+  //   response.fold(
+  //     (l) {
+  //       allComments.removeAt(0);
+  //       emit(AddCommentError(l));
+  //     },
+  //     (r) {
+  //       emit(AddCommentSuccess());
+  //     },
+  //   );
+  // }
 
   //! Request free ticket
   List<EventModel> selectedEvents = [];

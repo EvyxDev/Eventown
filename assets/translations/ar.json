@@ -188,5 +188,6 @@
     "organizerCreatedSuccessfully": "تم إنشاء المنظم بنجاح",
     "wheelOfFortune": "عجلة الحظ",
     "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents": "تشعر بالحظ؟ اختبر حظك على عجلة اللعب الخاصة بنا! اجمع النقاط مع كل دوران للفوز بتذاكر للأحداث القادمة.",
-    "selectPlan": "اختر الخطة"
+    "selectPlan": "اختر الخطة",
+    "description" : "الوصف"
 }

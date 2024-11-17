@@ -86,25 +86,22 @@ class HomeScreen extends StatelessWidget {
                           : Column(
                               children: [
                                 //! Top Events
-                                context.read<HomeCubit>().topEvents.isNotEmpty
-                                    ? Column(
-                                        children: [
-                                          EventsSection(
-                                            title: AppStrings.topEvents
-                                                .tr(context),
-                                            eventsType: EventsType.topEvents,
-                                            events: context
-                                                .read<HomeCubit>()
-                                                .topEvents,
-                                          ),
-                                          SizedBox(height: 16.h),
-                                        ],
-                                      )
-                                    : const SizedBox.shrink(),
+                                Column(
+                                  children: [
+                                    EventsSection(
+                                      title: AppStrings.topEvents.tr(context),
+                                      eventsType: EventsType.topEvents,
+                                      events:
+                                          context.read<HomeCubit>().topEvents,
+                                    ),
+                                    SizedBox(height: 16.h),
+                                  ],
+                                ),
+
                                 SizedBox(height: 16.h),
                                 //! Game Promotion Section
                                 Container(
-                                  height: 200.h,
+                                  height: 150.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
                                   ),
@@ -126,64 +123,50 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16.h),
                                 //! On This Week Events
-                                context
-                                        .read<HomeCubit>()
-                                        .onThisWeekEvents
-                                        .isNotEmpty
-                                    ? Column(
-                                        children: [
-                                          EventsSection(
-                                            title: AppStrings.onThisWeekEvents
-                                                .tr(context),
-                                            eventsType: EventsType.onThisWeek,
-                                            width: 200.w,
-                                            events: context
-                                                .read<HomeCubit>()
-                                                .onThisWeekEvents,
-                                          ),
-                                          SizedBox(height: 16.h),
-                                        ],
-                                      )
-                                    : const SizedBox.shrink(),
+                                Column(
+                                  children: [
+                                    EventsSection(
+                                      title: AppStrings.onThisWeekEvents
+                                          .tr(context),
+                                      eventsType: EventsType.onThisWeek,
+                                      width: 200.w,
+                                      events: context
+                                          .read<HomeCubit>()
+                                          .onThisWeekEvents,
+                                    ),
+                                    SizedBox(height: 16.h),
+                                  ],
+                                ),
+
                                 //! For You Events
-                                context
-                                        .read<HomeCubit>()
-                                        .forYouEvents
-                                        .isNotEmpty
-                                    ? Column(
-                                        children: [
-                                          EventsSection(
-                                            title: AppStrings.forYouEvents
-                                                .tr(context),
-                                            eventsType: EventsType.forYou,
-                                            width: 200.w,
-                                            events: context
-                                                .read<HomeCubit>()
-                                                .forYouEvents,
-                                          ),
-                                          SizedBox(height: 16.h),
-                                        ],
-                                      )
-                                    : const SizedBox.shrink(),
+                                Column(
+                                  children: [
+                                    EventsSection(
+                                      title:
+                                          AppStrings.forYouEvents.tr(context),
+                                      eventsType: EventsType.forYou,
+                                      width: 200.w,
+                                      events: context
+                                          .read<HomeCubit>()
+                                          .forYouEvents,
+                                    ),
+                                    SizedBox(height: 16.h),
+                                  ],
+                                ),
                                 //! In Your Area Events
-                                context
-                                        .read<HomeCubit>()
-                                        .inYourAreaEvents
-                                        .isNotEmpty
-                                    ? Column(
-                                        children: [
-                                          EventsSection(
-                                            title: AppStrings.inYourAreaEvents
-                                                .tr(context),
-                                            eventsType: EventsType.inYourArea,
-                                            width: 200.w,
-                                            events: context
-                                                .read<HomeCubit>()
-                                                .inYourAreaEvents,
-                                          ),
-                                        ],
-                                      )
-                                    : const SizedBox.shrink(),
+                                Column(
+                                  children: [
+                                    EventsSection(
+                                      title: AppStrings.inYourAreaEvents
+                                          .tr(context),
+                                      eventsType: EventsType.inYourArea,
+                                      width: 200.w,
+                                      events: context
+                                          .read<HomeCubit>()
+                                          .inYourAreaEvents,
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                     ],

@@ -188,5 +188,6 @@
     "organizerCreatedSuccessfully": "Organizer created successfully",
     "wheelOfFortune": "Wheel of Fortune",
     "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents": "Feeling lucky? Test your fortune on our game wheel! Gather points with every spin to win tickets to upcoming events.",
-    "selectPlan": "Select Plan"
+    "selectPlan": "Select Plan",
+    "description" : "Description"
 }

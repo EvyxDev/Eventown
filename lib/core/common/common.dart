@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mime/mime.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utils/app_colors.dart';
 import 'package:http_parser/http_parser.dart'; // For MediaType
@@ -45,6 +46,24 @@ void navigatepushNamedAndRemoveUntil(
 
 void navigatePop({required BuildContext context}) {
   Navigator.pop(context);
+}
+
+navBarNavigate({
+  required BuildContext context,
+  required Widget widget,
+  bool? withNavBar,
+  Function? onNavigationEnd,
+}) {
+  PersistentNavBarNavigator.pushNewScreen(
+    context,
+    screen: widget,
+    withNavBar: withNavBar ?? false,
+    pageTransitionAnimation: PageTransitionAnimation.fade,
+  ).then((value) {
+    if (onNavigationEnd != null) {
+      onNavigationEnd();
+    }
+  });
 }
 
 String? displayDate(DateTime? dateTime) {

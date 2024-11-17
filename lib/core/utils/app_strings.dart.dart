@@ -339,4 +339,5 @@ abstract class AppStrings {
       "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents";
   //select plan
   static const String selectPlan = "selectPlan";
+  static const String description = "description";
 }

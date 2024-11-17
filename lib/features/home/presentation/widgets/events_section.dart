@@ -54,18 +54,25 @@ class EventsSection extends StatelessWidget {
         SizedBox(height: 16.h),
         SizedBox(
           height: 225.h,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
-            itemBuilder: (context, index) {
-              return EventCard(
-                event: events[index],
-                width: width,
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(width: 16.w),
-            itemCount: events.length,
-          ),
+          child: events.isNotEmpty
+              ? ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  clipBehavior: Clip.none,
+                  itemBuilder: (context, index) {
+                    return EventCard(
+                      event: events[index],
+                      width: width,
+                    );
+                  },
+                  separatorBuilder: (context, index) => SizedBox(width: 16.w),
+                  itemCount: events.length,
+                )
+              : Center(
+                  child: Text(
+                    AppStrings.noEventsFound.tr(context),
+                    style: CustomTextStyle.roboto500sized14Grey,
+                  ),
+                ),
         )
       ],
     );

@@ -163,11 +163,11 @@ AppBar getHomeAppBar(BuildContext context) {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 11.h),
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     child: SvgPicture.asset(
                       Assets.assetsImagesSvgFilter,
-                      width: 24.w,
-                      height: 24.h,
+                      width: 18.w,
+                      height: 18.h,
                     ),
                   ),
                 ),

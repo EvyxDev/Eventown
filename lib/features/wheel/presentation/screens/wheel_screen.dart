@@ -18,7 +18,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
 
 class WheelScreen extends StatelessWidget {
   const WheelScreen({super.key});
@@ -52,253 +51,243 @@ class WheelScreen extends StatelessWidget {
           return ModalProgressHUD(
             inAsyncCall: state is GetMyPointsLoading,
             progressIndicator: const CustomLoadingIndicator(),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(
-                      top: 48.h,
-                      left: 16.w,
-                      right: 16.w,
-                      bottom: 16.h,
-                    ),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          AppColors.primary,
-                          Colors.deepOrange.shade800,
-                        ],
+            child: RefreshIndicator(
+              onRefresh: () async {
+                return cubit.getGameData();
+              },
+              backgroundColor: AppColors.white,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: 48.h,
+                        left: 16.w,
+                        right: 16.w,
+                        bottom: 16.h,
                       ),
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.r),
-                        bottomRight: Radius.circular(10.r),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Align(
-                          child: Text(
-                            AppStrings.welcomeToSpinAndWin.tr(context),
-                            style: CustomTextStyle.roboto700sized20White,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 24.h),
-                        Text(
-                          "${AppStrings.aboutSpinAndWin.tr(context)} :",
-                          style: CustomTextStyle.roboto500sized14Primary,
-                        ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          AppStrings
-                              .earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel
-                              .tr(context),
-                          style: CustomTextStyle.roboto400sized14Grey,
-                          overflow: TextOverflow.fade,
-                        ),
-                        SizedBox(height: 16.h),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${AppStrings.howToPlaySpinAndWin.tr(context)} : ",
-                              style: CustomTextStyle.roboto500sized14Primary,
-                            ),
-                            SizedBox(height: 4.h),
-                            Text(
-                              AppStrings.spinAndWinInstructions.tr(context),
-                              style: CustomTextStyle.roboto400sized14Grey,
-                              overflow: TextOverflow.fade,
-                            ),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            AppColors.primary,
+                            Colors.deepOrange.shade800,
                           ],
                         ),
-                        SizedBox(height: 24.h),
-                        Center(
-                          child: progressIndicatorWithPoints(
-                            cubit.myPoint / cubit.totalPoints,
-                            context,
-                          ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10.r),
+                          bottomRight: Radius.circular(10.r),
                         ),
-                        SizedBox(height: 24.h),
-                        buildFortuneWheel(context),
-                        SizedBox(height: 24.h),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: spinButton(
-                                remainingTime,
-                                cubit.selected,
-                                cubit.items,
-                                context,
-                              ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Align(
+                            child: Text(
+                              AppStrings.welcomeToSpinAndWin.tr(context),
+                              style: CustomTextStyle.roboto700sized20White,
                             ),
-                            SizedBox(width: 8.w),
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => BlocProvider(
-                                        create: (context) =>
-                                            GameCubit(sl<WheelRepo>()),
-                                        child: const MyRequestsHistoryScreen(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 24.h),
+                          Text(
+                            "${AppStrings.aboutSpinAndWin.tr(context)} :",
+                            style: CustomTextStyle.roboto500sized14Primary,
+                          ),
+                          SizedBox(height: 4.h),
+                          Text(
+                            AppStrings
+                                .earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel
+                                .tr(context),
+                            style: CustomTextStyle.roboto400sized14Grey,
+                            overflow: TextOverflow.fade,
+                          ),
+                          SizedBox(height: 16.h),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${AppStrings.howToPlaySpinAndWin.tr(context)} : ",
+                                style: CustomTextStyle.roboto500sized14Primary,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                AppStrings.spinAndWinInstructions.tr(context),
+                                style: CustomTextStyle.roboto400sized14Grey,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 24.h),
+                          Center(
+                            child: progressIndicatorWithPoints(
+                              cubit.myPoint / cubit.totalPoints,
+                              context,
+                            ),
+                          ),
+                          SizedBox(height: 24.h),
+                          buildFortuneWheel(context),
+                          SizedBox(height: 24.h),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: spinButton(
+                                  remainingTime,
+                                  cubit.selected,
+                                  cubit.items,
+                                  context,
+                                ),
+                              ),
+                              SizedBox(width: 8.w),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => BlocProvider(
+                                          create: (context) =>
+                                              GameCubit(sl<WheelRepo>()),
+                                          child:
+                                              const MyRequestsHistoryScreen(),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16.w, vertical: 8.h),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: AppColors.primary),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Center(
-                                    child: Text(
-                                      AppStrings.ticketHistory.tr(context),
-                                      style:
-                                          CustomTextStyle.roboto400sized14White,
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 16.w, vertical: 8.h),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: AppColors.primary),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Center(
+                                      child: Text(
+                                        AppStrings.ticketHistory.tr(context),
+                                        style: CustomTextStyle
+                                            .roboto400sized14White,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 24.h),
-                        const Divider(color: AppColors.primary, thickness: 1),
-                        SizedBox(height: 24.h),
-                        Text(
-                          AppStrings.redeemButtonActivation.tr(context),
-                          style: CustomTextStyle.roboto700sized20Primary,
-                          overflow: TextOverflow.fade,
-                        ),
-                        SizedBox(height: 24.h),
-                        GestureDetector(
-                          onTap: () {
-                            if (cubit.myPoint >= 1000) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) {
-                                    return BlocProvider(
-                                      create: (context) =>
-                                          GameCubit(sl<WheelRepo>()),
-                                      child: const RedeemTicketScreen(),
-                                    );
+                            ],
+                          ),
+                          SizedBox(height: 24.h),
+                          const Divider(color: AppColors.primary, thickness: 1),
+                          SizedBox(height: 24.h),
+                          Text(
+                            AppStrings.redeemButtonActivation.tr(context),
+                            style: CustomTextStyle.roboto700sized20Primary,
+                            overflow: TextOverflow.fade,
+                          ),
+                          SizedBox(height: 24.h),
+                          GestureDetector(
+                            onTap: () {
+                              if (cubit.myPoint >= 1000) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) {
+                                      return BlocProvider(
+                                        create: (context) =>
+                                            GameCubit(sl<WheelRepo>()),
+                                        child: const RedeemTicketScreen(),
+                                      );
+                                    },
+                                  ),
+                                ).whenComplete(
+                                  () {
+                                    cubit.getGameData();
                                   },
+                                );
+                              }
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 16.h),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: cubit.myPoint >= 1000
+                                        ? AppColors.primary
+                                        : Colors.grey),
+                                borderRadius: BorderRadius.circular(5),
+                                color: cubit.myPoint >= 1000
+                                    ? AppColors.primary
+                                    : Colors.grey,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  AppStrings.redeemTicket.tr(context),
+                                  style: CustomTextStyle.roboto400sized14White,
                                 ),
-                              ).whenComplete(
-                                () {
-                                  cubit.getGameData();
-                                },
-                              );
-                            }
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 16.h),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: cubit.myPoint >= 1000
-                                      ? AppColors.primary
-                                      : Colors.grey),
-                              borderRadius: BorderRadius.circular(5),
-                              color: cubit.myPoint >= 1000
-                                  ? AppColors.primary
-                                  : Colors.grey,
-                            ),
-                            child: Center(
-                              child: Text(
-                                AppStrings.redeemTicket.tr(context),
-                                style: CustomTextStyle.roboto400sized14White,
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 24.h),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${AppStrings.howToRedeemYourTicket.tr(context)} :",
-                              style: CustomTextStyle.roboto500sized14Primary,
-                            ),
-                            SizedBox(height: 4.h),
-                            Text(
-                              AppStrings.redeemTicketInstructions.tr(context),
-                              style: CustomTextStyle.roboto400sized14Grey,
-                              overflow: TextOverflow.fade,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 14.h),
-                        const Divider(color: AppColors.primary, thickness: 1),
-                        SizedBox(height: 24.h),
-                        Text(
-                          AppStrings.joinOurGreatEvents.tr(context),
-                          style: CustomTextStyle.roboto700sized20Primary,
-                          overflow: TextOverflow.fade,
-                        ),
-                        SizedBox(height: 24.h),
-                        Text("${AppStrings.previousWinners.tr(context)}: ",
-                            style: CustomTextStyle.roboto400sized20Primary),
-                        SizedBox(height: 16.h),
-                        CustomTextFormField(
-                          hintText: AppStrings.writeYourComment.tr(context),
-                          suffixIcon: InkWell(
-                            onTap: () async {
-                              if (cubit.commentController.text.isNotEmpty) {
-                                cubit.addComment(context);
-                                cubit.commentController.clear();
-                              }
-                            },
-                            child: const Icon(
-                              Icons.send,
-                              color: AppColors.primary,
+                          SizedBox(height: 24.h),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${AppStrings.howToRedeemYourTicket.tr(context)} :",
+                                style: CustomTextStyle.roboto500sized14Primary,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                AppStrings.redeemTicketInstructions.tr(context),
+                                style: CustomTextStyle.roboto400sized14Grey,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 14.h),
+                          const Divider(color: AppColors.primary, thickness: 1),
+                          SizedBox(height: 24.h),
+                          Text(
+                            AppStrings.joinOurGreatEvents.tr(context),
+                            style: CustomTextStyle.roboto700sized20Primary,
+                            overflow: TextOverflow.fade,
+                          ),
+                          SizedBox(height: 24.h),
+                          Text("${AppStrings.previousWinners.tr(context)}: ",
+                              style: CustomTextStyle.roboto400sized20Primary),
+                          SizedBox(height: 16.h),
+                          Column(
+                            children: List.generate(
+                              cubit.allComments.length,
+                              (index) {
+                                return ReviewCardGame(
+                                  title: cubit.allComments[index].text ?? "",
+                                  content: cubit.allComments[index].text ?? "",
+                                  userName:
+                                      cubit.allComments[index].user?.name ?? "",
+                                  timeAgo: displayDateAndTime(
+                                          cubit.allComments[index].createdAt) ??
+                                      "",
+                                  userImage:
+                                      cubit.allComments[index].user?.profileImg,
+                                  img: cubit.allComments[index].img,
+                                );
+                              },
                             ),
                           ),
-                          controller: cubit.commentController,
-                        ),
-                        SizedBox(height: 16.h),
-                        Column(
-                          children: List.generate(
-                            cubit.allComments.length,
-                            (index) {
-                              return ReviewCardGame(
-                                title: cubit.allComments[index].text ?? "",
-                                content: cubit.allComments[index].text ?? "",
-                                userName:
-                                    cubit.allComments[index].user?.name ?? "",
-                                timeAgo: displayDateAndTime(
-                                        cubit.allComments[index].createdAt) ??
-                                    "",
-                                userImage:
-                                    cubit.allComments[index].user?.profileImg,
-                                img: cubit.allComments[index].img,
-                              );
-                            },
-                          ),
-                        ),
-                        SizedBox(height: 150.h),
-                      ],
-                    ),
-                  )
-                ],
+                          SizedBox(height: 150.h),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );
@@ -325,6 +314,9 @@ Widget buildFortuneWheel(BuildContext context) {
       ),
       child: FortuneWheel(
         selected: cubit.selected.stream,
+        styleStrategy: const UniformStyleStrategy(
+          disabledIndices: [35, 20, 15, 10, 7, 5, 8],
+        ),
         indicators: <FortuneIndicator>[
           FortuneIndicator(
             alignment: Alignment
