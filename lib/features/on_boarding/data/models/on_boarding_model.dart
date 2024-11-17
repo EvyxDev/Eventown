@@ -23,10 +23,5 @@ class OnBoardingModel {
       title: AppStrings.onBoardingTitle2,
       subTitle: AppStrings.onBoardingSubTitle2,
     ),
-    OnBoardingModel(
-      image: Assets.assetsImagesPngOnBoardingThree,
-      title: AppStrings.onBoardingTitle3,
-      subTitle: AppStrings.onBoardingSubTitle3,
-    ),
   ];
 }
