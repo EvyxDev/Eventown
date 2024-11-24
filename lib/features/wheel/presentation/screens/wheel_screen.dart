@@ -84,10 +84,14 @@ class WheelScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Align(
-                            child: Text(
-                              AppStrings.welcomeToSpinAndWin.tr(context),
-                              style: CustomTextStyle.roboto700sized20White,
+                          Expanded(
+                            child: Align(
+                              child: Text(
+                                AppStrings.welcomeToSpinAndWin.tr(context),
+                                style: CustomTextStyle.roboto700sized20White,
+                                overflow: TextOverflow.fade,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ),
                         ],
@@ -123,6 +127,52 @@ class WheelScreen extends StatelessWidget {
                               SizedBox(height: 4.h),
                               Text(
                                 AppStrings.spinAndWinInstructions.tr(context),
+                                style: CustomTextStyle.roboto400sized14Grey,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 24.h),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${"gameSteps".tr(context)} : ",
+                                style: CustomTextStyle.roboto500sized14Primary,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                'gameStep1'.tr(context),
+                                style: CustomTextStyle.roboto400sized14Grey,
+                                overflow: TextOverflow.fade,
+                              ),
+                              SizedBox(height: 8.h),
+                              Text(
+                                'gameStep2'.tr(context),
+                                style: CustomTextStyle.roboto400sized14Grey,
+                                overflow: TextOverflow.fade,
+                              ),
+                              SizedBox(height: 8.h),
+                              Text(
+                                'gameStep3'.tr(context),
+                                style: CustomTextStyle.roboto400sized14Grey,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 24.h),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${"whyPlay".tr(context)} : ",
+                                style: CustomTextStyle.roboto500sized14Primary,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                "whyPlayReasons".tr(context),
                                 style: CustomTextStyle.roboto400sized14Grey,
                                 overflow: TextOverflow.fade,
                               ),

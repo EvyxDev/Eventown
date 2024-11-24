@@ -571,11 +571,50 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeInitial());
   }
 
-  List<String> organizerPlans = [
-    "free",
-    "basic",
-    "standard",
-    "premium",
+
+
+  List<Map<String, dynamic>> plans = [
+    {
+      "planName": "free",
+      "price": 0,
+      "features": [
+        "The event is published in the app after review and approval.",
+      ],
+      "duration": null, // No duration for Free Plan
+    },
+    {
+      "planName": "basic",
+      "price": 10,
+      "features": [
+        "Featured Listing: Event is listed in the 'Top Events' for easy discovery.",
+        "Custom Notification: One notification sent to users with similar interests.",
+        "Social Media Shoutout: One post on Evntown's social media channels.",
+      ],
+      "duration": "5 days",
+    },
+    {
+      "planName": "standard",
+      "price": 20,
+      "features": [
+        "Higher Visibility: Event is prominently featured in the 'Top Events' list.",
+        "Targeted Notifications: 3 custom notifications sent to a curated user list.",
+        "Social Media Campaign: 3 dedicated posts on Evntown's social media platforms.",
+        "Event Analytics: Basic report on user interactions and views.",
+      ],
+      "duration": "10 days",
+    },
+    {
+      "planName": "premium",
+      "price": 25,
+      "features": [
+        "Prominent Listing: Featured in the 'Top Events' for maximum exposure.",
+        "Multiple Notifications: Up to 5 custom notifications to reach more users.",
+        "Comprehensive Social Media Campaign: 5 posts across all platforms, including boosted ads.",
+        "Advanced Analytics: Real-time tracking and detailed post-event analysis.",
+        "Newsletter Feature: Highlighted in the weekly Evntown newsletter.",
+      ],
+      "duration": "15 days",
+    },
   ];
   String? selectedorganizerPlan = "free";
   updateSelectedOrganizerPlan(String plane) {

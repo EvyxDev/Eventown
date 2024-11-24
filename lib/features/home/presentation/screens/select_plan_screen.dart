@@ -95,18 +95,16 @@ class SelectPlanScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: ListView.separated(
-                      itemCount:
-                          context.read<HomeCubit>().organizerPlans.length,
+                      itemCount: context.read<HomeCubit>().plans.length,
                       separatorBuilder: (context, index) =>
                           SizedBox(height: 16.h),
                       itemBuilder: (context, index) {
-                        final plan =
-                            context.read<HomeCubit>().organizerPlans[index];
+                        final plan = context.read<HomeCubit>().plans[index];
                         return InkWell(
                           onTap: () {
                             context
                                 .read<HomeCubit>()
-                                .updateSelectedOrganizerPlan(plan);
+                                .updateSelectedOrganizerPlan(plan['planName']);
                           },
                           borderRadius: BorderRadius.circular(10.r),
                           child: Container(
@@ -130,7 +128,7 @@ class SelectPlanScreen extends StatelessWidget {
                                     color: context
                                                 .read<HomeCubit>()
                                                 .selectedorganizerPlan ==
-                                            plan
+                                            plan['planName']
                                         ? AppColors.primary
                                         : AppColors.black,
                                     shape: BoxShape.circle,
@@ -147,16 +145,27 @@ class SelectPlanScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        plan.toUpperCase(),
+                                        plan['planName'].toUpperCase(),
                                         style: CustomTextStyle
                                             .roboto700sized20Primary,
                                       ),
-                                      Text(
-                                        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                                        style: CustomTextStyle
-                                            .roboto400sized14Grey,
-                                        overflow: TextOverflow.fade,
-                                      ),
+                                      //  plan["features"] as list of strings
+                                      Column(
+                                        children: List.generate(
+                                            plan["features"].length, (index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8.0),
+                                            child: Text(
+                                              '- ${plan["features"][index]}',
+                                              style: CustomTextStyle
+                                                  .roboto400sized14Grey,
+                                              overflow: TextOverflow.fade,
+                                              textAlign: TextAlign.start,
+                                            ),
+                                          );
+                                        }),
+                                      )
                                     ],
                                   ),
                                 ),

@@ -5,6 +5,7 @@ import 'package:eventown/features/forgot_password/presentation/cubit/forgot_pass
 import 'package:eventown/features/forgot_password/presentation/screens/forgot_password_otp_screen.dart';
 import 'package:eventown/features/forgot_password/presentation/screens/forgot_password_screen.dart';
 import 'package:eventown/features/forgot_password/presentation/screens/reset_password_screen.dart';
+import 'package:eventown/features/home/presentation/screens/event_screen_details.dart';
 import 'package:eventown/features/home/presentation/screens/home_screen.dart';
 import 'package:eventown/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
@@ -36,6 +37,18 @@ class Routes {
 
 class AppRoutes {
   static Route? generateRoute(RouteSettings routeSettings) {
+    final Uri uri = Uri.parse(routeSettings.name ?? '');
+
+    // Handle deep links
+    if (uri.pathSegments.isNotEmpty) {
+      if (uri.pathSegments.length == 2 && uri.pathSegments[0] == 'event') {
+        final eventId = uri.pathSegments[1];
+        return MaterialPageRoute(
+          builder: (_) => EventScreenDetails(eventId: eventId),
+        );
+      }
+    }
+
     switch (routeSettings.name) {
       //!Splash Screen
       case (Routes.initialRoute):
@@ -115,7 +128,7 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
             body: Center(
-              child: Text('No Found Route'),
+              child: Text('No Found Routeeeeh'),
             ),
           ),
         );

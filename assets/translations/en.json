@@ -85,11 +85,11 @@
     "allEvents": "All Events",
     "noEventsFound": "No Events Found",
     "viewAll": "View All",
-    "welcomeToSpinAndWin": "Welcome to Spin & Win!",
+    "welcomeToSpinAndWin": "Evntown Game Page: Spin and Enjoy Winning!",
     "aboutSpinAndWin": "About Spin & Win",
     "earnEverydayachancetowinafreeeventticketcollectpointsnowafterspinngthewheel": "Earn every day a chance to win a free event ticket. Collect points now after spinning the wheel.",
     "howToPlaySpinAndWin": "How to Play Spin & Win",
-    "spinAndWinInstructions": "Spin the wheel and replace it with a free event ticket when you reach 1000 points. The redeem button will be unlocked so you can get the ticket!",
+    "spinAndWinInstructions": "Welcome to the exciting Evntown Game! Get ready to test your luck on the Wheel of Fortune! Every 24 hours, you get a new chance to win amazing prizes.",
     "ticketHistory": "Ticket History",
     "redeemButtonActivation": "When you reach 1000 points, the redeem button will be activated!",
     "redeemTicket": "Redeem Ticket",
@@ -187,5 +187,11 @@
     "wheelOfFortune": "Wheel of Fortune",
     "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents": "Feeling lucky? Test your fortune on our game wheel! Gather points with every spin to win tickets to upcoming events.",
     "selectPlan": "Select Plan",
-    "description" : "Description"
+    "description": "Description",
+    "gameSteps": "Game Steps",
+    "gameStep1": "1- Spin the Wheel! Every day, head over to the Wheel of Fortune and spin it to collect your points. Each spin can give you points or other awesome rewards!",
+    "gameStep2": "2- Collect Points! The more you win, the more points you gather. These points contribute towards your progress to the grand prize! Keep playing and start collecting points every day.",
+    "gameStep3": "3- Enter the Draw! Once you reach 1000 points, you can enter the draw to win a free ticket to any event of your choice! Your chances of winning grow more exciting with every point you collect.",
+    "whyPlay": "Why Play?",
+    "whyPlayReasons": "A Daily Chance! You have a chance to win every 24 hours, so don't miss out!\nExcitement in Every Spin! You never know what fortune has in store for you!\nReal Prizes! With 1000 points, you'll get a chance to win a free ticket to a special event!\nAre you ready to try your luck? Spin the wheel now! Good luck and we hope you win big!"
 }
