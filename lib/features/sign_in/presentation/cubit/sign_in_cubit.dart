@@ -2,6 +2,7 @@ import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
+import 'package:eventown/features/notification/notification_handler.dart';
 import 'package:eventown/features/sign_in/data/repositories/sign_in_repo.dart';
 import 'package:eventown/features/sign_in/presentation/cubit/sign_in_state.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +24,11 @@ class SignInCubit extends Cubit<SignInState> {
 
   signIn() async {
     emit(SignInLoading());
-    final response =
-        await repo.signIn(emailController.text, passwordController.text);
+    final response = await repo.signIn(
+      emailController.text,
+      passwordController.text,
+      NotificationHandler.fcmToken ?? "",
+    );
     response.fold(
       (l) {
         printRed(l);

@@ -40,6 +40,7 @@ dependencies:
   persistent_bottom_nav_bar: ^6.2.1
   restart: ^1.0.0+1
   rxdart: ^0.28.0
+  share_plus: ^10.1.2
   shared_preferences: ^2.3.2
   url_launcher: ^6.3.1
   widget_and_text_animator: ^1.1.5

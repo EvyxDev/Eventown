@@ -43,24 +43,6 @@ class _EventownState extends State<Eventown> {
     });
   }
 
-  // void _handleDeepLink(Uri uri) {
-  //   print('Received deep link: $uri');
-  //   print('Path segments: ${uri.pathSegments}');
-  //   print(uri.pathSegments.length);
-  //   if (uri.pathSegments.length == 2 && uri.pathSegments[0] == 'event') {
-  //     final eventId = uri.pathSegments[1] ?? '';
-  //     Navigator.pushAndRemoveUntil(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => EventScreenDetails(
-  //           eventId: eventId,
-  //         ),
-  //       ),
-  //       (route) => false,
-  //     );
-  //   }
-  // }
-
   void _handleDeepLink(Uri uri) {
     Navigator.pushNamedAndRemoveUntil(
       context,

@@ -13,6 +13,7 @@ class SignInRepo {
   Future<Either<String, SignInModel>> signIn(
     String email,
     String password,
+    String fcmToken,
   ) async {
     try {
       final response = await api.post(
@@ -20,6 +21,7 @@ class SignInRepo {
         data: {
           "email": email,
           "password": password,
+          "fcmToken": fcmToken,
         },
       );
       return Right(SignInModel.fromJson(response));

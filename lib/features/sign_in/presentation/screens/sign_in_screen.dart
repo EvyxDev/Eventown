@@ -9,11 +9,9 @@ import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_elevated_button.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/core/widgets/custom_text_form_field.dart';
-import 'package:eventown/features/notification/notification_handler.dart';
 import 'package:eventown/features/sign_in/presentation/cubit/sign_in_cubit.dart';
 import 'package:eventown/features/sign_in/presentation/cubit/sign_in_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -124,40 +122,40 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 8.h),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("FCM Token :- ",
-                              style: CustomTextStyle.roboto400sized10White),
-                          Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                Clipboard.setData(
-                                  ClipboardData(
-                                    text:
-                                        NotificationHandler.fcmToken ?? "null",
-                                  ),
-                                );
-                                showTwist(
-                                  context: context,
-                                  messege:
-                                      AppStrings.copiedToClipboard.tr(context),
-                                );
-                              },
-                              child: Text(
-                                NotificationHandler.fcmToken ?? "null",
-                                style: CustomTextStyle.roboto400sized10White
-                                    .copyWith(
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.white,
-                                ),
-                                overflow: TextOverflow.fade,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      // SizedBox(height: 8.h),
+                      // Row(
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     Text("FCM Token :- ",
+                      //         style: CustomTextStyle.roboto400sized10White),
+                      //     Expanded(
+                      //       child: InkWell(
+                      //         onTap: () {
+                      //           Clipboard.setData(
+                      //             ClipboardData(
+                      //               text:
+                      //                   NotificationHandler.fcmToken ?? "null",
+                      //             ),
+                      //           );
+                      //           showTwist(
+                      //             context: context,
+                      //             messege:
+                      //                 AppStrings.copiedToClipboard.tr(context),
+                      //           );
+                      //         },
+                      //         child: Text(
+                      //           NotificationHandler.fcmToken ?? "null",
+                      //           style: CustomTextStyle.roboto400sized10White
+                      //               .copyWith(
+                      //             decoration: TextDecoration.underline,
+                      //             decorationColor: AppColors.white,
+                      //           ),
+                      //           overflow: TextOverflow.fade,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       SizedBox(height: 200.h),
                       state is SignInLoading
                           ? const CustomLoadingIndicator()

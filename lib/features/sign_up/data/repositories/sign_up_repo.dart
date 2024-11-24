@@ -31,6 +31,7 @@ class SignUpRepo {
     required String gender,
     required String phone,
     required List<String> interests,
+    required String fcmToken,
   }) async {
     try {
       final response = await api.post(
@@ -44,6 +45,7 @@ class SignUpRepo {
           "gender": gender,
           "phone": phone,
           "interests": interests,
+          "fcmToken": fcmToken,
         },
       );
       return Right(SignUpModel.fromJson(response));

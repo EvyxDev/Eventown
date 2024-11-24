@@ -1,6 +1,7 @@
 import 'package:eventown/core/common/common.dart';
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
+import 'package:eventown/core/routes/app_routes.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
@@ -16,6 +17,7 @@ import 'package:eventown/features/home/presentation/widgets/wishlist_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_plus/share_plus.dart';
 
 class EventScreenDetails extends StatefulWidget {
   const EventScreenDetails({super.key, required this.eventId});
@@ -46,6 +48,15 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                 context: context,
                 messege: AppStrings.faildToCreateComment.tr(context),
               );
+            } else if (state is GetEventByIdError) {
+              if (state.message ==
+                  "you are not login, Please login to get access this route") {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  Routes.signIn,
+                  (r) => false,
+                );
+              }
             }
           },
           builder: (context, state) {
@@ -318,13 +329,38 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                     overflow: TextOverflow.fade,
                                   ),
                                   SizedBox(height: 16.h),
-                                  CustomElevatedButton(
-                                    text: AppStrings.getTicket.tr(context),
-                                    elevation: 0,
-                                    onPressed: () {
-                                      launchCustomUrl(
-                                          context, event.ticketEventLink);
-                                    },
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: CustomElevatedButton(
+                                          text:
+                                              AppStrings.getTicket.tr(context),
+                                          elevation: 0,
+                                          onPressed: () {
+                                            launchCustomUrl(
+                                                context, event.ticketEventLink);
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(width: 8.w),
+                                      Expanded(
+                                        child: CustomElevatedButton(
+                                          text: "",
+                                          icon: const Icon(
+                                            Icons.share,
+                                            color: AppColors.white,
+                                          ),
+                                          elevation: 0,
+                                          onPressed: () {
+                                            final eventLink =
+                                                'https://api.evntown.site/event/${event.id}';
+                                            Share.share(
+                                                'Check out this event: $eventLink');
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(height: 16.h),
                                   AddToCalenderBtn(cubit: cubit, event: event),

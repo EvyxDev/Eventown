@@ -5,6 +5,7 @@ import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
 import 'package:eventown/features/home/data/models/all_categories_model/datum.dart';
+import 'package:eventown/features/notification/notification_handler.dart';
 import 'package:eventown/features/sign_up/data/repositories/sign_up_repo.dart';
 import 'package:eventown/features/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';
@@ -112,6 +113,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       gender: genderController ?? "male",
       phone: '+20${phoneController.text.trim()}',
       interests: interests,
+      fcmToken: NotificationHandler.fcmToken ?? "",
     );
     response.fold(
       (error) {

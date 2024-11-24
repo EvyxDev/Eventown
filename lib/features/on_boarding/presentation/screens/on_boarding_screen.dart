@@ -1,7 +1,10 @@
+import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/core/cubit/global_cubit.dart';
 import 'package:eventown/core/cubit/global_state.dart';
+import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/locale/app_loacl.dart';
 import 'package:eventown/core/routes/app_routes.dart';
+import 'package:eventown/core/services/service_locator.dart';
 import 'package:eventown/core/utils/app_assets.dart';
 import 'package:eventown/core/utils/app_colors.dart';
 import 'package:eventown/core/utils/app_strings.dart.dart';
@@ -85,8 +88,15 @@ class OnBoardingScreen extends StatelessWidget {
                                 .read<GlobalCubit>()
                                 .currentOnBoardingIndex ==
                             OnBoardingModel.onBoardingList.length - 1) {
+                          sl<CacheHelper>().saveData(
+                            key: AppConstants.isFirstTime,
+                            value: false,
+                          );
                           Navigator.pushNamedAndRemoveUntil(
-                              context, Routes.signIn, (route) => false);
+                            context,
+                            Routes.signIn,
+                            (route) => false,
+                          );
                         } else {
                           context.read<GlobalCubit>().pageController.nextPage(
                                 duration: const Duration(milliseconds: 250),

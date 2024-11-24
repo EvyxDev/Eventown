@@ -93,7 +93,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     length: 6,
                     width: double.infinity,
                     fieldWidth: 45.w,
-                    keyboardType: TextInputType.text,
                     style: const TextStyle(fontSize: 15),
                     otpFieldStyle: OtpFieldStyle(
                       focusBorderColor: AppColors.primary,

@@ -47,7 +47,7 @@ class CustomElevatedButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           icon ?? const SizedBox(),
-          icon ?? SizedBox(width: 8.w),
+          icon == null ? const SizedBox() : SizedBox(width: 8.w),
           Text(
             text,
             style: CustomTextStyle.roboto500sized16White.copyWith(
