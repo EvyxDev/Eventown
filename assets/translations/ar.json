@@ -173,7 +173,8 @@
     "pleaseEnterValidWebsite": "يرجى إدخال موقع ويب صالح",
     "pleaseEnterValidLink": "يرجى إدخال رابط صالح",
     "pleaseEnterValidPrice": "يرجى إدخال سعر صالح",
-    "eventCreatedSuccessfuly": "تم إنشاء الحدث بنجاح",
+    "eventCreatedSuccessfuly": "تم إنشاء الحدث بنجاح! 🎉",
+    "eventCreatedSuccessfulySub":"إن الحدث الخاص بك قيد المراجعة وسيتم الموافقة عليه من قبل الإدارة قريبًا. ترقبوا المزيد!",
     "commentCreatedSuccessfully": "تم إنشاء التعليق بنجاح",
     "faildToCreateComment": "فشل في إنشاء التعليق",
     "writeYourComment": "اكتب تعليقك",
@@ -185,7 +186,8 @@
     "organizationField": "مجال المؤسسة",
     "advice": "نصيحة",
     "adviceMessage": "رسالة النصيحة",
-    "organizerCreatedSuccessfully": "تم إنشاء المنظم بنجاح",
+    "organizerCreatedSuccessfully": " 🎉 تم إنشاء المنظم بنجاح",
+    "organizerCreatedSuccessfullySub": "سيتم التواصل معك قريبًا للتعاون فيما يتعلق بالأحداث القادمة. ترقبوا المزيد!",
     "wheelOfFortune": "عجلة الحظ",
     "feelingLuckyTestYourFortuneOnOurGameWheelGatherPointsWithEverySpinToWinTicketsToUpcomingEvents": "تشعر بالحظ؟ اختبر حظك على عجلة اللعب الخاصة بنا! اجمع النقاط مع كل دوران للفوز بتذاكر للأحداث القادمة.",
     "selectPlan": "اختر الخطة",

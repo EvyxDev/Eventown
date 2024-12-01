@@ -5,6 +5,7 @@ import 'package:eventown/core/utils/app_text_styles.dart';
 import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
+import 'package:eventown/features/home/presentation/screens/success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,9 +48,17 @@ class SelectPlanScreen extends StatelessWidget {
             HomeCubit.get(context).clearDate();
             Navigator.pop(context);
             Navigator.pop(context);
-            showTwist(
-                context: context,
-                messege: AppStrings.eventCreatedSuccessfuly.tr(context));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return SuccessScreen(
+                    title: AppStrings.eventCreatedSuccessfuly.tr(context),
+                    subTitle: AppStrings.eventCreatedSuccessfulySub.tr(context),
+                  );
+                },
+              ),
+            );
           } else if (state is CreateEventError) {
             showTwist(context: context, messege: state.message);
           }

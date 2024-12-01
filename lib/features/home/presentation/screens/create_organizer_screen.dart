@@ -9,6 +9,7 @@ import 'package:eventown/core/widgets/custom_loading_indicator.dart';
 import 'package:eventown/core/widgets/custom_text_form_field.dart';
 import 'package:eventown/features/home/presentation/cubit/home_cubit.dart';
 import 'package:eventown/features/home/presentation/cubit/home_state.dart';
+import 'package:eventown/features/home/presentation/screens/success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,9 +66,17 @@ class _CreateOrganizerScreenState extends State<CreateOrganizerScreen> {
         listener: (context, state) {
           if (state is CreateOrganizerSuccess) {
             Navigator.pop(context);
-            showTwist(
-                context: context,
-                messege: AppStrings.organizerCreatedSuccessfully.tr(context));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return SuccessScreen(
+                    title: AppStrings.organizerCreatedSuccessfully.tr(context),
+                    subTitle: AppStrings.organizerCreatedSuccessfullySub.tr(context),
+                  );
+                },
+              ),
+            );
           } else if (state is CreateOrganizerError) {
             showTwist(context: context, messege: state.message);
           }

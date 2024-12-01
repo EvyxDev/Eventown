@@ -306,6 +306,10 @@ abstract class AppStrings {
   static const String startTime = "startTime";
   //eventCreatedSuc
   static const String eventCreatedSuccessfuly = "eventCreatedSuccessfuly";
+  static const String eventCreatedSuccessfulySub = "eventCreatedSuccessfulySub";
+  static const String organizerCreatedSuccessfullySub =
+      "organizerCreatedSuccessfullySub";
+
   //"Comment Created Successfully"
   static const String commentCreatedSuccessfully = "commentCreatedSuccessfully";
   //Faild To Create Comment

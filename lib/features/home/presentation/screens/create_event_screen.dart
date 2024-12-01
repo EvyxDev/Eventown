@@ -193,9 +193,9 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             labelText: AppStrings.ticketEventLink.tr(context),
                             controller: ticketEventLinkCreateEventController,
                             validator: (value) {
-                              return Validation.validateLink(value!) != null
-                                  ? Validation.validateLink(value)!.tr(context)
-                                  : Validation.validateLink(value);
+                              return Validation.validateEmpty(value!) != null
+                                  ? Validation.validateEmpty(value)!.tr(context)
+                                  : Validation.validateEmpty(value);
                             },
                           ),
                           SizedBox(height: 16.h),
@@ -330,8 +330,9 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 context: context,
                                 initialDate: HomeCubit.get(context)
                                         .selectedEventDateCreateEvent ??
-                                    DateTime.now(),
-                                firstDate: DateTime.now(),
+                                    DateTime.now().add(const Duration(days: 1)),
+                                firstDate:
+                                    DateTime.now().add(const Duration(days: 1)),
                                 lastDate: DateTime(3000),
                               ).then((v) {
                                 if (v != null) {
@@ -367,6 +368,15 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             onTap: () {
                               DatePicker.showDateTimePicker(
                                 context,
+                                minTime: DateTime(
+                                  DateTime.now().year,
+                                  DateTime.now().month,
+                                  DateTime.now().day + 1,
+                                  0,
+                                  0,
+                                ),
+                                currentTime: HomeCubit.get(context)
+                                    .selectedStartTimeCreateEvent,
                                 onConfirm: (time) {
                                   HomeCubit.get(context)
                                       .updateSelectedStarttime(time);
@@ -378,7 +388,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               labelText: displayDateAndTime(
                                       HomeCubit.get(context)
                                           .selectedStartTimeCreateEvent) ??
-                                  AppStrings.endTime.tr(context),
+                                  AppStrings.startTime.tr(context),
                               validator: (p0) {
                                 if (HomeCubit.get(context)
                                         .selectedStartTimeCreateEvent ==
@@ -395,6 +405,15 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             onTap: () {
                               DatePicker.showDateTimePicker(
                                 context,
+                                minTime: DateTime(
+                                  DateTime.now().year,
+                                  DateTime.now().month,
+                                  DateTime.now().day + 1,
+                                  0,
+                                  0,
+                                ),
+                                currentTime: HomeCubit.get(context)
+                                    .selectedEndTimeCreateEvent,
                                 onConfirm: (time) {
                                   HomeCubit.get(context)
                                       .updateSelectedEndtime(time);
