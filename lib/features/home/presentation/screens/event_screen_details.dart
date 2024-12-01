@@ -428,57 +428,40 @@ class _EventScreenDetailsState extends State<EventScreenDetails> {
                                               ],
                                             )
                                           : Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: List.generate(
                                                 HomeCubit.get(context)
                                                     .eventByIdComments
                                                     .length,
                                                 (index) {
+                                                  var comment = HomeCubit.get(
+                                                          context)
+                                                      .eventByIdComments[index];
                                                   return Padding(
                                                     padding: EdgeInsets.only(
                                                         bottom: 16.h),
-                                                    child: Row(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
-                                                        CircleAvatar(
-                                                          radius: 18.r,
-                                                          backgroundImage:
-                                                              const AssetImage(
-                                                            Assets
-                                                                .assetsImagesPngProfile,
-                                                          ),
-                                                        ),
-                                                        SizedBox(width: 16.w),
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                                HomeCubit.get(
-                                                                            context)
-                                                                        .eventByIdComments[
-                                                                            index]
-                                                                        .user!
-                                                                        .name ??
-                                                                    '-',
-                                                                style: CustomTextStyle
-                                                                    .roboto400sized14White,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .fade),
-                                                            Text(
-                                                                HomeCubit.get(
-                                                                            context)
-                                                                        .eventByIdComments[
-                                                                            index]
-                                                                        .text ??
-                                                                    '-',
-                                                                style: CustomTextStyle
-                                                                    .roboto400sized12Grey,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .fade),
-                                                          ],
-                                                        ),
+                                                        Text(
+                                                            comment.user!
+                                                                    .name ??
+                                                                '-',
+                                                            style: CustomTextStyle
+                                                                .roboto400sized14White,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .fade),
+                                                        Text(
+                                                            comment.text ?? '-',
+                                                            style: CustomTextStyle
+                                                                .roboto400sized12Grey,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .fade),
                                                       ],
                                                     ),
                                                   );

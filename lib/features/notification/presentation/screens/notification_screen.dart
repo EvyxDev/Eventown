@@ -53,7 +53,7 @@ class NotificationScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return const NotificationCard();
                 },
-                itemCount: 5,
+                itemCount: 3,
                 separatorBuilder: (context, index) => SizedBox(height: 16.h),
               ),
             ),
@@ -95,7 +95,7 @@ class NotificationCard extends StatelessWidget {
                   style: CustomTextStyle.roboto700sized20White,
                 ),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                  "notifications comming soon",
                   style: CustomTextStyle.roboto500sized16White,
                   maxLines: 2,
                 ),
