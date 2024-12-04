@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:eventown/core/common/logs.dart';
 import 'package:eventown/core/constants/app_constants.dart';
 import 'package:eventown/core/databases/cache/cache_helper.dart';
 import 'package:eventown/core/services/service_locator.dart';
@@ -17,17 +16,5 @@ class ApiInterceptors extends Interceptor {
             : null;
 
     super.onRequest(options, handler);
-  }
-
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    printGreen('Response: ${response.data}');
-    super.onResponse(response, handler);
-  }
-
-  @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {
-    printRed('Error: ${err.response?.data}');
-    super.onError(err, handler);
   }
 }

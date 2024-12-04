@@ -10,7 +10,6 @@ environment:
 
 dependencies:
   app_links: ^6.3.2
-  bottom_sheet: ^4.0.4
   cached_network_image: ^3.4.1
   card_swiper: ^3.0.1
   cupertino_icons: ^1.0.8
